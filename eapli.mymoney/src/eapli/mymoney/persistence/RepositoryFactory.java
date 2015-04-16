@@ -12,4 +12,6 @@ package eapli.mymoney.persistence;
 public interface RepositoryFactory {
 
     ExpenseTypeRepository getExpenseTypeRepository();
+
+    ExpenseGroupRepository getExpenseGroupRepository();
 }
