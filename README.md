@@ -1,4 +1,4 @@
-EAPLI 2014 docentes
+EAPLI 2014/2015 Turma 2NB 
 =============
 
-Repositório para implementação do trabalho prático de EAPLI pela equipa de docentes
+Repositório para implementação do trabalho prático de EAPLI pela turma 2NB.
