@@ -1,5 +1,6 @@
 package eapli.mymoney.persistence.jpa;
 
+import eapli.mymoney.domain.Expense;
 import eapli.mymoney.domain.PaymentMethod;
 import eapli.mymoney.persistence.ExpenseRepository;
 
@@ -13,6 +14,8 @@ import java.util.List;
 public class ExpenseClassRepositoryImpl implements ExpenseRepository {
 
 
-
-
+    @Override
+    public boolean registerExpense(Expense expense) {
+        return false;
+    }
 }
