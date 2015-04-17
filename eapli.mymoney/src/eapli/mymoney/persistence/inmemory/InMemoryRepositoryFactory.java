@@ -5,6 +5,7 @@
  */
 package eapli.mymoney.persistence.inmemory;
 
+import eapli.mymoney.persistence.ExpenseGroupRepository;
 import eapli.mymoney.persistence.ExpenseTypeRepository;
 import eapli.mymoney.persistence.RepositoryFactory;
 
@@ -19,4 +20,8 @@ public class InMemoryRepositoryFactory implements RepositoryFactory {
         return new eapli.mymoney.persistence.inmemory.ExpenseTypeRepositoryImpl();
     }
 
+    @Override
+    public ExpenseGroupRepository getExpenseGroupRepository() {
+        return new eapli.mymoney.persistence.inmemory.ExpenseGroupRepositoryImpl();
+    }
 }

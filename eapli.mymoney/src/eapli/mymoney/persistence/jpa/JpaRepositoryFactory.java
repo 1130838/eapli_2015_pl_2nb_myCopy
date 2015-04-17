@@ -5,6 +5,7 @@
  */
 package eapli.mymoney.persistence.jpa;
 
+import eapli.mymoney.persistence.ExpenseGroupRepository;
 import eapli.mymoney.persistence.ExpenseTypeRepository;
 import eapli.mymoney.persistence.RepositoryFactory;
 
@@ -17,6 +18,11 @@ public class JpaRepositoryFactory implements RepositoryFactory {
     @Override
     public ExpenseTypeRepository getExpenseTypeRepository() {
         return new eapli.mymoney.persistence.jpa.ExpenseTypeRepositoryImpl();
+    }
+
+    @Override
+    public ExpenseGroupRepository getExpenseGroupRepository() {
+        return new eapli.mymoney.persistence.jpa.ExpenseGroupRepositoryImpl();
     }
 
 }
