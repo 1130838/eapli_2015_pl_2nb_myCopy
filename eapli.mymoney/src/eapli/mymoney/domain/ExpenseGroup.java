@@ -14,13 +14,32 @@ import java.util.Calendar;
  */
 public class ExpenseGroup {
 
-    private String nome;
+    /**
+     * Name of the group.
+     */
+    private String name;
+    /**
+     * Period in witch the group can be used.
+     */
     private Period period;
-    private BigDecimal estimativa;
+    /**
+     * This argument is opcional and sets a budget for the current group.
+     */
+    private BigDecimal estimation;
 
-    public ExpenseGroup(final String expenseGroupText, final Calendar dataInicio, final Calendar dataFim, final BigDecimal estimativa) {
-        this.nome = expenseGroupText;
-        this.period = new Period(dataInicio, dataFim);
-        this.estimativa = estimativa;
+    /**
+     * Creates Expense Group.
+     *
+     * @param expenseGroupText Expense Group name
+     * @param beginPeriod Beginning of period
+     * @param endPeriod End of period
+     * @param budgetEstimation The value of budget estimation
+     */
+    public ExpenseGroup(final String expenseGroupText,
+            final Calendar beginPeriod,
+            final Calendar endPeriod, final BigDecimal budgetEstimation) {
+        this.name = expenseGroupText;
+        this.period = new Period(beginPeriod, endPeriod);
+        this.estimation = budgetEstimation;
     }
 }

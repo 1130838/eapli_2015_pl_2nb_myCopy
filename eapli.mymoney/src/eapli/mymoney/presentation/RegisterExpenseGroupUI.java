@@ -7,8 +7,8 @@ package eapli.mymoney.presentation;
 
 import eapli.mymoney.application.RegisterExpenseGroupController;
 import eapli.util.Console;
-import eapli.util.DateTime;
 import java.math.BigDecimal;
+import java.util.Calendar;
 
 /**
  *
@@ -16,32 +16,52 @@ import java.math.BigDecimal;
  */
 public class RegisterExpenseGroupUI extends BaseUI {
 
-    private RegisterExpenseGroupController controller = new RegisterExpenseGroupController();
+    /**
+     * Controller of use case.
+     */
+    private final RegisterExpenseGroupController controller
+            = new RegisterExpenseGroupController();
+    /**
+     * The name of the Expense Group.
+     */
     private String expenseGroup;
-    private String dataInicio;
-    private String dataFim;
-    private BigDecimal estimativa;
+    /**
+     * Begin of period.
+     */
+    private Calendar beginPeriod;
+    /**
+     * End of period.
+     */
+    private Calendar endPeriod;
+    /**
+     * The value of the budget estimation.
+     */
+    private BigDecimal estimation;
 
     @Override
-    public boolean doShow() {
+    public final boolean doShow() {
         expenseGroup = Console.readLine("Enter expense group description » ");
-        dataInicio = Console.readLine("Enter expense group begin period » ");
-        dataFim = Console.readLine("Enter expense group end period » ");
-
+        beginPeriod = Console.
+                readCalendar("Enter expense group begin period » ");
+        endPeriod = Console.readCalendar("Enter expense group end period » ");
+        estimation = new BigDecimal(Console.readDouble(
+                "Enter expense group budget estimation » "));
         submit();
 
         return true;
     }
 
+    /**
+     * Records the Group.
+     */
     private void submit() {
-        controller.registerExpenseGroup(expenseGroup,
-                DateTime.parseDate(dataInicio, "dd-mm-yyyy"),
-                DateTime.parseDate(dataFim, "dd-mm-yyyy"), estimativa);
+        controller.registerExpenseGroup(expenseGroup, beginPeriod,
+                endPeriod, estimation);
         System.out.println("\nExpense group recorded!");
     }
 
     @Override
-    public String headline() {
+    public final String headline() {
         return "REGISTER AN EXPENSE GROUP";
     }
 }

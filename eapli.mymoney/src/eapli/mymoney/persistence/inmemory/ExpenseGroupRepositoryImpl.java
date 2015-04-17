@@ -18,37 +18,46 @@ import java.util.List;
  */
 public class ExpenseGroupRepositoryImpl implements ExpenseGroupRepository {
 
-    private static final List<ExpenseGroup> data = new ArrayList<ExpenseGroup>();
+    /**
+     * Container with data.
+     */
+    private static final List<ExpenseGroup> DATA
+            = new ArrayList<ExpenseGroup>();
 
     @Override
-    public boolean add(ExpenseGroup expenseGroup) {
+    public final boolean add(final ExpenseGroup expenseGroup) {
         if (expenseGroup == null) {
             throw new IllegalArgumentException();
         }
-        if (data.contains(expenseGroup)) {
+        if (DATA.contains(expenseGroup)) {
             //TODO rever se deviamos ter outra exceção mais significativa
             throw new IllegalStateException();
         }
-        return data.add(expenseGroup);
+        return DATA.add(expenseGroup);
     }
 
     @Override
-    public long size() {
-        return data.size();
+    public final long size() {
+        return DATA.size();
     }
 
-    // TODO check if we realy need this method
-    public boolean contains(ExpenseGroup group) {
-        return data.contains(group);
+    /**
+     * Checks if a expense group exists in the repository.
+     *
+     * @param group to check existence
+     * @return true - exist<br>false - not exist
+     */
+    public final boolean contains(final ExpenseGroup group) {
+        return DATA.contains(group);
     }
 
     @Override
-    public List<ExpenseGroup> all() {
-        return Collections.unmodifiableList(data);
+    public final List<ExpenseGroup> all() {
+        return Collections.unmodifiableList(DATA);
     }
 
     @Override
-    public Iterator<ExpenseGroup> iterator(int pagesize) {
-        return data.iterator();
+    public final Iterator<ExpenseGroup> iterator(final int pagesize) {
+        return DATA.iterator();
     }
 }

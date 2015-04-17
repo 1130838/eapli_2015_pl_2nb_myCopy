@@ -17,8 +17,19 @@ import java.util.Calendar;
  */
 public class RegisterExpenseGroupController {
 
-    public void registerExpenseGroup(final String expenseGroupText, final Calendar dataInicio, final Calendar dataFim, final BigDecimal estimativa) {
-        final ExpenseGroup expenseGroup = new ExpenseGroup(expenseGroupText, dataInicio, dataFim, estimativa);
+    /**
+     * Register a new expense group.
+     *
+     * @param expenseGroupText name
+     * @param beginPeriod beginning of period
+     * @param endPeriod end of period
+     * @param estimation The value of the budget estimation
+     */
+    public final void registerExpenseGroup(final String expenseGroupText,
+            final Calendar beginPeriod, final Calendar endPeriod,
+            final BigDecimal estimation) {
+        final ExpenseGroup expenseGroup = new ExpenseGroup(expenseGroupText,
+                beginPeriod, endPeriod, estimation);
         final ExpenseGroupRepository repo = Persistence.getRepositoryFactory().
                 getExpenseGroupRepository();
         repo.add(expenseGroup);
