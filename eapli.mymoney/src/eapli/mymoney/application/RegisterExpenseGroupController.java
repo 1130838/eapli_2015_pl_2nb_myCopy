@@ -9,7 +9,7 @@ import eapli.mymoney.domain.ExpenseGroup;
 import eapli.mymoney.persistence.ExpenseGroupRepository;
 import eapli.mymoney.persistence.Persistence;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  *
@@ -17,7 +17,7 @@ import java.util.Date;
  */
 public class RegisterExpenseGroupController {
 
-    public void registerExpenseGroup(final String expenseGroupText, final Date dataInicio, final Date dataFim, final BigDecimal estimativa) {
+    public void registerExpenseGroup(final String expenseGroupText, final Calendar dataInicio, final Calendar dataFim, final BigDecimal estimativa) {
         final ExpenseGroup expenseGroup = new ExpenseGroup(expenseGroupText, dataInicio, dataFim, estimativa);
         final ExpenseGroupRepository repo = Persistence.getRepositoryFactory().
                 getExpenseGroupRepository();

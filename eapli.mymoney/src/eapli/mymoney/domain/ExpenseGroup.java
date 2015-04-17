@@ -6,7 +6,7 @@
 package eapli.mymoney.domain;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  *
@@ -15,12 +15,12 @@ import java.util.Date;
 public class ExpenseGroup {
 
     private String nome;
-    //private Period period;
+    private Period period;
     private BigDecimal estimativa;
 
-    public ExpenseGroup(final String expenseGroupText, final Date dataInicio, final Date dataFim, final BigDecimal estimativa) {
+    public ExpenseGroup(final String expenseGroupText, final Calendar dataInicio, final Calendar dataFim, final BigDecimal estimativa) {
         this.nome = expenseGroupText;
-        //this.period = new Period(dataInicio, dataFim);
+        this.period = new Period(dataInicio, dataFim);
         this.estimativa = estimativa;
     }
 }

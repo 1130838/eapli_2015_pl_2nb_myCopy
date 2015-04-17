@@ -7,8 +7,8 @@ package eapli.mymoney.presentation;
 
 import eapli.mymoney.application.RegisterExpenseGroupController;
 import eapli.util.Console;
+import eapli.util.DateTime;
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  *
@@ -18,13 +18,15 @@ public class RegisterExpenseGroupUI extends BaseUI {
 
     private RegisterExpenseGroupController controller = new RegisterExpenseGroupController();
     private String expenseGroup;
-    private Date dataInicio;
-    private Date dataFim;
+    private String dataInicio;
+    private String dataFim;
     private BigDecimal estimativa;
 
     @Override
     public boolean doShow() {
         expenseGroup = Console.readLine("Enter expense group description » ");
+        dataInicio = Console.readLine("Enter expense group begin period » ");
+        dataFim = Console.readLine("Enter expense group end period » ");
 
         submit();
 
@@ -32,7 +34,9 @@ public class RegisterExpenseGroupUI extends BaseUI {
     }
 
     private void submit() {
-        controller.registerExpenseGroup(expenseGroup, dataInicio, dataFim, estimativa);
+        controller.registerExpenseGroup(expenseGroup,
+                DateTime.parseDate(dataInicio, "dd-mm-yyyy"),
+                DateTime.parseDate(dataFim, "dd-mm-yyyy"), estimativa);
         System.out.println("\nExpense group recorded!");
     }
 
