@@ -5,8 +5,9 @@
  */
 package eapli.mymoney.presentation;
 
+import eapli.framework.model.Money;
 import eapli.mymoney.application.RegisterMonthlyBudgetController;
-import eapli.mymoney.domain.Budget;
+import eapli.mymoney.domain.ExpenseType;
 import eapli.util.Console;
 import java.util.Iterator;
 import java.util.List;
@@ -18,36 +19,44 @@ import java.util.List;
 public class RegisterMonthlyBudgetUI extends BaseUI {
 
     private RegisterMonthlyBudgetController controller = new RegisterMonthlyBudgetController();
-    private List<Budget> expenseTypeList;
+    private List<ExpenseType> expenseTypeList;
+    private String budgetName;
 
     @Override
     public boolean doShow() {
         System.out.println("\n" + headline());
+
+        budgetName = Console.readLine("Type the Budget name:");
+        controller.changeBudgetName(budgetName);
         expenseTypeList = controller.getTiposDespesa();
         int option = -1, position = 1;
+
         while (option != 0) {
             position = 1;
-            for (Iterator<Budget> iterator = expenseTypeList.iterator(); iterator.hasNext();) {
-                Budget next = iterator.next();
+            for (Iterator<ExpenseType> iterator = expenseTypeList.iterator(); iterator.hasNext();) {
+                ExpenseType next = iterator.next();
                 System.out.println(position + " - " + next.toString());
                 position++;
             }
             option = Console.readInteger("Please choose an Expense Type");
-            Budget chosenBudget = null;
-            for (Iterator<Budget> iterator = expenseTypeList.iterator(); iterator.hasNext();) {
+            ExpenseType chosenExpenseType = null;
+            for (Iterator<ExpenseType> iterator = expenseTypeList.iterator(); iterator.hasNext();) {
                 position++;
                 if (option == position) {
-                    chosenBudget = iterator.next();
+                    chosenExpenseType = iterator.next();
                 }
             }
+            double chosenValue = Console.readDouble("Please choose an Value for the Expense");
+            Money valor = Money.euros(chosenValue);
+            //
+            controller.addEntry(chosenExpenseType, valor);
         }
-        double value = Console.readDouble("Please choose an Value for the Expense");
-
+        controller.saveBudget();
         return true;
     }
 
     private void submit() {
-        controller.registerMonthlyBudget();
+        //controller.registerMonthlyBudget();
         System.out.println("\nMonthly Budget recorded!");
     }
 

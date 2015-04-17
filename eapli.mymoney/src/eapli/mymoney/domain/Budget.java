@@ -5,10 +5,31 @@
  */
 package eapli.mymoney.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author ferreirai
  */
+@Entity
 public class Budget {
+
+    @Id
+    private long id;
+    private String name;
+
+    private EntryList entryList;
+
+    public boolean addEntry(Entry e) {
+        return this.entryList.add(e);
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void changeBudgetName(String name) {
+        this.name = name;
+    }
 
 }

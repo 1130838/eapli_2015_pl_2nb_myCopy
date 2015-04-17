@@ -6,6 +6,9 @@
 package eapli.mymoney.application;
 
 import eapli.mymoney.domain.Budget;
+import eapli.mymoney.domain.BudgetMap;
+import eapli.mymoney.persistence.BudgetRepository;
+import eapli.mymoney.persistence.Persistence;
 import eapli.mymoney.persistence.RepositoryFactory;
 import java.util.List;
 
@@ -13,13 +16,14 @@ import java.util.List;
  *
  * @author pag
  */
-public class GenerateBudgetMapConroller {
+public class GenerateBudgetMapController {
 
     Budget m_bu;
     RepositoryFactory repo;
     List<Budget> m_listBu;
+    BudgetMap m_bumap;
 
-    public GenerateBudgetMapConroller() {
+    public GenerateBudgetMapController() {
         this.m_listBu = getRepositoryFactory();
 
     }
@@ -28,5 +32,9 @@ public class GenerateBudgetMapConroller {
         BudgetRepository repo = Persistence.getRepositoryFactory().
                 getBudgetRepository();
         return repo.all();
+    }
+
+    public void createBudgetMap() {
+        this.m_bumap = new BudgetMap(this.m_bu);
     }
 }
