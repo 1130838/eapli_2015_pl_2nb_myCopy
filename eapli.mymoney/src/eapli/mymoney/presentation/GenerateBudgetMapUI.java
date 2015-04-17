@@ -5,7 +5,7 @@
  */
 package eapli.mymoney.presentation;
 
-import eapli.mymoney.application.GenerateBudgetMapConroller;
+import eapli.mymoney.application.GenerateBudgetMapController;
 
 /**
  *
@@ -13,10 +13,10 @@ import eapli.mymoney.application.GenerateBudgetMapConroller;
  */
 public class GenerateBudgetMapUI {
 
-    GenerateBudgetMapConroller m_map;
+    GenerateBudgetMapController m_map;
 
     public GenerateBudgetMapUI() {
-        this.m_map = new GenerateBudgetMapConroller();
+        this.m_map = new GenerateBudgetMapController();
     }
 
 }
