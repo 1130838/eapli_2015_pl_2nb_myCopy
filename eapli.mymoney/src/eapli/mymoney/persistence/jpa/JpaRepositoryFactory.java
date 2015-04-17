@@ -22,8 +22,8 @@ public class JpaRepositoryFactory implements RepositoryFactory {
     }
 
     @Override
-    public BudgetRepository getBudgetRepository() {
-        return new eapli.mymoney.persistence.jpa.BudgetRepositoryImpl();
+    public ExpenseGroupRepository getExpenseGroupRepository() {
+        return new eapli.mymoney.persistence.jpa.ExpenseGroupRepositoryImpl();
     }
 
     @Override
