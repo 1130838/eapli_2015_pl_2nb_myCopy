@@ -5,6 +5,8 @@
  */
 package eapli.mymoney.persistence.jpa;
 
+import eapli.mymoney.persistence.BudgetRepository;
+import eapli.mymoney.persistence.ExpenseGroupRepository;
 import eapli.mymoney.persistence.ExpenseTypeRepository;
 import eapli.mymoney.persistence.RepositoryFactory;
 
@@ -17,6 +19,16 @@ public class JpaRepositoryFactory implements RepositoryFactory {
     @Override
     public ExpenseTypeRepository getExpenseTypeRepository() {
         return new eapli.mymoney.persistence.jpa.ExpenseTypeRepositoryImpl();
+    }
+
+    @Override
+    public BudgetRepository getBudgetRepository() {
+        return new eapli.mymoney.persistence.jpa.BudgetRepositoryImpl();
+    }
+
+    @Override
+    public ExpenseGroupRepository getExpenseGroupRepository() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

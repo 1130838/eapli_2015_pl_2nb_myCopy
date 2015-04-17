@@ -14,4 +14,6 @@ public interface RepositoryFactory {
     ExpenseTypeRepository getExpenseTypeRepository();
 
     ExpenseGroupRepository getExpenseGroupRepository();
+
+    BudgetRepository getBudgetRepository();
 }

@@ -5,6 +5,8 @@
  */
 package eapli.mymoney.persistence.inmemory;
 
+import eapli.mymoney.persistence.BudgetRepository;
+import eapli.mymoney.persistence.ExpenseGroupRepository;
 import eapli.mymoney.persistence.ExpenseTypeRepository;
 import eapli.mymoney.persistence.RepositoryFactory;
 
@@ -17,6 +19,16 @@ public class InMemoryRepositoryFactory implements RepositoryFactory {
     @Override
     public ExpenseTypeRepository getExpenseTypeRepository() {
         return new eapli.mymoney.persistence.inmemory.ExpenseTypeRepositoryImpl();
+    }
+
+    @Override
+    public ExpenseGroupRepository getExpenseGroupRepository() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public BudgetRepository getBudgetRepository() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
