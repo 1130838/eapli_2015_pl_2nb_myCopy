@@ -6,7 +6,6 @@
 package eapli.mymoney.domain;
 
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  *
@@ -14,11 +13,11 @@ import java.util.Date;
  */
 public class Period {
 
-    private Date periodBegin;
-    private Date periodEnd;
+    private Calendar periodBegin;
+    private Calendar periodEnd;
 
     public Period(final Calendar begin, final Calendar end) {
-        periodBegin = begin.getTime();
-        periodEnd = end.getTime();
+        periodBegin = begin;
+        periodEnd = end;
     }
 }
