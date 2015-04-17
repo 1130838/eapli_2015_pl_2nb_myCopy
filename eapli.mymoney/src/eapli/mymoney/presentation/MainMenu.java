@@ -27,6 +27,8 @@ public class MainMenu {
             System.out.println("--- master tables ---");
             System.out.println("100. Register an expense type");
             System.out.println("101. List expense types");
+            System.out.println("102. Register Expense Group");
+            System.out.println("103. Register Monthly Budget");
             System.out.println("---------------------");
             System.out.println("0. Exit\n\n");
             option = Console.readInteger("Please choose an option");
@@ -41,6 +43,14 @@ public class MainMenu {
                 case 101:
                     final ListExpenseTypesUI uc01_L = new ListExpenseTypesUI();
                     uc01_L.show();
+                    break;
+                case 102:
+                    final RegisterExpenseGroupUI uc01_G = new RegisterExpenseGroupUI();
+                    uc01_G.show();
+                    break;
+                case 103:
+                    final RegisterMonthlyBudgetUI uc01_O = new RegisterMonthlyBudgetUI();
+                    uc01_O.show();
                     break;
                 default:
                     System.out.println("option not recognized.");
