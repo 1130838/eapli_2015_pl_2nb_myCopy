@@ -37,10 +37,6 @@ public class InMemoryRepositoryFactory implements RepositoryFactory {
     @Override
     public BudgetRepository getBudgetRepository() {
         return new eapli.mymoney.persistence.inmemory.BudgetRepositoryImpl();
-    }
 
-    @Override
-    public ExpenseRepository getExpenseRepository() {
-        return new eapli.mymoney.persistence.inmemory.ExpenseClassRepositoryImpl();
     }
 }
