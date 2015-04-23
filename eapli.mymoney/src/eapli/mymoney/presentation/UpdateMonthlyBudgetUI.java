@@ -62,6 +62,22 @@ public class UpdateMonthlyBudgetUI extends BaseUI {
 						amount());
 				item++;
 			}
+			int optionExpense = -1;
+			double value;
+			while (optionExpense != 0) {
+
+				optionExpense = Console.
+					readInteger("\nPlease choose an Expense to change its value(0 to sop...)");
+				for (Iterator<Entry> iterator = entryList.iterator(); iterator.
+					hasNext();) {
+					Entry tmpEntry = iterator.next();
+					if (optionExpense == item) {
+						value = Console.readDouble("\nEnter amount:");
+						Money newValue = Money.euros(value);
+						tmpEntry.changeValue(newValue);
+					}
+				}
+			}
 		}
 //        budgetName = Console.readLine("Type the Budget name:");
 //        controller.changeBudgetName(budgetName);

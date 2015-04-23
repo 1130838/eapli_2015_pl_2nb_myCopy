@@ -19,32 +19,40 @@ import javax.persistence.OneToMany;
 @Entity
 public class Budget {
 
-    //@GeneratedValue(strategy = GenerationType.AUTO)
-    @Id
-    private long id;
+	//@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	private long id;
 
-    private String name;
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
-    private List<Entry> cildren = new ArrayList<Entry>();
-    //private EntryList entryList;
+	private String name;
+	@OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+	private List<Entry> cildren = new ArrayList<Entry>();
+	//private EntryList entryList;
 
-    public boolean addEntry(Entry e) {
-        e.addParent(this);
-        return this.cildren.add(e);
-    }
+	public boolean addEntry(Entry e) {
+		e.addParent(this);
+		return this.cildren.add(e);
+	}
 
-    /**
-     * @param name the name to set
-     */
-    public void changeBudgetName(String name) {
-        this.name = name;
-    }
+	public List<Entry> retrieveEntryList() {
+		return cildren;
+	}
 
-    /**
-     * @return the id
-     */
-    public long getId() {
-        return id;
-    }
+	public String description() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void changeBudgetName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
 
 }
