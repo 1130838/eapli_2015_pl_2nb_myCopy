@@ -7,16 +7,20 @@ package eapli.mymoney.domain;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
  * @author Joel
  */
+@Entity
 public class ExpenseGroup {
 
     /**
      * Name of the group.
      */
+    @Id
     private String name;
     /**
      * Period in witch the group can be used.
@@ -26,6 +30,10 @@ public class ExpenseGroup {
      * This argument is opcional and sets a budget for the current group.
      */
     private BigDecimal estimation;
+
+    public ExpenseGroup() {
+
+    }
 
     /**
      * Creates Expense Group.
