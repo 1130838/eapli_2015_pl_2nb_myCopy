@@ -20,18 +20,21 @@ public class MainMenu {
 
     private boolean showMainMenu() {
         int option = -1;
+        String menuOpt = 
+                "=============================\n"
+                + "  myMoney - EXPENSE MANAGER  \n"
+                + "=============================\n"
+                + "--- master tables ---\n"
+                + "100. Register an expense type\n"
+                + "101. List expense types\n\n"
+                + "102. Register Expense Group\n"
+                + "103. Disable Expense Group\n\n"
+                + "104. Register Monthly Budget\n"
+                + "---------------------\n"
+                + "0. Exist\n\n";
+        
         while (option != 0) {
-            System.out.println("=============================");
-            System.out.println("  myMoney - EXPENSE MANAGER  ");
-            System.out.println("=============================\n");
-            System.out.println("--- master tables ---");
-            System.out.println("100. Register an expense type");
-            System.out.println("101. List expense types\n");
-            System.out.println("102. Register Expense Group");
-            System.out.println("103. Disable Expense Group");
-            System.out.println("\n104. Register Monthly Budget");
-            System.out.println("---------------------");
-            System.out.println("0. Exit\n\n");
+            System.out.println(menuOpt);
             option = Console.readInteger("Please choose an option");
             switch (option) {
                 case 0:
