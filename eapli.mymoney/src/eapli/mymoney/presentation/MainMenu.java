@@ -26,10 +26,10 @@ public class MainMenu {
             System.out.println("=============================\n");
             System.out.println("--- master tables ---");
             System.out.println("100. Register an expense type");
-            System.out.println("101. List expense types");
+            System.out.println("101. List expense types\n");
             System.out.println("102. Register Expense Group");
             System.out.println("103. Disable Expense Group");
-            System.out.println("104. Register Monthly Budget");
+            System.out.println("\n104. Register Monthly Budget");
             System.out.println("---------------------");
             System.out.println("0. Exit\n\n");
             option = Console.readInteger("Please choose an option");
