@@ -18,7 +18,7 @@ public class InMemoryRepositoryFactory implements RepositoryFactory {
         return new eapli.mymoney.persistence.inmemory.ExpenseTypeRepositoryImpl();
     }
 
-    
+    /*
     public ExpenseRepository getExpenseRepository() {
         return new eapli.mymoney.persistence.inmemory.ExpenseClassRepositoryImpl();
     }
@@ -28,7 +28,7 @@ public class InMemoryRepositoryFactory implements RepositoryFactory {
         return new eapli.mymoney.persistence.inmemory.PaymentMethodRepositoryImpl();
 
     }
-
+*/
     @Override
     public ExpenseGroupRepository getExpenseGroupRepository() {
         return new eapli.mymoney.persistence.inmemory.ExpenseGroupRepositoryImpl();
