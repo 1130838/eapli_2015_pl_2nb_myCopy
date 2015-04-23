@@ -27,6 +27,9 @@ public class ExpenseGroup {
      */
     private BigDecimal estimation;
 
+    /**
+     * Empty constructor.
+     */
     public ExpenseGroup() {
 
     }
