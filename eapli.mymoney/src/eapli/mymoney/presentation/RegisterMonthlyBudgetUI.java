@@ -28,17 +28,20 @@ public class RegisterMonthlyBudgetUI extends BaseUI {
 
         budgetName = Console.readLine("Type the Budget name:");
         controller.changeBudgetName(budgetName);
-        expenseTypeList = controller.getTiposDespesa();
+        expenseTypeList = controller.getExpenseTypes();
         int option = -1, position = 1;
 
         while (option != 0) {
             position = 1;
             for (Iterator<ExpenseType> iterator = expenseTypeList.iterator(); iterator.hasNext();) {
                 ExpenseType next = iterator.next();
-                System.out.println(position + " - " + next.toString());
+                System.out.println(position + " - " + next.description());
                 position++;
             }
-            option = Console.readInteger("Please choose an Expense Type");
+            option = Console.readInteger("Please choose an Expense Type (0 to sop inserting...)");
+            if (option == 0) {
+                break;
+            }
             ExpenseType chosenExpenseType = null;
             for (Iterator<ExpenseType> iterator = expenseTypeList.iterator(); iterator.hasNext();) {
                 position++;
@@ -46,17 +49,17 @@ public class RegisterMonthlyBudgetUI extends BaseUI {
                     chosenExpenseType = iterator.next();
                 }
             }
-            double chosenValue = Console.readDouble("Please choose an Value for the Expense");
-            Money valor = Money.euros(chosenValue);
+            double chosenValue = Console.readDouble("Please insert a Value for this Expense:");
+            Money value = Money.euros(chosenValue);
             //
-            controller.addEntry(chosenExpenseType, valor);
+            controller.addEntry(chosenExpenseType, value);
         }
-        controller.saveBudget();
+        submit();
         return true;
     }
 
     private void submit() {
-        //controller.registerMonthlyBudget();
+        controller.saveBudget();
         System.out.println("\nMonthly Budget recorded!");
     }
 

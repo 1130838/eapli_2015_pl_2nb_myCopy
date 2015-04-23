@@ -5,20 +5,33 @@
  */
 package eapli.mymoney.persistence.jpa;
 
+import eapli.framework.persistence.jpa.JpaRepository;
 import eapli.mymoney.domain.Budget;
 import eapli.mymoney.persistence.BudgetRepository;
 import java.util.Iterator;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
  * @author ferreirai
  */
-public class BudgetRepositoryImpl implements BudgetRepository {
+public class BudgetRepositoryImpl extends JpaRepository<Budget, String>
+        implements BudgetRepository {
 
-    @Override
     public boolean add(Budget budget) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManagerFactory emf
+                = Persistence.createEntityManagerFactory(persistenceUnitName());
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(budget);
+        em.getTransaction().commit();
+        System.out.println("ID gerado: " + budget.getId());
+        em.close();
+        emf.close();
+        return true;
     }
 
     @Override
@@ -36,4 +49,8 @@ public class BudgetRepositoryImpl implements BudgetRepository {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    protected String persistenceUnitName() {
+        return PersistenceSettings.PERSISTENCE_UNIT_NAME;
+    }
 }

@@ -8,6 +8,7 @@ package eapli.mymoney.persistence.jpa;
 import eapli.framework.persistence.jpa.JpaRepository;
 import eapli.mymoney.domain.ExpenseType;
 import eapli.mymoney.persistence.ExpenseTypeRepository;
+import java.util.List;
 import javax.persistence.RollbackException;
 
 /**
@@ -26,6 +27,12 @@ public class ExpenseTypeRepositoryImpl
             throw new IllegalStateException();
         }
         return true;
+    }
+
+    @Override
+    public List<ExpenseType> all() {
+
+        return (List<ExpenseType>) this.findAll();
     }
 
     @Override

@@ -23,6 +23,10 @@ public class InMemoryRepositoryFactory implements RepositoryFactory {
         return new eapli.mymoney.persistence.inmemory.ExpenseTypeRepositoryImpl();
     }
 
+<<<<<<< .merge_file_a08816
+=======
+    /*
+>>>>>>> .merge_file_a07352
     public ExpenseRepository getExpenseRepository() {
         //return new eapli.mymoney.persistence.inmemory.ExpenseClassRepositoryImpl();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -32,7 +36,7 @@ public class InMemoryRepositoryFactory implements RepositoryFactory {
         //return new eapli.mymoney.persistence.inmemory.PaymentMethodRepositoryImpl();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+*/
     @Override
     public ExpenseGroupRepository getExpenseGroupRepository() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -42,10 +46,6 @@ public class InMemoryRepositoryFactory implements RepositoryFactory {
     @Override
     public BudgetRepository getBudgetRepository() {
         return new eapli.mymoney.persistence.inmemory.BudgetRepositoryImpl();
-    }
 
-    @Override
-    public ExpenseRepository getExpenseRepository() {
-        return new eapli.mymoney.persistence.inmemory.ExpenseClassRepositoryImpl();
     }
 }
