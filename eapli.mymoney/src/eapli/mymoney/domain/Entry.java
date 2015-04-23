@@ -8,7 +8,6 @@ package eapli.mymoney.domain;
 import eapli.framework.model.Money;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 /**
  *
@@ -22,7 +21,7 @@ public class Entry {
     private long id;
     private BudgetLine budgetLine;
     private Money value;
-    @ManyToOne
+
     private Budget parent;
 
     public Entry() {
