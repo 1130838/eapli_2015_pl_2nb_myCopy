@@ -4,6 +4,7 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>eapli.framework.model.Money</class>
     <class>eapli.mymoney.domain.ExpenseType</class>
+    <class>eapli.mymoney.domain.ExpenseGroup</class>
     <class>eapli.mymoney.domain.Budget</class>
     <class>eapli.mymoney.domain.Entry</class>
     <properties>
