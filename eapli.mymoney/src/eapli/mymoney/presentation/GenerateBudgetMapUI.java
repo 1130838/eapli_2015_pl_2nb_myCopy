@@ -11,7 +11,7 @@ import eapli.mymoney.application.GenerateBudgetMapController;
  *
  * @author pag
  */
-public class GenerateBudgetMapUI {
+public class GenerateBudgetMapUI extends BaseUI{
 
     GenerateBudgetMapController m_map;
 
