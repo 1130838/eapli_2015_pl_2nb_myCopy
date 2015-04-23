@@ -25,12 +25,16 @@ public class Budget {
 
     private String name;
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
-    private List<Entry> cildren = new ArrayList<Entry>();
+    private List<Entry> children = new ArrayList<Entry>();
     //private EntryList entryList;
 
     public boolean addEntry(Entry e) {
         e.addParent(this);
-        return this.cildren.add(e);
+        return this.children.add(e);
+    }
+
+    public List<Entry> retrieveEntryList() {
+        return children;
     }
 
     /**
@@ -38,6 +42,10 @@ public class Budget {
      */
     public void changeBudgetName(String name) {
         this.name = name;
+    }
+
+    public String description() {
+        return this.name;
     }
 
     /**
