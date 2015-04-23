@@ -36,4 +36,10 @@ public class InMemoryRepositoryFactory implements RepositoryFactory {
     @Override
     public BudgetRepository getBudgetRepository() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }}
+    }
+
+    @Override
+    public ExpenseRepository getExpenseRepository() {
+        return new eapli.mymoney.persistence.inmemory.ExpenseClassRepositoryImpl();
+    }
+}
