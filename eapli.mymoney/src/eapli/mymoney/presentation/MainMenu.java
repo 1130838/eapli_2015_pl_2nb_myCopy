@@ -51,7 +51,7 @@ public class MainMenu {
                     break;
                 case 103:
                     final RegisterExpenseGroupUI uc03_G = new RegisterExpenseGroupUI();
-                    uc03_G.doShow();
+                    // TODO falta chamar o metodo
                     break;
                 case 104:
                     final RegisterMonthlyBudgetUI uc01_O = new RegisterMonthlyBudgetUI();
