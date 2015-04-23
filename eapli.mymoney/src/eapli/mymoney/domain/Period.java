@@ -5,28 +5,27 @@
  */
 package eapli.mymoney.domain;
 
-import java.io.Serializable;
 import java.util.Calendar;
 
 /**
  *
  * @author Luís
  */
-public class Period implements Serializable {
+public class Period {
 
-    private Calendar periodBegin;
-    private Calendar periodEnd;
+	private Calendar periodBegin;
+	private Calendar periodEnd;
 
-    public Period(final Calendar begin, final Calendar end) {
-        periodBegin = begin;
-        periodEnd = end;
-    }
+	public Period(final Calendar begin, final Calendar end) {
+		periodBegin = begin;
+		periodEnd = end;
+	}
 
-    public Calendar getPeriodBegin() {
-        return periodBegin;
-    }
+	public Calendar getPeriodBegin() {
+		return periodBegin;
+	}
 
-    public Calendar getPeriodEnd() {
-        return periodEnd;
-    }
+	public Calendar getPeriodEnd() {
+		return periodEnd;
+	}
 }

@@ -5,10 +5,7 @@
  */
 package eapli.mymoney.persistence.jpa;
 
-import eapli.mymoney.persistence.BudgetRepository;
-import eapli.mymoney.persistence.ExpenseGroupRepository;
-import eapli.mymoney.persistence.ExpenseTypeRepository;
-import eapli.mymoney.persistence.RepositoryFactory;
+import eapli.mymoney.persistence.*;
 
 /**
  *
@@ -29,5 +26,15 @@ public class JpaRepositoryFactory implements RepositoryFactory {
     @Override
     public BudgetRepository getBudgetRepository() {
         return new eapli.mymoney.persistence.jpa.BudgetRepositoryImpl();
+    }
+
+    @Override
+    public ExpenseRepository getExpenseRepository() {
+        return new eapli.mymoney.persistence.jpa.ExpenseClassRepositoryImpl();
+    }
+
+    @Override
+    public PaymentMethodsRepository getPaymentMethodsRepository() {
+        return new eapli.mymoney.persistence.jpa.PaymentMethodRepositoryImpl();
     }
 }
