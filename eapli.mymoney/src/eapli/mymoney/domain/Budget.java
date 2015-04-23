@@ -5,8 +5,12 @@
  */
 package eapli.mymoney.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -15,14 +19,18 @@ import javax.persistence.Id;
 @Entity
 public class Budget {
 
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private long id;
-    private String name;
 
-    private EntryList entryList;
+    private String name;
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+    private List<Entry> cildren = new ArrayList<Entry>();
+    //private EntryList entryList;
 
     public boolean addEntry(Entry e) {
-        return this.entryList.add(e);
+        e.addParent(this);
+        return this.cildren.add(e);
     }
 
     /**
@@ -30,6 +38,13 @@ public class Budget {
      */
     public void changeBudgetName(String name) {
         this.name = name;
+    }
+
+    /**
+     * @return the id
+     */
+    public long getId() {
+        return id;
     }
 
 }

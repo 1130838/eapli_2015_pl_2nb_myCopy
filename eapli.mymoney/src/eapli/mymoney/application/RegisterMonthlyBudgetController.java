@@ -33,7 +33,7 @@ public class RegisterMonthlyBudgetController {
         budget = new Budget();
     }
 
-    public List<ExpenseType> getTiposDespesa() {
+    public List<ExpenseType> getExpenseTypes() {
         ExpenseTypeRepository repo = Persistence.getRepositoryFactory().
                 getExpenseTypeRepository();
         return repo.all();
@@ -64,12 +64,5 @@ public class RegisterMonthlyBudgetController {
         BudgetRepository repo = Persistence.getRepositoryFactory().
                 getBudgetRepository();
         return repo.add(budget);
-    }
-
-    public void registerMonthlyBudget(Budget budget) {
-
-//        final BudgetRepository repo = Persistence.getRepositoryFactory().
-//                getBudgetRepository();
-//        repo.add(budget);
     }
 }
