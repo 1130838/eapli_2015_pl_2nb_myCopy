@@ -18,4 +18,6 @@ public interface RepositoryFactory {
     BudgetRepository getBudgetRepository();
 
     ExpenseRepository getExpenseRepository();
+
+    PaymentMethodsRepository getPaymentMethodsRepository();
 }

@@ -32,4 +32,9 @@ public class JpaRepositoryFactory implements RepositoryFactory {
     public ExpenseRepository getExpenseRepository() {
         return new eapli.mymoney.persistence.jpa.ExpenseClassRepositoryImpl();
     }
+
+    @Override
+    public PaymentMethodsRepository getPaymentMethodsRepository() {
+        return new eapli.mymoney.persistence.jpa.PaymentMethodRepositoryImpl();
+    }
 }
