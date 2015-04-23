@@ -42,7 +42,7 @@ public class RegisterMonthlyBudgetUI extends BaseUI {
             if (option == 0) {
                 break;
             }
-            ExpenseType chosenExpenseType = null;
+            ExpenseType chosenExpenseType = new ExpenseType("");
             for (Iterator<ExpenseType> iterator = expenseTypeList.iterator(); iterator.hasNext();) {
                 position++;
                 if (option == position) {
