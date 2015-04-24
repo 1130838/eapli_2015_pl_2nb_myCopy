@@ -20,8 +20,8 @@ public class MainMenu {
 
     private boolean showMainMenu() {
         int option = -1;
-        String menuOpt
-                = "=============================\n"
+        String menuOpt = 
+                "=============================\n"
                 + "  myMoney - EXPENSE MANAGER  \n"
                 + "=============================\n"
                 + "--- master tables ---\n"
@@ -30,10 +30,11 @@ public class MainMenu {
                 + "102. Register Expense Group\n"
                 + "103. Disable Expense Group\n\n"
                 + "104. Register Monthly Budget\n"
-                + "105. Update Monthly Budget\n"
+                + "105. Update Monthly Budget\n\n"
+                + "106. Register Expense\n"
                 + "---------------------\n"
                 + "0. Exist\n\n";
-
+        
         while (option != 0) {
             System.out.println(menuOpt);
             option = Console.readInteger("Please choose an option");
@@ -55,7 +56,7 @@ public class MainMenu {
                     break;
                 case 103:
                     final RegisterExpenseGroupUI uc03_G = new RegisterExpenseGroupUI();
-                    uc03_G.show();
+                    uc03_G.doShow();
                     break;
                 case 104:
                     final RegisterMonthlyBudgetUI uc01_O = new RegisterMonthlyBudgetUI();
@@ -64,6 +65,10 @@ public class MainMenu {
                 case 105:
                     final UpdateMonthlyBudgetUI uc01_1 = new UpdateMonthlyBudgetUI();
                     uc01_1.show();
+                    break;
+                case 106:
+                    final RegisterExpenseUI uc01_2 = new RegisterExpenseUI();
+                    uc01_2.doShow();
                     break;
                 default:
                     System.out.println("option not recognized.");

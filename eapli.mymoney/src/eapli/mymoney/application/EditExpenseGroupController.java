@@ -46,32 +46,14 @@ public class EditExpenseGroupController {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**
-     * TODO : Code to get data Begin Period of the expense group
-     *
-     * @param expenseGroup
-     * @return beginPeriod
-     */
     public Calendar getBeginPeriod(String expenseGroup) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**
-     * TODO : Code to get data getExtimation of the expense group
-     *
-     * @param expenseGroup
-     * @return getEstimation
-     */
     public BigDecimal getEstimation(String expenseGroup) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**
-     * TODO : Code to get data endPeriod of the expense group
-     *
-     * @param expenseGroup
-     * @return endPeriod
-     */
     public Calendar getEndPeriod(String expenseGroup) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
