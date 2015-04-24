@@ -78,36 +78,9 @@ public class UpdateMonthlyBudgetUI extends BaseUI {
 					}
 				}
 			}
+			controller.setBudget(chosenBudget);
+			submit();
 		}
-//        budgetName = Console.readLine("Type the Budget name:");
-//        controller.changeBudgetName(budgetName);
-//        expenseTypeList = controller.getExpenseTypes();
-//        int option = -1, position = 1;
-//
-//        while (option != 0) {
-//            position = 1;
-//            for (Iterator<ExpenseType> iterator = expenseTypeList.iterator(); iterator.hasNext();) {
-//                ExpenseType next = iterator.next();
-//                System.out.println(position + " - " + next.description());
-//                position++;
-//            }
-//            option = Console.readInteger("Please choose an Expense Type (0 to sop inserting...)");
-//            if (option == 0) {
-//                break;
-//            }
-//            ExpenseType chosenExpenseType = new ExpenseType("a");
-//            for (Iterator<ExpenseType> iterator = expenseTypeList.iterator(); iterator.hasNext();) {
-//                position++;
-//                if (option == position) {
-//                    chosenExpenseType = iterator.next();
-//                }
-//            }
-//            double chosenValue = Console.readDouble("Please insert a Value for this Expense:");
-//            Money value = Money.euros(chosenValue);
-//            //
-//            controller.addEntry(chosenExpenseType, value);
-//        }
-//        submit();
 		return true;
 	}
 

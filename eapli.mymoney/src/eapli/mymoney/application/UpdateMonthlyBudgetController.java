@@ -5,9 +5,7 @@
  */
 package eapli.mymoney.application;
 
-import eapli.framework.model.Money;
 import eapli.mymoney.domain.Budget;
-import eapli.mymoney.domain.BudgetLine;
 import eapli.mymoney.domain.Entry;
 import eapli.mymoney.domain.ExpenseType;
 import eapli.mymoney.persistence.BudgetRepository;
@@ -39,25 +37,8 @@ public class UpdateMonthlyBudgetController {
 		return repo.all();
 	}
 
-	public void setValor(BigDecimal value) {
-		this.value = value;
-	}
-
-	public void setExpenseType(ExpenseType expenseType) {
-		this.expenseType = expenseType;
-	}
-
-	public void insereLista() {
-		entrada.put(expenseType, value);
-	}
-
-	public void addEntry(BudgetLine budgetLine, Money valor) {
-		entry = new Entry(budgetLine, valor);
-		budget.addEntry(entry);
-	}
-
-	public void changeBudgetName(String budgetName) {
-		budget.changeBudgetName(budgetName);
+	public void setBudget(Budget budget) {
+		this.budget = budget;
 	}
 
 	public boolean saveBudget() {

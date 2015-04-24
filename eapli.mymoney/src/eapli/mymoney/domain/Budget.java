@@ -33,7 +33,8 @@ public class Budget {
 		return this.cildren.add(e);
 	}
 
-	public List<Entry> retrieveEntryList() {
+	public
+		List<Entry> retrieveEntryList() {
 		return cildren;
 	}
 
