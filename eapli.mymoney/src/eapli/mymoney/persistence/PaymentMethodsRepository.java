@@ -9,6 +9,10 @@ import java.util.List;
  */
 public interface PaymentMethodsRepository {
 
+    boolean add(PaymentMethod paymentMethod);
+
+    long size();
+
     List<PaymentMethod> all();
 
 }

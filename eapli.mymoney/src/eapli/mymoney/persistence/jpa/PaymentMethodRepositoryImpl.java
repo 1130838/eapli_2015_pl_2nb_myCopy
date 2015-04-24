@@ -1,5 +1,6 @@
 package eapli.mymoney.persistence.jpa;
 
+import eapli.framework.persistence.jpa.JpaRepository;
 import eapli.mymoney.domain.PaymentMethod;
 import eapli.mymoney.persistence.PaymentMethodsRepository;
 
@@ -10,10 +11,11 @@ import java.util.List;
 /**
  * Created by brunodevesa on 16/04/15.
  */
-public class PaymentMethodRepositoryImpl implements PaymentMethodsRepository {
+public class PaymentMethodRepositoryImpl
+        extends JpaRepository<PaymentMethod, Integer>
+        implements PaymentMethodsRepository {
 
     private static final List<PaymentMethod> paymentMethodList = new ArrayList<PaymentMethod>();
-
 
     static {
         paymentMethodList.add(new PaymentMethod("Money"));
@@ -26,6 +28,12 @@ public class PaymentMethodRepositoryImpl implements PaymentMethodsRepository {
     @Override
     public List<PaymentMethod> all() {
         return Collections.unmodifiableList(paymentMethodList);
+    }
+
+    @Override
+    protected String persistenceUnitName() {
+        return PersistenceSettings.PERSISTENCE_UNIT_NAME;
+
     }
 
 
