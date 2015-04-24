@@ -36,7 +36,25 @@ public class EditExpenseGroupController {
         repo.add(expenseGroup);
     }
 
+    /**
+     * get list of expense groups.
+     *
+     * @return listexpenseGroups
+     */
     public List<String> getListExpenseGroup() {
+
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Calendar getBeginPeriod(String expenseGroup) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public BigDecimal getEstimation(String expenseGroup) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Calendar getEndPeriod(String expenseGroup) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

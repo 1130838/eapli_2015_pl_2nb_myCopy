@@ -6,6 +6,7 @@
 package eapli.mymoney.presentation;
 
 import eapli.mymoney.application.EditExpenseGroupController;
+import eapli.util.Console;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
@@ -52,8 +53,39 @@ public class EditExpenseGroupUI extends BaseUI {
      */
     @Override
     protected boolean doShow() {
+        String opcao;
         List<String> listExpenseGroups = getListExpenseGroup();
+        System.out.println("Choose one Expense Group: \n");
+        int i = 1;
+        for (String listExpenseGroup : listExpenseGroups) {
+            System.out.println(listExpenseGroup);
+        }
+        System.out.println("Choose: \n");
+        Console.readLine(expenseGroup);//NEED DO ERROR
+        beginPeriod = controller.getBeginPeriod(expenseGroup);
+        System.out.println("Begin Period:\n");
+        System.out.println(beginPeriod);
+        opcao = Console.readLine("Do You want change? (y/n)");
+        if (opcao == "y") {
+            beginPeriod = Console.
+                    readCalendar("Enter expense group begin period » ");
+        }
+        endPeriod = controller.getEndPeriod(expenseGroup);
+        System.out.println("Begin Period:\n");
+        System.out.println(endPeriod);
+        opcao = Console.readLine("Do You want change? (y/n)");
+        if (opcao == "y") {
+            endPeriod = Console.
+                    readCalendar("Enter expense group begin period » ");
+        }
 
+        estimation = controller.getEstimation(expenseGroup);
+        System.out.println("Begin Period:\n");
+        System.out.println(estimation);
+        opcao = Console.readLine("Do You want change? (y/n)");
+        if (opcao == "y") {
+            estimation = BigDecimal.valueOf(Console.readDouble("Enter expense group begin period » "));
+        }
         return true;
 
     }
@@ -64,6 +96,9 @@ public class EditExpenseGroupUI extends BaseUI {
     }
 
     private void submit() {
+        controller.editExpenseGroup(expenseGroup, beginPeriod,
+                endPeriod, estimation);
+        System.out.println("\nExpense group recorded!");
 
     }
 
