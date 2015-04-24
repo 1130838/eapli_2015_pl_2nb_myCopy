@@ -1,9 +1,10 @@
 package eapli.mymoney.persistence.inmemory;
 
 import eapli.framework.model.Money;
-import eapli.mymoney.domain.PaymentMethod;
+import eapli.framework.persistence.jpa.JpaRepository;
+import eapli.mymoney.domain.Expense;
 import eapli.mymoney.domain.Period;
-import eapli.mymoney.persistence.PaymentMethodsRepository;
+import eapli.mymoney.persistence.ExpenseRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,21 +13,22 @@ import java.util.List;
 /**
  * Created by brunodevesa on 17/04/15.
  */
-public class PaymentMethodRepositoryImpl implements PaymentMethodsRepository {
+public class ExpenseRepositoryImpl
+        implements ExpenseRepository {
 
 
-    private static final List<PaymentMethod> data = new ArrayList<>();
+    private static final List<Expense> data = new ArrayList<>();
 
     @Override
-    public boolean add(PaymentMethod paymentMethod) {
-        if (paymentMethod == null) {
+    public boolean add(Expense expense) {
+        if (expense == null) {
             throw new IllegalArgumentException();
         }
-        if (data.contains(paymentMethod)) {
+        if (data.contains(expense)) {
             //TODO rever se deviamos ter outra exceção mais significativa
             throw new IllegalStateException();
         }
-        return data.add(paymentMethod);
+        return data.add(expense);
     }
 
 
@@ -36,12 +38,12 @@ public class PaymentMethodRepositoryImpl implements PaymentMethodsRepository {
     }
 
     @Override
-    public List<PaymentMethod> all() {
+    public List<Expense> all() {
         return Collections.unmodifiableList(data);
     }
 
 
-
+    @Override
     public Money getWeekExpediture(Period period) {
         throw new UnsupportedOperationException("not implemented..");
     }

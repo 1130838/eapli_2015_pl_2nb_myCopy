@@ -11,13 +11,15 @@ package eapli.mymoney.persistence;
  */
 public interface RepositoryFactory {
 
-	ExpenseTypeRepository getExpenseTypeRepository();
+    ExpenseTypeRepository getExpenseTypeRepository();
 
-	ExpenseGroupRepository getExpenseGroupRepository();
+    ExpenseGroupRepository getExpenseGroupRepository();
 
-	BudgetRepository getBudgetRepository();
+    BudgetRepository getBudgetRepository();
 
-	ExpenseRepository getExpenseRepository();
+    ExpenseRepository getExpenseRepository();
 
-	PaymentMethodsRepository getPaymentMethodsRepository();
+    PaymentMethodsRepository getPaymentMethodRepository();
+
+
 }

@@ -28,7 +28,7 @@ public class InMemoryRepositoryFactory implements RepositoryFactory {
     /*
 >>>>>>> .merge_file_a07352
     public ExpenseRepository getExpenseRepository() {
-        //return new eapli.mymoney.persistence.inmemory.ExpenseClassRepositoryImpl();
+        //return new eapli.mymoney.persistence.inmemory.ExpenseRepositoryImpl();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
