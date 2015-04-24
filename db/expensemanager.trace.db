@@ -4068,12 +4068,9 @@ SELECT expenses_ID FROM MONTHPAGE_EXPENSE WHERE expenses_ID <> expenses_ID [4210
 05-27 18:55:07 jdbc[2]: exception
 org.h2.jdbc.JdbcSQLException: Table "WALLET_PAYMENTMEAN" not found; SQL statement:
 SELECT paymentMeans_ID FROM WALLET_PAYMENTMEAN WHERE paymentMeans_ID <> paymentMeans_ID [42102-171]
-04-23 23:24:36 jdbc[2]: exception
-org.h2.jdbc.JdbcSQLException: Table "EXPENSEGROUP" not found; SQL statement:
-SELECT NAME FROM EXPENSEGROUP WHERE NAME <> NAME [42102-171]
-04-23 23:24:36 jdbc[2]: exception
+04-23 22:31:05 jdbc[2]: exception
 org.h2.jdbc.JdbcSQLException: Table "BUDGET" not found; SQL statement:
 SELECT ID FROM BUDGET WHERE ID <> ID [42102-171]
-04-23 23:24:36 jdbc[2]: exception
+04-23 22:31:05 jdbc[2]: exception
 org.h2.jdbc.JdbcSQLException: Table "ENTRY" not found; SQL statement:
 SELECT ID FROM ENTRY WHERE ID <> ID [42102-171]
