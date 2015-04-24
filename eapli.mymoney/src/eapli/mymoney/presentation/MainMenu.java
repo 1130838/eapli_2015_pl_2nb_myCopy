@@ -30,7 +30,8 @@ public class MainMenu {
                 + "102. Register Expense Group\n"
                 + "103. Disable Expense Group\n\n"
                 + "104. Register Monthly Budget\n"
-                + "105. Update Monthly Budget\n"
+                + "105. Update Monthly Budget\n\n"
+                + "106. Register Expense\n"
                 + "---------------------\n"
                 + "0. Exist\n\n";
         
@@ -64,6 +65,10 @@ public class MainMenu {
                 case 105:
                     final UpdateMonthlyBudgetUI uc01_1 = new UpdateMonthlyBudgetUI();
                     uc01_1.show();
+                    break;
+                case 106:
+                    final RegisterExpenseUI uc01_2 = new RegisterExpenseUI();
+                    uc01_2.doShow();
                     break;
                 default:
                     System.out.println("option not recognized.");
