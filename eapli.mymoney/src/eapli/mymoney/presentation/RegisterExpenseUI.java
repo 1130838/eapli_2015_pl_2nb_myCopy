@@ -16,10 +16,9 @@ import java.util.List;
 /**
  * Created by brunodevesa on 24/04/15.
  */
-public class RegisterExpenseUI extends BaseUI{
+public class RegisterExpenseUI extends BaseUI {
 
     private final RegisterExpenseController registerExpenseController = new RegisterExpenseController();
-
 
     float value = 1069;
     ExpenseType expensetype = new ExpenseType("vestuario");
@@ -28,16 +27,12 @@ public class RegisterExpenseUI extends BaseUI{
 
     @Override
     protected boolean doShow() {
-
         submit();
-
-        return true;
+        return false;
     }
 
     private void submit() {
-
         registerExpenseController.registerExpense(value, expensetype, paymentMethod, date);
-
     }
 
     @Override
