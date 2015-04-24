@@ -86,6 +86,8 @@ public class EditExpenseGroupUI extends BaseUI {
         if (opcao == "y") {
             estimation = BigDecimal.valueOf(Console.readDouble("Enter expense group begin period » "));
         }
+
+        controller.editExpenseGroup(expenseGroup, beginPeriod, endPeriod, estimation);
         return true;
 
     }
