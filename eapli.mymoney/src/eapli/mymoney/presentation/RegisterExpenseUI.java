@@ -28,7 +28,7 @@ public class RegisterExpenseUI extends BaseUI {
     @Override
     protected boolean doShow() {
         submit();
-        return true;
+        return false;
     }
 
     private void submit() {

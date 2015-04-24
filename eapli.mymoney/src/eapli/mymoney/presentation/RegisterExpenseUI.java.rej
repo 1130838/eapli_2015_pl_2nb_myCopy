@@ -1,0 +1,10 @@
+diff a/eapli.mymoney/src/eapli/mymoney/presentation/RegisterExpenseUI.java b/eapli.mymoney/src/eapli/mymoney/presentation/RegisterExpenseUI.java	(rejected hunks)
+@@ -28,7 +28,7 @@
+     @Override
+     protected boolean doShow() {
+         submit();
+-        return false;
++        return true;
+     }
+ 
+     private void submit() {
