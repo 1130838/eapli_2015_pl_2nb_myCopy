@@ -41,6 +41,11 @@ public class EditExpenseGroupUI extends BaseUI {
      */
     private BigDecimal estimation;
 
+    /**
+     * Ask for the list of expense groups
+     *
+     * @return
+     */
     public List<String> getListExpenseGroup() {
 
         return controller.getListExpenseGroup();
@@ -91,11 +96,19 @@ public class EditExpenseGroupUI extends BaseUI {
 
     }
 
+    /**
+     * TODO :
+     *
+     * @return
+     */
     @Override
     public String headline() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Submit code for edit the expense group.
+     */
     private void submit() {
         controller.editExpenseGroup(expenseGroup, beginPeriod,
                 endPeriod, estimation);
