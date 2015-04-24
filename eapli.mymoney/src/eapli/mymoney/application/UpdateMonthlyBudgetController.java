@@ -39,10 +39,6 @@ public class UpdateMonthlyBudgetController {
 		return repo.all();
 	}
 
-	public void setBudget(Budget budget) {
-		this.budget = budget;
-	}
-
 	public void setValor(BigDecimal value) {
 		this.value = value;
 	}

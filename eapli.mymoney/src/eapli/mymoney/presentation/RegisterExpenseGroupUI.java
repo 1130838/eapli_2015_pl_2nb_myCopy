@@ -38,8 +38,6 @@ public class RegisterExpenseGroupUI extends BaseUI {
      */
     private BigDecimal estimation;
 
-    private int disable;
-
     @Override
     public final boolean doShow() {
         expenseGroup = Console.readLine("Enter expense group description » ");
