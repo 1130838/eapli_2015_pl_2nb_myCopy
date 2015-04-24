@@ -50,4 +50,12 @@ public class ExpenseGroup {
         this.period = new Period(beginPeriod, endPeriod);
         this.estimation = budgetEstimation;
     }
+
+    public void ChangeExpenseGroup(final String expenseGroupText,
+            final Calendar beginPeriod,
+            final Calendar endPeriod, final BigDecimal budgetEstimation) {
+        this.name = expenseGroupText;
+        this.period = new Period(beginPeriod, endPeriod);
+        this.estimation = budgetEstimation;
+    }
 }
