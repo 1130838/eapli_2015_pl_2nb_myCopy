@@ -13,4 +13,6 @@ public interface ExpenseRepository {
 
 	// boolean addExpense (float value, ExpenseType expenseType, );
 	public Money getWeekExpediture(Period period);
+
+	public ExpenseRepository getExpenseRepository();
 }
