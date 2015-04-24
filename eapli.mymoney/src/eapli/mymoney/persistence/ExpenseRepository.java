@@ -18,4 +18,6 @@ public interface ExpenseRepository {
     List<Expense> all();
 
 	public Money getWeekExpediture(Period period);
+
+	public ExpenseRepository getExpenseRepository();
 }
