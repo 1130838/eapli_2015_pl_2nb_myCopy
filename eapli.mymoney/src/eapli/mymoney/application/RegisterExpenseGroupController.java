@@ -35,8 +35,4 @@ public class RegisterExpenseGroupController {
         repo.add(expenseGroup);
     }
 
-    public final void disableExpenseGroup() {
-
-    }
-
 }

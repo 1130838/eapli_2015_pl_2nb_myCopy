@@ -31,11 +31,6 @@ public class ExpenseGroup {
      */
     private BigDecimal estimation;
 
-    /**
-     * this argument starts 0 for enable and 1 for disable
-     */
-    private int disable;
-
     public ExpenseGroup() {
 
     }
@@ -54,6 +49,5 @@ public class ExpenseGroup {
         this.name = expenseGroupText;
         this.period = new Period(beginPeriod, endPeriod);
         this.estimation = budgetEstimation;
-        disable = 0;
     }
 }
