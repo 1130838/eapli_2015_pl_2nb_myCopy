@@ -10,18 +10,22 @@ import eapli.mymoney.persistence.ExpenseRepository;
  * Created by brunodevesa on 16/04/15.
  */
 public class ExpenseRepositoryImpl
-        extends JpaRepository<Expense, Integer>
-        implements ExpenseRepository {
+	extends JpaRepository<Expense, Integer>
+	implements ExpenseRepository {
 
-    @Override
-    public Money getWeekExpediture(Period period) {
-        throw new UnsupportedOperationException("Not supported yet");
-    }
+	@Override
+	public Money getWeekExpediture(Period period) {
+		throw new UnsupportedOperationException("Not supported yet");
+	}
 
-    @Override
-    protected String persistenceUnitName() {
-        return PersistenceSettings.PERSISTENCE_UNIT_NAME;
-    }
+	@Override
+	protected String persistenceUnitName() {
+		return PersistenceSettings.PERSISTENCE_UNIT_NAME;
+	}
 
-}
+	@Override
+	public ExpenseRepository getExpenseRepository() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
 }
