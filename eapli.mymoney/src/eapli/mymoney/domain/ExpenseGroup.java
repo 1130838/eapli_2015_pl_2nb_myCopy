@@ -5,6 +5,7 @@
  */
 package eapli.mymoney.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import javax.persistence.Entity;
@@ -15,39 +16,40 @@ import javax.persistence.Id;
  * @author Joel
  */
 @Entity
-public class ExpenseGroup {
+public class ExpenseGroup implements Serializable {
 
-    /**
-     * Name of the group.
-     */
-    @Id
-    private String name;
-    /**
-     * Period in witch the group can be used.
-     */
-    private Period period;
-    /**
-     * This argument is opcional and sets a budget for the current group.
-     */
-    private BigDecimal estimation;
+	/**
+	 * Name of the group.
+	 */
+	@Id
+	private String name;
+	/**
+	 * Period in witch the group can be used.
+	 */
+	private Period period;
+	/**
+	 * This argument is opcional and sets a budget for the current group.
+	 */
+	private BigDecimal estimation;
 
-    public ExpenseGroup() {
+	public ExpenseGroup() {
 
-    }
+	}
 
-    /**
-     * Creates Expense Group.
-     *
-     * @param expenseGroupText Expense Group name
-     * @param beginPeriod Beginning of period
-     * @param endPeriod End of period
-     * @param budgetEstimation The value of budget estimation
-     */
-    public ExpenseGroup(final String expenseGroupText,
-            final Calendar beginPeriod,
-            final Calendar endPeriod, final BigDecimal budgetEstimation) {
-        this.name = expenseGroupText;
-        this.period = new Period(beginPeriod, endPeriod);
-        this.estimation = budgetEstimation;
-    }
+	/**
+	 * Creates Expense Group.
+	 *
+	 * @param expenseGroupText Expense Group name
+	 * @param beginPeriod Beginning of period
+	 * @param endPeriod End of period
+	 * @param budgetEstimation The value of budget estimation
+	 */
+	public ExpenseGroup(final String expenseGroupText,
+						final Calendar beginPeriod,
+						final Calendar endPeriod,
+						final BigDecimal budgetEstimation) {
+		this.name = expenseGroupText;
+		this.period = new Period(beginPeriod, endPeriod);
+		this.estimation = budgetEstimation;
+	}
 }
