@@ -8,6 +8,8 @@ package eapli.mymoney.domain;
 import eapli.framework.patterns.ValueObject;
 import eapli.util.Validations;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -18,6 +20,9 @@ import javax.persistence.Id;
 public class ExpenseType implements ValueObject, BudgetLine {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int idET;
+
     private String text;
 
     protected ExpenseType() {
