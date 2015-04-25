@@ -21,7 +21,7 @@ public class ExpenseType implements ValueObject, BudgetLine {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idET;
+    private int idExpensiveType;
 
     private String text;
 

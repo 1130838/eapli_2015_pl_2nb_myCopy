@@ -7,6 +7,7 @@ import eapli.mymoney.domain.PaymentMethod;
 import eapli.mymoney.persistence.ExpenseRepository;
 import eapli.mymoney.persistence.Persistence;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -16,13 +17,13 @@ import java.util.List;
  */
 public class RegisterExpenseController {
 
-    private Money moneyValue;
+    private BigDecimal moneyValue;
     private ExpenseType expenseType;
     private PaymentMethod paymentMethod;
     private Calendar date;
     final ExpenseRepository repo = Persistence.getRepositoryFactory().getExpenseRepository();
 
-    public RegisterExpenseController(Money moneyValue, ExpenseType expenseType, PaymentMethod paymentMethod, Calendar date) {
+    public RegisterExpenseController(BigDecimal moneyValue, ExpenseType expenseType, PaymentMethod paymentMethod, Calendar date) {
         this.moneyValue = moneyValue;
         this.expenseType = expenseType;
         this.paymentMethod = paymentMethod;

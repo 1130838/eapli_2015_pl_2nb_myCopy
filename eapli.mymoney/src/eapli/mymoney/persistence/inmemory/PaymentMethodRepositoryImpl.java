@@ -7,6 +7,7 @@ import eapli.mymoney.persistence.PaymentMethodsRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -40,6 +41,10 @@ public class PaymentMethodRepositoryImpl implements PaymentMethodsRepository {
         return Collections.unmodifiableList(data);
     }
 
+  /*  @Override
+    public Iterator<PaymentMethod> iterator(int pagesize) {
+        return null;
+    }*/
 
 
     public Money getWeekExpediture(Period period) {

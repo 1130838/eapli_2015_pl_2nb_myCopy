@@ -28,8 +28,13 @@ public class InMemoryRepositoryFactory implements RepositoryFactory {
 		return new eapli.mymoney.persistence.inmemory.ExpenseRepositoryImpl();
 	}
 
+    @Override
+    public PaymentMethodsRepository getPaymentMethodRepository() {
+        return new eapli.mymoney.persistence.inmemory.PaymentMethodRepositoryImpl();
+    }
 
-	@Override
+
+    @Override
 	public ExpenseGroupRepository getExpenseGroupRepository() {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 		//return new eapli.mymoney.persistence.inmemory.ExpenseGroupRepositoryImpl();

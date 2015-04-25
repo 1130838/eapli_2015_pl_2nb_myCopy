@@ -17,5 +17,5 @@ public interface PaymentMethodsRepository {
 
     List<PaymentMethod> all();
 
-    public Iterator<PaymentMethod> iterator(int pagesize);
+   // public Iterator<PaymentMethod> iterator(int pagesize);
 }

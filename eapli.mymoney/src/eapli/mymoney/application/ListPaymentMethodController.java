@@ -25,7 +25,4 @@ public class ListPaymentMethodController {
         return repo.all();
     }
 
-    public Iterator<PaymentMethod> iterator() {
-        return repo.iterator(1);
-    }
 }
