@@ -26,7 +26,7 @@ public class Expense {
     @Temporal(TemporalType.DATE)
     private Calendar date;
 
-    public Expense(Money amount, ExpenseType expenseType, PaymentMethod paymentMethod, Calendar date) {
+    public Expense(Money amount , ExpenseType expenseType, PaymentMethod paymentMethod, Calendar date) {
         this.amount = amount;
         this.expenseType = expenseType;
         this.paymentMethod = paymentMethod;
@@ -35,13 +35,14 @@ public class Expense {
 
     public Expense() {
         // for ORM purposes
+
     }
 
     @Override
     public String toString() {
         return "Expense{" +
                 "idExpense = " + idExpense +
-                ", amount = " + amount.amount() +
+                ", amount = " + amount.amount()  +
                 ", expenseType = " + expenseType.description() +
                 ", paymentMethod = " + paymentMethod.description() +
                 ", date = " + date.get(Calendar.DAY_OF_MONTH) + "/" + date.get(Calendar.MONTH) + "/" + date.get(Calendar.YEAR) +

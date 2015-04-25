@@ -32,7 +32,6 @@ public class RegisterExpenseUI extends BaseUI {
     protected boolean doShow() {
 
         submit();
-        return false;
 
         return true;
     }

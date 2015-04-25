@@ -15,7 +15,10 @@ public class ExpenseRepositoryImpl
 
 	@Override
 	public Money getWeekExpediture(Period period) {
-		throw new UnsupportedOperationException("Not supported yet");
+		/**
+		 * TODO: Add calculation logic.
+		 */
+		return Money.euros(0.00);
 	}
 
 	@Override
@@ -23,9 +26,6 @@ public class ExpenseRepositoryImpl
 		return PersistenceSettings.PERSISTENCE_UNIT_NAME;
 	}
 
-	@Override
-	public ExpenseRepository getExpenseRepository() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
+
 
 }

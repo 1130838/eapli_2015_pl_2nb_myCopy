@@ -46,8 +46,5 @@ public class ExpenseRepositoryImpl
 		return Money.euros(0.00);
 	}
 
-	@Override
-	public ExpenseRepository getExpenseRepository() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
+
 }

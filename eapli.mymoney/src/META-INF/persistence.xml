@@ -8,6 +8,7 @@
     <class>eapli.mymoney.domain.Budget</class>
     <class>eapli.mymoney.domain.Entry</class>
       <class>eapli.mymoney.domain.Expense</class>
+      <class>eapli.mymoney.domain.PaymentMethod</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:h2:..\db\expensemanager"/>
       <property name="javax.persistence.jdbc.password" value=""/>

@@ -19,5 +19,5 @@ public interface ExpenseRepository {
 
 	public Money getWeekExpediture(Period period);
 
-	public ExpenseRepository getExpenseRepository();
+	
 }
