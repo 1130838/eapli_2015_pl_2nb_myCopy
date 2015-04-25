@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author celiocerqueira
  */
-public class ListExpenses {
+public class ListExpensesController {
 
     Calendar dateInicial;
     Calendar dateEnd;
@@ -24,7 +24,7 @@ public class ListExpenses {
     /**
      * RegisterExpenseUI copy
      */
-    public ListExpenses(Calendar dateInicial, Calendar dateEnd) {
+    public ListExpensesController(Calendar dateInicial, Calendar dateEnd) {
         this.dateInicial = dateInicial;
         this.dateEnd = dateEnd;
     }

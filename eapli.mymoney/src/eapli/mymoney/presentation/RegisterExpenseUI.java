@@ -1,6 +1,8 @@
 package eapli.mymoney.presentation;
 
 import eapli.framework.model.Money;
+import eapli.mymoney.application.ListExpenseTypesController;
+import eapli.mymoney.application.ListPaymentMethodController;
 import eapli.mymoney.application.RegisterExpenseController;
 import eapli.mymoney.domain.Expense;
 import eapli.mymoney.domain.ExpenseType;
@@ -26,12 +28,21 @@ public class RegisterExpenseUI extends BaseUI {
 
     @Override
     protected boolean doShow() {
+        /*add Expense type*/
+        new ListExpenseTypesUI().show();
+        final ListExpenseTypesController theControllerExpenseTypes = new ListExpenseTypesController();
+        int exptype = Console.readInteger("Enter the Expense type:");
+        final List<ExpenseType> expenseTypes = theControllerExpenseTypes.getAllExpenseTypes();
+        expensetype = expenseTypes.get(exptype);
+        /*end add Expense type*/
 
-        Console.readLine("Enter the Expense type:");
-        expensetype = new ExpenseType("vestuario");
-
-        Console.readLine("Enter the Payment Method:");
-        paymentMethod = new PaymentMethod("cheque");
+        /*add Payment Method*/
+        new ListExpenseTypesUI().show();
+        final ListPaymentMethodController theControllerPayment = new ListPaymentMethodController();
+        int pay = Console.readInteger("Enter the Payment Method:");
+        final List<PaymentMethod> payment = theControllerPayment.getAllPaymentMethod();
+        paymentMethod = payment.get(exptype);
+        /*add Payment Method*/
 
         //Console.readLine("Enter the Data [yyyy MMM dd]:");
         //sdf = new SimpleDateFormat("yyyy MMM dd");
@@ -52,6 +63,7 @@ public class RegisterExpenseUI extends BaseUI {
         Expense expense = registerExpenseController.registerExpense();
         // System.out.println("teste expense = " + expense.toString());
 
+        System.out.println(expense.toString());
         showAllExpenses(); // for test purposes for now
     }
 
