@@ -16,21 +16,32 @@ import java.util.List;
  */
 public class RegisterExpenseController {
 
-        public Expense registerExpense(Money moneyValue, ExpenseType expenseType, PaymentMethod paymentMethod, Calendar date) {
+    private Money moneyValue;
+    private ExpenseType expenseType;
+    private PaymentMethod paymentMethod;
+    private Calendar date;
+    final ExpenseRepository repo = Persistence.getRepositoryFactory().getExpenseRepository();
 
-            final Expense expense = new Expense(moneyValue, expenseType, paymentMethod, date);
+    public RegisterExpenseController(Money moneyValue, ExpenseType expenseType, PaymentMethod paymentMethod, Calendar date) {
+        this.moneyValue = moneyValue;
+        this.expenseType = expenseType;
+        this.paymentMethod = paymentMethod;
+        this.date = date;
+    }
 
-            final ExpenseRepository repo = Persistence.getRepositoryFactory().getExpenseRepository();
-            repo.add(expense);
+    public Expense registerExpense() {
 
-            return expense;
-        }
+        final Expense expense = new Expense(moneyValue, expenseType, paymentMethod, date);
+        return this.addExpense(expense);
+    }
 
     public List<Expense> listAllExpenses() {
-
-        final ExpenseRepository repo = Persistence.getRepositoryFactory().getExpenseRepository();
-
         return repo.all();
     }
-}
 
+    private Expense addExpense(Expense expense) {
+        repo.add(expense);
+
+        return expense;
+    }
+}

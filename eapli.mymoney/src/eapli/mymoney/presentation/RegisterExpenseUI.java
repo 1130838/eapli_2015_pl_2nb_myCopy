@@ -6,6 +6,7 @@ import eapli.mymoney.domain.Expense;
 import eapli.mymoney.domain.ExpenseType;
 import eapli.mymoney.domain.PaymentMethod;
 import eapli.util.Console;
+import java.math.BigDecimal;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -17,19 +18,29 @@ import java.util.List;
  */
 public class RegisterExpenseUI extends BaseUI {
 
-    private final RegisterExpenseController registerExpenseController = new RegisterExpenseController();
-
-    ExpenseType expensetype = new ExpenseType("vestuario");
-    PaymentMethod paymentMethod = new PaymentMethod("cheque");
-
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd");
-    Calendar date = Calendar.getInstance();
-
-    long value = Console.readInteger("Enter the expense value :");
-    Money moneyValue = Money.euros(value);
+    private RegisterExpenseController registerExpenseController;
+    private ExpenseType expensetype;
+    private PaymentMethod paymentMethod;
+    private Calendar date;
+    private Money moneyValue;
 
     @Override
     protected boolean doShow() {
+
+        Console.readLine("Enter the Expense type:");
+        expensetype = new ExpenseType("vestuario");
+
+        Console.readLine("Enter the Payment Method:");
+        paymentMethod = new PaymentMethod("cheque");
+
+        //Console.readLine("Enter the Data [yyyy MMM dd]:");
+        //sdf = new SimpleDateFormat("yyyy MMM dd");
+        date = Calendar.getInstance();
+
+        long value = Console.readInteger("Enter the expense value :");
+        //BigDecimal value2 = new BigDecimal(0); //ver celio
+
+        Money moneyValue = Money.euros(value);
 
         submit();
 
@@ -37,8 +48,8 @@ public class RegisterExpenseUI extends BaseUI {
     }
 
     private void submit() {
-
-        Expense expense = registerExpenseController.registerExpense(moneyValue, expensetype, paymentMethod, date);
+        registerExpenseController = new RegisterExpenseController(moneyValue, expensetype, paymentMethod, date);
+        Expense expense = registerExpenseController.registerExpense();
         // System.out.println("teste expense = " + expense.toString());
 
         showAllExpenses(); // for test purposes for now
@@ -48,7 +59,6 @@ public class RegisterExpenseUI extends BaseUI {
     public String headline() {
         return "REGISTER AN EXPENSE";
     }
-
 
     private void showAllExpenses() {
 
@@ -73,4 +83,3 @@ public class RegisterExpenseUI extends BaseUI {
         Console.readLine("Press a key to continue..");
     }
 }
-
