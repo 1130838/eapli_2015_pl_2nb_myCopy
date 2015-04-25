@@ -20,9 +20,12 @@ class ListExpenseTypesUI extends BaseUI {
     @Override
     protected boolean doShow() {
         final List<ExpenseType> expenseTypes = theController.getAllExpenseTypes();
-        for (ExpenseType et : expenseTypes) {
-            System.out.println(et.description());
+        for (int i = 0; i < expenseTypes.size(); i++) {
+            System.out.println(i + " - " + expenseTypes.get(i).description());
         }
+//        for (ExpenseType et : expenseTypes) {
+//            System.out.println(et.description());
+//        }
 
 //		final Iterator<ExpenseType> expenseTypes = theController.iterator();
 //		while (expenseTypes.hasNext()) {

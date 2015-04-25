@@ -19,11 +19,6 @@ public interface RepositoryFactory {
 
     ExpenseRepository getExpenseRepository();
 
-    /*
-        // fixed static payment methods not necessary until
-        someone wants to edit the payment methods
-     */
-   // PaymentMethodsRepository getPaymentMethodRepository();
-
+    PaymentMethodsRepository getPaymentMethodRepository();
 
 }

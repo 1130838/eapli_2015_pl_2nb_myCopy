@@ -1,6 +1,8 @@
 package eapli.mymoney.persistence;
 
+import eapli.mymoney.domain.ExpenseType;
 import eapli.mymoney.domain.PaymentMethod;
+import java.util.Iterator;
 
 import java.util.List;
 
@@ -15,4 +17,5 @@ public interface PaymentMethodsRepository {
 
     List<PaymentMethod> all();
 
+    public Iterator<PaymentMethod> iterator(int pagesize);
 }
