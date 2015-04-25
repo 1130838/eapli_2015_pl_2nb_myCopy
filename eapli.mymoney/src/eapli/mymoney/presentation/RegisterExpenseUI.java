@@ -22,7 +22,8 @@ public class RegisterExpenseUI extends BaseUI {
     private ExpenseType expensetype;
     private PaymentMethod paymentMethod;
     private Calendar date;
-    private Money moneyValue;
+    private BigDecimal moneyValue;
+    //private BigDecimal value;
 
     @Override
     protected boolean doShow() {
@@ -37,10 +38,10 @@ public class RegisterExpenseUI extends BaseUI {
         //sdf = new SimpleDateFormat("yyyy MMM dd");
         date = Calendar.getInstance();
 
-        long value = Console.readInteger("Enter the expense value :");
+        moneyValue = BigDecimal.valueOf(Console.readInteger("Enter the expense value :"));
         //BigDecimal value2 = new BigDecimal(0); //ver celio
 
-        Money moneyValue = Money.euros(value);
+
 
         submit();
 
@@ -50,7 +51,6 @@ public class RegisterExpenseUI extends BaseUI {
     private void submit() {
         registerExpenseController = new RegisterExpenseController(moneyValue, expensetype, paymentMethod, date);
         Expense expense = registerExpenseController.registerExpense();
-        // System.out.println("teste expense = " + expense.toString());
 
         showAllExpenses(); // for test purposes for now
     }
