@@ -7,8 +7,9 @@ package eapli.mymoney.domain;
 
 import eapli.framework.model.Money;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 /**
  *
@@ -17,53 +18,53 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Entry {
 
-    //@GeneratedValue(strategy = GenerationType.AUTO)
-    @Id
-    private long id;
-    private BudgetLine budgetLine;
-    private Money value;
-    @ManyToOne
-    private Budget parent;
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	@Id
+	private long id;
+	private BudgetLine budgetLine;
+	private Money value;
 
-    public Entry() {
+	private Budget parent;
 
-    }
+	public Entry() {
 
-    public Entry(BudgetLine budgetLine, Money value) {
-        this.budgetLine = budgetLine;
-        this.value = value;
-    }
+	}
 
-    public void addParent(Budget parent) {
-        this.parent = parent;
-    }
+	public Entry(BudgetLine budgetLine, Money value) {
+		this.budgetLine = budgetLine;
+		this.value = value;
+	}
 
-    /**
-     * @return the budgetLine
-     */
-    public BudgetLine getBudgetLine() {
-        return budgetLine;
-    }
+	public void addParent(Budget parent) {
+		this.parent = parent;
+	}
 
-    /**
-     * @param budgetLine the budgetLine to set
-     */
-    public void changeBudgetLine(BudgetLine budgetLine) {
-        this.budgetLine = budgetLine;
-    }
+	/**
+	 * @return the budgetLine
+	 */
+	public BudgetLine getBudgetLine() {
+		return budgetLine;
+	}
 
-    /**
-     * @return the value
-     */
-    public Money getValue() {
-        return value;
-    }
+	/**
+	 * @param budgetLine the budgetLine to set
+	 */
+	public void changeBudgetLine(BudgetLine budgetLine) {
+		this.budgetLine = budgetLine;
+	}
 
-    /**
-     * @param value the value to set
-     */
-    public void changeValue(Money value) {
-        this.value = value;
-    }
+	/**
+	 * @return the value
+	 */
+	public Money getValue() {
+		return value;
+	}
+
+	/**
+	 * @param value the value to set
+	 */
+	public void changeValue(Money value) {
+		this.value = value;
+	}
 
 }

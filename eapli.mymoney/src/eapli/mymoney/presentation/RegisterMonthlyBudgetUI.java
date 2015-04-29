@@ -31,7 +31,7 @@ public class RegisterMonthlyBudgetUI extends BaseUI {
 		controller.changeBudgetName(budgetName);
 		expenseTypeList = controller.getExpenseTypes();
 		int option = -1, position = 1;
-		chosenExpenseType = new ExpenseType("");
+		chosenExpenseType = new ExpenseType("temp");
 		while (option != 0) {
 			boolean bExpenseTypeChosen = false;
 			if (!chooseExpenseType()) {
