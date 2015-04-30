@@ -14,19 +14,32 @@ import java.util.Calendar;
  */
 public class Period implements Serializable {
 
-    private Calendar periodBegin;
-    private Calendar periodEnd;
+	private Calendar periodBegin;
+	private Calendar periodEnd;
 
-    public Period(final Calendar begin, final Calendar end) {
-        periodBegin = begin;
-        periodEnd = end;
-    }
+	public Period(final Calendar begin, final Calendar end) {
+		periodBegin = begin;
+		periodEnd = end;
+	}
 
-    public Calendar getPeriodBegin() {
-        return periodBegin;
-    }
+	public Calendar getPeriodBegin() {
+		return periodBegin;
+	}
 
-    public Calendar getPeriodEnd() {
-        return periodEnd;
-    }
+	public Calendar getPeriodEnd() {
+		return periodEnd;
+	}
+
+	/**
+	 * Method to allow us to check if a date is in this period
+	 *
+	 * @param date Calendar
+	 * @return boolean
+	 */
+	public boolean isBetween(final Calendar date) {
+		if (periodBegin != null && periodEnd != null && date != null) {
+			return periodBegin.after(date) && periodEnd.before(date);
+		}
+		return false;
+	}
 }
