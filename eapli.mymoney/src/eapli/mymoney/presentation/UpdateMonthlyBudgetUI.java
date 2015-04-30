@@ -78,7 +78,7 @@ public class UpdateMonthlyBudgetUI extends BaseUI {
 					}
 				}
 			}
-		//	controller.setBudget(chosenBudget); // metodo comentado para poder compilar..
+			controller.chooseBudget(chosenBudget);
 			submit();
 		}
 		return true;

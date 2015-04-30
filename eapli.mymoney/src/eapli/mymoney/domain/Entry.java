@@ -6,64 +6,102 @@
 package eapli.mymoney.domain;
 
 import eapli.framework.model.Money;
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author ferreirai
  */
 @Entity
-public class Entry {
+@Table(name = "ENTRY")
+public class Entry implements Serializable {
 
-    //@GeneratedValue(strategy = GenerationType.AUTO)
-    @Id
-    private long id;
-    private BudgetLine budgetLine;
-    private Money value;
-    @ManyToOne
-    private Budget parent;
+	public Entry() {
 
-    public Entry() {
+	}
 
-    }
+	@Id
+	//@GeneratedValue(strategy = GenerationType.TABLE)
+	private long id;
 
-    public Entry(BudgetLine budgetLine, Money value) {
-        this.budgetLine = budgetLine;
-        this.value = value;
-    }
+	private BudgetLine budgetLine;
+	private Money value;
 
-    public void addParent(Budget parent) {
-        this.parent = parent;
-    }
+	private Budget parent;
 
-    /**
-     * @return the budgetLine
-     */
-    public BudgetLine getBudgetLine() {
-        return budgetLine;
-    }
+	@ManyToOne
+	public Budget getBudget() {
+		return getParent();
+	}
 
-    /**
-     * @param budgetLine the budgetLine to set
-     */
-    public void changeBudgetLine(BudgetLine budgetLine) {
-        this.budgetLine = budgetLine;
-    }
+	public Entry(BudgetLine budgetLine, Money value) {
+		this.budgetLine = budgetLine;
+		this.value = value;
+	}
 
-    /**
-     * @return the value
-     */
-    public Money getValue() {
-        return value;
-    }
+	public void addParent(Budget parent) {
+		this.setParent(parent);
+	}
 
-    /**
-     * @param value the value to set
-     */
-    public void changeValue(Money value) {
-        this.value = value;
-    }
+	/**
+	 * @return the budgetLine
+	 */
+	public BudgetLine getBudgetLine() {
+		return budgetLine;
+	}
+
+	/**
+	 * @param budgetLine the budgetLine to set
+	 */
+	public void changeBudgetLine(BudgetLine budgetLine) {
+		this.budgetLine = budgetLine;
+	}
+
+	/**
+	 * @return the value
+	 */
+	public Money getValue() {
+		return value;
+	}
+
+	/**
+	 * @param value the value to set
+	 */
+	public void changeValue(Money value) {
+		this.value = value;
+	}
+
+	/**
+	 * @return the id
+	 */
+	@Id
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the parent
+	 */
+	public Budget getParent() {
+		return parent;
+	}
+
+	/**
+	 * @param parent the parent to set
+	 */
+	public void setParent(Budget parent) {
+		this.parent = parent;
+	}
 
 }

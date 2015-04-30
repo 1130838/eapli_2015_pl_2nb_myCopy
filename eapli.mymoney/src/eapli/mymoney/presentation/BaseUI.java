@@ -55,8 +55,9 @@ public abstract class BaseUI {
 		ListWeekExpeditureController bController
 			= new ListWeekExpeditureController();
 
-		String content = "Week Balance:" + bController.getWeekExpediture().
-			amount() + "\n";
+		String content = "This week expediture: " + bController.
+			getWeekExpediture().
+			amount() + "€\n";
 
 		System.out.println(content);
 	}

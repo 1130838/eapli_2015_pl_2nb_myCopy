@@ -5,22 +5,27 @@
  */
 package eapli.mymoney.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author ferreirai
  */
 @Entity
-public class Budget {
+@Table(name = "BUDGET")
+public class Budget implements Serializable {
 
-	//@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
 	private String name;
@@ -30,11 +35,11 @@ public class Budget {
 
 	public boolean addEntry(Entry e) {
 		e.addParent(this);
-		return this.cildren.add(e);
+		return this.getCildren().add(e);
 	}
 
 	public List<Entry> retrieveEntryList() {
-		return cildren;
+		return getCildren();
 	}
 
 	public String description() {
@@ -53,6 +58,13 @@ public class Budget {
 	 */
 	public long getId() {
 		return id;
+	}
+
+	/**
+	 * @return the cildren
+	 */
+	public List<Entry> getCildren() {
+		return cildren;
 	}
 
 }

@@ -72,4 +72,7 @@ public class UpdateMonthlyBudgetController {
 		return repo.all();
 	}
 
+	public void chooseBudget(Budget budget) {
+		this.budget = budget;
+	}
 }

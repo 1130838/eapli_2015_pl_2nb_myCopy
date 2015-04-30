@@ -30,41 +30,62 @@ public class RegisterMonthlyBudgetUI extends BaseUI {
         controller.changeBudgetName(budgetName);
         expenseTypeList = controller.getExpenseTypes();
         int option = -1, position = 1;
+	@Override
 
-        while (option != 0) {
-            position = 1;
-            for (Iterator<ExpenseType> iterator = expenseTypeList.iterator(); iterator.hasNext();) {
-                ExpenseType next = iterator.next();
-                System.out.println(position + " - " + next.description());
-                position++;
-            }
-            option = Console.readInteger("Please choose an Expense Type (0 to sop inserting...)");
-            if (option == 0) {
-                break;
-            }
-            ExpenseType chosenExpenseType = null;
-            for (Iterator<ExpenseType> iterator = expenseTypeList.iterator(); iterator.hasNext();) {
-                position++;
-                if (option == position) {
-                    chosenExpenseType = iterator.next();
-                }
-            }
-            double chosenValue = Console.readDouble("Please insert a Value for this Expense:");
-            Money value = Money.euros(chosenValue);
-            //
-            controller.addEntry(chosenExpenseType, value);
-        }
-        submit();
-        return true;
-    }
+	public boolean doShow() {
+		System.out.println("\n" + headline());
+		budgetName = Console.readLine("Type the Budget name:");
+		controller.changeBudgetName(budgetName);
+		expenseTypeList = controller.getExpenseTypes();
+		int option = -1, position = 1;
+		chosenExpenseType = new ExpenseType("temp");
+		while (option != 0) {
+			boolean bExpenseTypeChosen = false;
+			if (!chooseExpenseType()) {
+				break;
+			}
+			double chosenValue = Console.
+				readDouble("Please insert a Value for this Expense:");
+			Money value = Money.euros(chosenValue);
+			//
+			controller.addEntry(chosenExpenseType, value);
+		}
+		submit();
+		return true;
+	}
 
-    private void submit() {
-        controller.saveBudget();
-        System.out.println("\nMonthly Budget recorded!");
-    }
+	private void submit() {
+		controller.saveBudget();
+		System.out.println("\nMonthly Budget recorded!");
+	}
 
-    @Override
-    public String headline() {
-        return "REGISTER MONTLHY BUDGET";
-    }
+	@Override
+	public String headline() {
+		return "REGISTER MONTLHY BUDGET";
+	}
+
+	public boolean chooseExpenseType() {
+		int position = 1;
+		for (Iterator<ExpenseType> iterator = expenseTypeList.iterator(); iterator.
+			hasNext();) {
+			ExpenseType next = iterator.next();
+			System.out.println(position + " - " + next.description());
+			position++;
+		}
+		int option = Console.
+			readInteger("Please choose an Expense Type (0 to stop inserting...)");
+		if (option == 0) {
+			return false;
+		}
+
+		for (Iterator<ExpenseType> iterator = expenseTypeList.iterator(); iterator.
+			hasNext();) {
+			position++;
+			if (option == position) {
+				chosenExpenseType = iterator.next();
+			}
+		}
+		return true;
+	}
+
 }
