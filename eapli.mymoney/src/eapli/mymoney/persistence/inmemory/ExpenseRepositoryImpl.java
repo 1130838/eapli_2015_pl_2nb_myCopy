@@ -40,11 +40,15 @@ public class ExpenseRepositoryImpl
 
 	@Override
 	public Money getWeekExpediture(Period period) {
-		/**
-		 * TODO: Add calculation logic.
-		 */
-		return Money.euros(0.00);
-	}
+		Money total = Money.euros(0.00);
 
+		for (Expense expense : all()) {
+			if (period.isBetween(expense.getDate())) {
+				total.add(Money.euros(expense.getAmount().doubleValue()));
+			}
+		}
+
+		return total;
+	}
 
 }

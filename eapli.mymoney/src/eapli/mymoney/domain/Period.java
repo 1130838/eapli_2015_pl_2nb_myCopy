@@ -38,8 +38,13 @@ public class Period implements Serializable {
 	 */
 	public boolean isBetween(final Calendar date) {
 		if (periodBegin != null && periodEnd != null && date != null) {
-			return periodBegin.after(date) && periodEnd.before(date);
+			return date.after(periodBegin) && date.before(periodEnd);
 		}
 		return false;
+	}
+
+	@Override
+	public String toString() {
+		return "Period{" + "periodBegin=" + periodBegin + ", periodEnd=" + periodEnd + '}';
 	}
 }
