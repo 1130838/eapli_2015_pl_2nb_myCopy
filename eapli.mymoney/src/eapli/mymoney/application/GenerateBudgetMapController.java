@@ -34,7 +34,10 @@ public class GenerateBudgetMapController {
         return repo.all();
     }
 
-    public void createBudgetMap() {
-        this.m_bumap = new BudgetMap(this.m_bu);
+    public BudgetMap selectBudget(int bgSelect) {
+
+        this.m_bumap = new BudgetMap(m_listBu.get(bgSelect));
+        this.m_bumap = this.m_bumap.calculateForecast();
+        return m_bumap;
     }
 }
