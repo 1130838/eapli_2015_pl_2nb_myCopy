@@ -44,7 +44,8 @@ public class ExpenseRepositoryImpl
 
 		for (Expense expense : all()) {
 			if (period.isBetween(expense.getDate())) {
-				total.add(Money.euros(expense.getAmount().doubleValue()));
+				total = total.
+					add(Money.euros(expense.getAmount().doubleValue()));
 			}
 		}
 

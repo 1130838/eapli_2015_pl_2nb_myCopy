@@ -1,8 +1,12 @@
 package eapli.mymoney.persistence.jpa;
 
 import eapli.framework.model.Money;
+import eapli.mymoney.domain.Expense;
+import eapli.mymoney.domain.ExpenseType;
+import eapli.mymoney.domain.PaymentMethod;
 import eapli.mymoney.domain.Period;
 import eapli.util.DateTime;
+import java.math.BigDecimal;
 import java.util.Calendar;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,6 +17,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class ExpenseRepositoryImplTest {
+
+	ExpenseRepositoryImpl instance;
 
 	public ExpenseRepositoryImplTest() {
 	}
@@ -27,6 +33,12 @@ public class ExpenseRepositoryImplTest {
 
 	@Before
 	public void setUp() {
+		this.instance = new ExpenseRepositoryImpl();
+		ExpenseType expenseType = new ExpenseType("Teste Unitario");
+		PaymentMethod paymentMethod = new PaymentMethod("Testcoins");
+		Calendar data = DateTime.now();
+		Expense expense = new Expense(BigDecimal.TEN, expenseType, paymentMethod, data);
+		this.instance.add(expense);
 	}
 
 	@After
@@ -43,7 +55,7 @@ public class ExpenseRepositoryImplTest {
 		Calendar periodEnd = DateTime.now();
 		Period period = new Period(periodBegin, periodEnd);
 		ExpenseRepositoryImpl instance = new ExpenseRepositoryImpl();
-		Money expResult = Money.euros(0.00);
+		Money expResult = Money.euros(10.00);
 		Money result = instance.getWeekExpediture(period);
 		assertEquals(expResult, result);
 	}
