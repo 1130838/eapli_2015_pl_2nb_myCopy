@@ -7,6 +7,7 @@ package eapli.mymoney.persistence.jpa;
 
 import eapli.framework.persistence.jpa.JpaRepository;
 import eapli.mymoney.domain.Budget;
+import eapli.mymoney.domain.Entry;
 import eapli.mymoney.persistence.BudgetRepository;
 import java.util.Iterator;
 import java.util.List;
@@ -26,6 +27,15 @@ public class BudgetRepositoryImpl extends JpaRepository<Budget, String>
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		em.persist(budget);
+
+		for (Iterator iterator = budget.getCildren().iterator(); iterator.
+			hasNext();) {
+			Entry next = (Entry) iterator.next();
+			next.addParent(budget);
+			em.persist(next);
+//			ExpenseType eType = (ExpenseType) next.getBudgetLine();
+//			em.persist(eType);
+		}
 		em.getTransaction().commit();
 		System.out.println("ID gerado: " + budget.getId());
 		em.close();

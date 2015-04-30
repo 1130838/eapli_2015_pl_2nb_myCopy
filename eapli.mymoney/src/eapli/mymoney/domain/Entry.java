@@ -6,28 +6,36 @@
 package eapli.mymoney.domain;
 
 import eapli.framework.model.Money;
+import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author ferreirai
  */
 @Entity
-public class Entry {
+@Table(name = "ENTRY")
+public class Entry implements Serializable {
 
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	public Entry() {
+
+	}
+
 	@Id
+	//@GeneratedValue(strategy = GenerationType.TABLE)
 	private long id;
+
 	private BudgetLine budgetLine;
 	private Money value;
 
 	private Budget parent;
 
-	public Entry() {
-
+	@ManyToOne
+	public Budget getBudget() {
+		return getParent();
 	}
 
 	public Entry(BudgetLine budgetLine, Money value) {
@@ -36,7 +44,7 @@ public class Entry {
 	}
 
 	public void addParent(Budget parent) {
-		this.parent = parent;
+		this.setParent(parent);
 	}
 
 	/**
@@ -65,6 +73,35 @@ public class Entry {
 	 */
 	public void changeValue(Money value) {
 		this.value = value;
+	}
+
+	/**
+	 * @return the id
+	 */
+	@Id
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the parent
+	 */
+	public Budget getParent() {
+		return parent;
+	}
+
+	/**
+	 * @param parent the parent to set
+	 */
+	public void setParent(Budget parent) {
+		this.parent = parent;
 	}
 
 }
