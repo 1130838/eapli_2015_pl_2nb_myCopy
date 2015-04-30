@@ -53,6 +53,15 @@ public class Expense {
 		return date;
 	}
 
+	/**
+	 * getAmount method
+	 *
+	 * @return returns the amount of this expense
+	 */
+	public BigDecimal getAmount() {
+		return amount;
+	}
+
 	@Override
 	public String toString() {
 		return "Expense{"
