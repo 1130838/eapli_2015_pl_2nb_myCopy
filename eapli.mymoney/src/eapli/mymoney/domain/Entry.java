@@ -8,7 +8,10 @@ package eapli.mymoney.domain;
 import eapli.framework.model.Money;
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -20,20 +23,22 @@ import javax.persistence.Table;
 @Table(name = "ENTRY")
 public class Entry implements Serializable {
 
-	public Entry() {
-
-	}
+	public long serialVersionUID = 21321321312312L;
 
 	@Id
-	//@GeneratedValue(strategy = GenerationType.TABLE)
-	private long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long idEntry;
 
+	public Entry() {
+	}
 	private BudgetLine budgetLine;
 	private Money value;
 
 	private Budget parent;
 
 	@ManyToOne
+	@JoinColumn(name = "IDBUDGET")
+
 	public Budget getBudget() {
 		return getParent();
 	}
@@ -80,14 +85,14 @@ public class Entry implements Serializable {
 	 */
 	@Id
 	public long getId() {
-		return id;
+		return idEntry;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(long id) {
-		this.id = id;
+		this.idEntry = id;
 	}
 
 	/**

@@ -28,7 +28,7 @@ public class BudgetRepositoryImpl extends JpaRepository<Budget, String>
 		em.getTransaction().begin();
 		em.persist(budget);
 
-		for (Iterator iterator = budget.getCildren().iterator(); iterator.
+		for (Iterator iterator = budget.getChildren().iterator(); iterator.
 			hasNext();) {
 			Entry next = (Entry) iterator.next();
 			next.addParent(budget);
@@ -37,7 +37,7 @@ public class BudgetRepositoryImpl extends JpaRepository<Budget, String>
 //			em.persist(eType);
 		}
 		em.getTransaction().commit();
-		System.out.println("ID gerado: " + budget.getId());
+		System.out.println("ID gerado: " + budget.getIdBudget());
 		em.close();
 		emf.close();
 		return true;

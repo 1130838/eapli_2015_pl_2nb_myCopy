@@ -17,7 +17,7 @@ import javax.persistence.Id;
  * @author Paulo Gandra Sousa
  */
 @Entity
-public class ExpenseType implements ValueObject {
+public class ExpenseType implements ValueObject, BudgetLine {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

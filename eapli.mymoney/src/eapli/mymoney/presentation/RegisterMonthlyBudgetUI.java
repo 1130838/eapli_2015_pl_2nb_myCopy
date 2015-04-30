@@ -18,27 +18,19 @@ import java.util.List;
  */
 public class RegisterMonthlyBudgetUI extends BaseUI {
 
-    private RegisterMonthlyBudgetController controller = new RegisterMonthlyBudgetController();
-    private List<ExpenseType> expenseTypeList;
-    private String budgetName;
+	private RegisterMonthlyBudgetController controller = new RegisterMonthlyBudgetController();
+	private List<ExpenseType> expenseTypeList;
+	private String budgetName;
 
-    @Override
-    public boolean doShow() {
-        System.out.println("\n" + headline());
-
-        budgetName = Console.readLine("Type the Budget name:");
-        controller.changeBudgetName(budgetName);
-        expenseTypeList = controller.getExpenseTypes();
-        int option = -1, position = 1;
-	//@Override
-
-	//public boolean doShow() {
+	@Override
+	public boolean doShow() {
 		System.out.println("\n" + headline());
+
 		budgetName = Console.readLine("Type the Budget name:");
 		controller.changeBudgetName(budgetName);
 		expenseTypeList = controller.getExpenseTypes();
-	//	int option = -1, position = 1;
-	//	chosenExpenseType = new ExpenseType("temp");
+		int option = -1, position = 1;
+
 		while (option != 0) {
 			boolean bExpenseTypeChosen = false;
 			if (!chooseExpenseType()) {
@@ -48,7 +40,7 @@ public class RegisterMonthlyBudgetUI extends BaseUI {
 				readDouble("Please insert a Value for this Expense:");
 			Money value = Money.euros(chosenValue);
 			//
-	//		controller.addEntry(chosenExpenseType, value);
+			controller.addValue(value);
 		}
 		submit();
 		return true;
@@ -65,6 +57,17 @@ public class RegisterMonthlyBudgetUI extends BaseUI {
 	}
 
 	public boolean chooseExpenseType() {
+		printExpenseTypeList(expenseTypeList);
+		int option = Console.
+			readInteger("Please choose an Expense Type (0 to stop inserting...)");
+		if (option == 0) {
+			return false;
+		}
+		controller.setExpenseType(option);
+		return true;
+	}
+
+	private int printExpenseTypeList(List<ExpenseType> expenseTypeList) {
 		int position = 1;
 		for (Iterator<ExpenseType> iterator = expenseTypeList.iterator(); iterator.
 			hasNext();) {
@@ -72,20 +75,7 @@ public class RegisterMonthlyBudgetUI extends BaseUI {
 			System.out.println(position + " - " + next.description());
 			position++;
 		}
-		int option = Console.
-			readInteger("Please choose an Expense Type (0 to stop inserting...)");
-		if (option == 0) {
-			return false;
-		}
-
-		for (Iterator<ExpenseType> iterator = expenseTypeList.iterator(); iterator.
-			hasNext();) {
-			position++;
-			if (option == position) {
-	//			chosenExpenseType = iterator.next();
-			}
-		}
-		return true;
+		return position;
 	}
 
 }

@@ -26,20 +26,24 @@ public class Budget implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private long idBudget;
+
+	public Budget() {
+
+	}
 
 	private String name;
 	@OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
-	private List<Entry> cildren = new ArrayList<Entry>();
+	private List<Entry> children = new ArrayList<Entry>();
 	//private EntryList entryList;
 
 	public boolean addEntry(Entry e) {
 		e.addParent(this);
-		return this.getCildren().add(e);
+		return this.getChildren().add(e);
 	}
 
 	public List<Entry> retrieveEntryList() {
-		return getCildren();
+		return getChildren();
 	}
 
 	public String description() {
@@ -56,15 +60,15 @@ public class Budget implements Serializable {
 	/**
 	 * @return the id
 	 */
-	public long getId() {
-		return id;
+	public long getIdBudget() {
+		return idBudget;
 	}
 
 	/**
 	 * @return the cildren
 	 */
-	public List<Entry> getCildren() {
-		return cildren;
+	public List<Entry> getChildren() {
+		return children;
 	}
 
 }

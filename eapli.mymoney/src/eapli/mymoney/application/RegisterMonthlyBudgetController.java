@@ -7,7 +7,6 @@ package eapli.mymoney.application;
 
 import eapli.framework.model.Money;
 import eapli.mymoney.domain.Budget;
-import eapli.mymoney.domain.BudgetLine;
 import eapli.mymoney.domain.Entry;
 import eapli.mymoney.domain.ExpenseType;
 import eapli.mymoney.persistence.BudgetRepository;
@@ -23,46 +22,43 @@ import java.util.List;
  */
 public class RegisterMonthlyBudgetController {
 
-    private Hashtable<ExpenseType, BigDecimal> entrada;
-    private BigDecimal value;
-    private ExpenseType expenseType;
-    private Entry entry;
-    private Budget budget;
+	private Hashtable<ExpenseType, BigDecimal> entrada;
+	private BigDecimal value;
+	private ExpenseType expenseType;
+	private Entry entry;
+	private Budget budget;
 
-    public RegisterMonthlyBudgetController() {
-        budget = new Budget();
-    }
+	public RegisterMonthlyBudgetController() {
+		budget = new Budget();
+	}
 
-    public List<ExpenseType> getExpenseTypes() {
-        ExpenseTypeRepository repo = Persistence.getRepositoryFactory().
-                getExpenseTypeRepository();
-        return repo.all();
-    }
+	public List<ExpenseType> getExpenseTypes() {
+		ExpenseTypeRepository repo = Persistence.getRepositoryFactory().
+			getExpenseTypeRepository();
+		return repo.all();
+	}
 
-    public void setValor(BigDecimal value) {
-        this.value = value;
-    }
+	public void setValor(BigDecimal value) {
+		this.value = value;
+	}
 
-    public void setExpenseType(ExpenseType expenseType) {
-        this.expenseType = expenseType;
-    }
+	public void setExpenseType(int index) {
+		//ExpenseType expenseType
+		this.expenseType = getExpenseTypes().get(index);
+	}
 
-    public void insereLista() {
-        entrada.put(expenseType, value);
-    }
+	public void addValue(Money valor) {
+		entry = new Entry(this.expenseType, valor);
+		budget.addEntry(entry);
+	}
 
-    public void addEntry(BudgetLine budgetLine, Money valor) {
-        entry = new Entry(budgetLine, valor);
-        budget.addEntry(entry);
-    }
+	public void changeBudgetName(String budgetName) {
+		budget.changeBudgetName(budgetName);
+	}
 
-    public void changeBudgetName(String budgetName) {
-        budget.changeBudgetName(budgetName);
-    }
-
-    public boolean saveBudget() {
-        BudgetRepository repo = Persistence.getRepositoryFactory().
-                getBudgetRepository();
-        return repo.add(budget);
-    }
+	public boolean saveBudget() {
+		BudgetRepository repo = Persistence.getRepositoryFactory().
+			getBudgetRepository();
+		return repo.add(budget);
+	}
 }
