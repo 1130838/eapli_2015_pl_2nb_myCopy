@@ -14,60 +14,71 @@ import eapli.mymoney.application.ListWeekExpeditureController;
 //TODO should we refactor this class and move it to the framework project?
 public abstract class BaseUI {
 
-    public static final String SEPARATOR = "+---------------------------------------------------------------------------------+";
-    public static final String BORDER = "+=================================================================================+";
+	public static final String SEPARATOR = "+---------------------------------------------------------------------------------+";
+	public static final String BORDER = "+=================================================================================+";
 
-    /**
-     * derived classes should override this method to perform the actual
-     * rendering of the UI
-     *
-     * follows the Template Method pattern
-     *
-     * @return
-     */
-    protected abstract boolean doShow();
+	/**
+	 * derived classes should override this method to perform the actual
+	 * rendering of the UI
+	 *
+	 * follows the Template Method pattern
+	 *
+	 * @return
+	 */
+	protected abstract boolean doShow();
 
-    /**
-     * derived classes should override this method to provide the title of the
-     * "window"
-     *
-     * @return
-     */
-    public abstract String headline();
+	/**
+	 * derived classes should override this method to provide the title of the
+	 * "window"
+	 *
+	 * @return
+	 */
+	public abstract String headline();
 
-    public void mainLoop() {
-        boolean wantsToExit;
-        do {
-            wantsToExit = show();
-        } while (!wantsToExit);
-    }
+	public void mainLoop() {
+		boolean wantsToExit;
+		do {
+			wantsToExit = show();
+		} while (!wantsToExit);
+	}
 
-    public boolean show() {
-        drawFormTitle();
-        final boolean wantsToExit = doShow();
+	public boolean show() {
+		drawFormTitle();
+		drawHeader();
+		final boolean wantsToExit = doShow();
 
-        return wantsToExit;
-    }
+		return wantsToExit;
+	}
 
-    protected void drawFormTitle() {
-        System.out.println();
-        drawFormTitle(headline());
-        System.out.println();
-    }
+	protected void drawHeader() {
 
-    protected void drawFormBorder() {
-        System.out.println(BORDER);
-        System.out.println();
-    }
+		ListWeekExpeditureController bController
+			= new ListWeekExpeditureController();
 
-    protected void drawFormSeparator() {
-        System.out.println(SEPARATOR);
-    }
+		String content = "Week Balance:" + bController.getWeekExpediture().
+			amount() + "\n";
 
-    protected void drawFormTitle(final String title) {
-        String titleBorder = BORDER.substring(0, 2) + " " + title + " " + BORDER.
-                substring(4 + title.length());
-        System.out.println(titleBorder);
-    }
+		System.out.println(content);
+	}
 
+	protected void drawFormTitle() {
+		System.out.println();
+		drawFormTitle(headline());
+		System.out.println();
+	}
+
+	protected void drawFormBorder() {
+		System.out.println(BORDER);
+		System.out.println();
+	}
+
+	protected void drawFormSeparator() {
+		System.out.println(SEPARATOR);
+	}
+
+	protected void drawFormTitle(final String title) {
+		String titleBorder = BORDER.substring(0, 2) + " " + title + " " + BORDER.
+			substring(4 + title.length());
+		System.out.println(titleBorder);
+	}
 }
