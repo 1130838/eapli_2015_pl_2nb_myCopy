@@ -23,8 +23,8 @@ public class Expense {
 
 	BigDecimal amount;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	private ExpenseType expenseType;
+    @ManyToOne
+    private ExpenseType expenseType;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	private PaymentMethod paymentMethod;
@@ -40,7 +40,7 @@ public class Expense {
 		this.date = date;
 	}
 
-	public Expense() {
+	private Expense() {
 		// for ORM purposes
 	}
 

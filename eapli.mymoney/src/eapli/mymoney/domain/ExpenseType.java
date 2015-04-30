@@ -17,7 +17,7 @@ import javax.persistence.Id;
  * @author Paulo Gandra Sousa
  */
 @Entity
-public class ExpenseType implements ValueObject, BudgetLine {
+public class ExpenseType implements ValueObject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,6 +25,9 @@ public class ExpenseType implements ValueObject, BudgetLine {
 
     private String text;
 
+    public int getID(){
+        return idExpensiveType;
+    }
     protected ExpenseType() {
     }
 

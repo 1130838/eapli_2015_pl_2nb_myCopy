@@ -33,7 +33,7 @@ public class RegisterExpenseController {
     public Expense registerExpense() {
 
         final Expense expense = new Expense(moneyValue, expenseType, paymentMethod, date);
-        return this.addExpense(expense);
+        return addExpense(expense);
     }
 
     public List<Expense> listAllExpenses() {
@@ -41,8 +41,13 @@ public class RegisterExpenseController {
     }
 
     private Expense addExpense(Expense expense) {
-        repo.add(expense);
-
+        getRepo().add(expense);
         return expense;
+    }
+
+    private ExpenseRepository getRepo(){
+
+        return repo;
+
     }
 }

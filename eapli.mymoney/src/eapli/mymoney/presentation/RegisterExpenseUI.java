@@ -30,8 +30,8 @@ public class RegisterExpenseUI extends BaseUI {
         final ListExpenseTypesController theControllerExpenseTypes = new ListExpenseTypesController();
         int option = Console.readInteger("Enter the Expense type:");
         final List<ExpenseType> expenseTypesList = theControllerExpenseTypes.getAllExpenseTypes();
-
-        expenseType = new ExpenseType(expenseTypesList.get(option).description());
+        
+        expenseType = expenseTypesList.get(option);
 
         new ListPaymenteMethodsUI().show();
         final ListPaymentMethodController theControllerPayment = new ListPaymentMethodController();
@@ -49,9 +49,7 @@ public class RegisterExpenseUI extends BaseUI {
 
     private void submit() {
         registerExpenseController = new RegisterExpenseController(moneyValue, expenseType, paymentMethod, date);
-        Expense expense = registerExpenseController.registerExpense();
-
-        System.out.println(expense.toString());
+        registerExpenseController.registerExpense();
 
         List<Expense> expenseList = registerExpenseController.listAllExpenses();
         showListResults(expenseList); // for test purposes for now
