@@ -5,9 +5,6 @@
  */
 package eapli.mymoney.application;
 
-import eapli.mymoney.domain.ExpenseGroup;
-import eapli.mymoney.persistence.ExpenseGroupRepository;
-import eapli.mymoney.persistence.Persistence;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
@@ -29,15 +26,11 @@ public class EditExpenseGroupController {
     public final void editExpenseGroup(final String expenseGroupText,
             final Calendar beginPeriod, final Calendar endPeriod,
             final BigDecimal estimation) {
-        final ExpenseGroup expenseGroup = new ExpenseGroup(expenseGroupText,
-                beginPeriod, endPeriod, estimation);
-        final ExpenseGroupRepository repo = Persistence.getRepositoryFactory().
-                getExpenseGroupRepository();
-        repo.add(expenseGroup);
+
     }
 
     /**
-     * get list of expense groups.
+     * TODO : CREATE CODE TO GET LIST EXPENSE GROUPS get list of expense groups.
      *
      * @return listexpenseGroups
      */
