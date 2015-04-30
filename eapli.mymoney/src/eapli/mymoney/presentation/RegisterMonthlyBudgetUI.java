@@ -30,15 +30,15 @@ public class RegisterMonthlyBudgetUI extends BaseUI {
         controller.changeBudgetName(budgetName);
         expenseTypeList = controller.getExpenseTypes();
         int option = -1, position = 1;
-	@Override
+	//@Override
 
-	public boolean doShow() {
+	//public boolean doShow() {
 		System.out.println("\n" + headline());
 		budgetName = Console.readLine("Type the Budget name:");
 		controller.changeBudgetName(budgetName);
 		expenseTypeList = controller.getExpenseTypes();
-		int option = -1, position = 1;
-		chosenExpenseType = new ExpenseType("temp");
+	//	int option = -1, position = 1;
+	//	chosenExpenseType = new ExpenseType("temp");
 		while (option != 0) {
 			boolean bExpenseTypeChosen = false;
 			if (!chooseExpenseType()) {
@@ -48,7 +48,7 @@ public class RegisterMonthlyBudgetUI extends BaseUI {
 				readDouble("Please insert a Value for this Expense:");
 			Money value = Money.euros(chosenValue);
 			//
-			controller.addEntry(chosenExpenseType, value);
+	//		controller.addEntry(chosenExpenseType, value);
 		}
 		submit();
 		return true;
@@ -82,7 +82,7 @@ public class RegisterMonthlyBudgetUI extends BaseUI {
 			hasNext();) {
 			position++;
 			if (option == position) {
-				chosenExpenseType = iterator.next();
+	//			chosenExpenseType = iterator.next();
 			}
 		}
 		return true;
