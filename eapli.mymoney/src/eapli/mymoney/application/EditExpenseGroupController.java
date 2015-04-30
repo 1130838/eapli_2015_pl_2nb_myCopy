@@ -18,6 +18,8 @@ import java.util.List;
  */
 public class EditExpenseGroupController {
 
+    private ExpenseGroup expenseGroup = new ExpenseGroup();
+
     /**
      * Register a new expense group.
      *
@@ -29,7 +31,8 @@ public class EditExpenseGroupController {
     public final void editExpenseGroup(final String expenseGroupText,
             final Calendar beginPeriod, final Calendar endPeriod,
             final BigDecimal estimation) {
-        final ExpenseGroup expenseGroup = new ExpenseGroup(expenseGroupText,
+
+        expenseGroup.editExpenseGroup(expenseGroupText,
                 beginPeriod, endPeriod, estimation);
         final ExpenseGroupRepository repo = Persistence.getRepositoryFactory().
                 getExpenseGroupRepository();

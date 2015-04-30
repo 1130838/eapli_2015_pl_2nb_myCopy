@@ -18,11 +18,18 @@ import java.util.List;
  */
 public class RegisterMonthlyBudgetUI extends BaseUI {
 
-	private RegisterMonthlyBudgetController controller = new RegisterMonthlyBudgetController();
-	private List<ExpenseType> expenseTypeList;
-	private String budgetName;
-	ExpenseType chosenExpenseType;
+    private RegisterMonthlyBudgetController controller = new RegisterMonthlyBudgetController();
+    private List<ExpenseType> expenseTypeList;
+    private String budgetName;
 
+    @Override
+    public boolean doShow() {
+        System.out.println("\n" + headline());
+
+        budgetName = Console.readLine("Type the Budget name:");
+        controller.changeBudgetName(budgetName);
+        expenseTypeList = controller.getExpenseTypes();
+        int option = -1, position = 1;
 	@Override
 
 	public boolean doShow() {

@@ -61,7 +61,7 @@ public class EditExpenseGroupUI extends BaseUI {
             System.out.println(listExpenseGroup);
         }
         System.out.println("Choose: \n");
-        Console.readLine(expenseGroup);//NEED DO ERROR
+        Console.readLine(expenseGroup);//TODO : CREATE CODE TO DEAL WITH ERRORS
         beginPeriod = controller.getBeginPeriod(expenseGroup);
         System.out.println("Begin Period:\n");
         System.out.println(beginPeriod);
@@ -91,6 +91,11 @@ public class EditExpenseGroupUI extends BaseUI {
 
     }
 
+    /**
+     * TODO Need to create code to support that code.
+     *
+     * @return
+     */
     @Override
     public String headline() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -41,9 +41,9 @@ public class RegisterExpenseGroupUI extends BaseUI {
 	@Override
 	public final boolean doShow() {
 		expenseGroup = Console.
-			readLine("Enter expense group description (dd-MM-yyyy) » ");
+			readLine("Enter expense group description » ");
 		beginPeriod = Console.
-			readCalendar("Enter expense group begin period » ");
+			readCalendar("Enter expense group begin period (dd-MM-yyyy) » ");
 		endPeriod = Console.
 			readCalendar("Enter expense group end period (dd-MM-yyyy) » ");
 		estimation = new BigDecimal(Console.readDouble(
