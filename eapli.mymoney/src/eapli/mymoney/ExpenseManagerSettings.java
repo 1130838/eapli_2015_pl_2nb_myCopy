@@ -17,7 +17,7 @@ public final class ExpenseManagerSettings {
 	private final Properties applicationProperties = new Properties();
 	private static ExpenseManagerSettings theInstance;
 	//private final static String PROPERTIES_FILENAME = "./res/eapli/mymoney/mymoney.properties";
-	private final static String PROPERTIES_RESOURCE = "eapli/mymoney/mymoney.properties";
+	private final static String PROPERTIES_RESOURCE = "mymoney.properties";
 	private final static String REPOSITORY_FACTORY_KEY = "persistence.repositoryFactory";
 
 	public static ExpenseManagerSettings instance() {
