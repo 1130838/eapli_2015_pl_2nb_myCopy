@@ -31,8 +31,8 @@ public class BudgetRepositoryImpl extends JpaRepository<Budget, String>
 		for (Iterator iterator = budget.getChildren().iterator(); iterator.
 			hasNext();) {
 			Entry next = (Entry) iterator.next();
-			next.addParent(budget);
-			em.persist(next);
+			//next.addParent(budget);
+			//em.persist(next);
 //			ExpenseType eType = (ExpenseType) next.getBudgetLine();
 //			em.persist(eType);
 		}

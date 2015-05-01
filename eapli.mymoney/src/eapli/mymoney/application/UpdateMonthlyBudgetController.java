@@ -7,7 +7,6 @@ package eapli.mymoney.application;
 
 import eapli.framework.model.Money;
 import eapli.mymoney.domain.Budget;
-import eapli.mymoney.domain.BudgetLine;
 import eapli.mymoney.domain.Entry;
 import eapli.mymoney.domain.ExpenseType;
 import eapli.mymoney.persistence.BudgetRepository;
@@ -51,7 +50,7 @@ public class UpdateMonthlyBudgetController {
 		entrada.put(expenseType, value);
 	}
 
-	public void addEntry(BudgetLine budgetLine, Money valor) {
+	public void addEntry(ExpenseType budgetLine, Money valor) {
 		entry = new Entry(budgetLine, valor);
 		budget.addEntry(entry);
 	}

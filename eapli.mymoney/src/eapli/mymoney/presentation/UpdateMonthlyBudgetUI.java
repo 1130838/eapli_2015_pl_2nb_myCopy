@@ -91,6 +91,6 @@ public class UpdateMonthlyBudgetUI extends BaseUI {
 
 	@Override
 	public String headline() {
-		return "REGISTER MONTLHY BUDGET";
+		return "UPDATE MONTLHY BUDGET";
 	}
 }

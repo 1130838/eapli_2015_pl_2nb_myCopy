@@ -84,7 +84,7 @@ public class EntryTest {
 	@Test
 	public void testChangeBudgetLine() {
 		System.out.println("changeBudgetLine");
-		BudgetLine budgetLine = null;
+		ExpenseType budgetLine = null;
 		Entry instance = new Entry();
 		instance.changeBudgetLine(budgetLine);
 		// TODO review the generated test code and remove the default call to fail.

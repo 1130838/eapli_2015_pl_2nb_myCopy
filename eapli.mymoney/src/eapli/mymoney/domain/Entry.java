@@ -6,13 +6,11 @@
 package eapli.mymoney.domain;
 
 import eapli.framework.model.Money;
-import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -21,29 +19,28 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "ENTRY")
-public class Entry implements Serializable {
-
-	public long serialVersionUID = 21321321312312L;
+public class Entry {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "IDENTRY")
 	private long idEntry;
 
 	public Entry() {
 	}
-	private BudgetLine budgetLine;
+
+	private ExpenseType budgetLine;
 	private Money value;
 
 	private Budget parent;
 
-	@ManyToOne
-	@JoinColumn(name = "IDBUDGET")
-
+//	@ManyToOne
+//	@JoinColumn(name = "IDBUDGET")
 	public Budget getBudget() {
 		return getParent();
 	}
 
-	public Entry(BudgetLine budgetLine, Money value) {
+	public Entry(ExpenseType budgetLine, Money value) {
 		this.budgetLine = budgetLine;
 		this.value = value;
 	}
@@ -62,7 +59,7 @@ public class Entry implements Serializable {
 	/**
 	 * @param budgetLine the budgetLine to set
 	 */
-	public void changeBudgetLine(BudgetLine budgetLine) {
+	public void changeBudgetLine(ExpenseType budgetLine) {
 		this.budgetLine = budgetLine;
 	}
 
