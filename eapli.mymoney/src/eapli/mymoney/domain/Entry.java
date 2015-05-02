@@ -6,11 +6,14 @@
 package eapli.mymoney.domain;
 
 import eapli.framework.model.Money;
+import eapli.framework.patterns.DomainEntity;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -19,7 +22,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "ENTRY")
-public class Entry {
+public class Entry implements Serializable, DomainEntity<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,7 +32,10 @@ public class Entry {
 	public Entry() {
 	}
 
+	@JoinColumn(name = "EXPENSETYPEID")
 	private ExpenseType budgetLine;
+
+	@Column(name = "IDVALUE")
 	private Money value;
 
 	private Budget parent;
@@ -104,6 +110,11 @@ public class Entry {
 	 */
 	public void setParent(Budget parent) {
 		this.parent = parent;
+	}
+
+	@Override
+	public Long id() {
+		return new Long(this.getId());
 	}
 
 }

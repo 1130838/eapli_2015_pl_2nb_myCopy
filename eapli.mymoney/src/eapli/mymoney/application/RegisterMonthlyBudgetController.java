@@ -27,6 +27,7 @@ public class RegisterMonthlyBudgetController {
 	private ExpenseType expenseType;
 	private Entry entry;
 	private Budget budget;
+	List<ExpenseType> expenseTypeList;
 
 	public RegisterMonthlyBudgetController() {
 		budget = new Budget();
@@ -35,7 +36,8 @@ public class RegisterMonthlyBudgetController {
 	public List<ExpenseType> getExpenseTypes() {
 		ExpenseTypeRepository repo = Persistence.getRepositoryFactory().
 			getExpenseTypeRepository();
-		return repo.all();
+		expenseTypeList = repo.all();
+		return expenseTypeList;
 	}
 
 	public void setValor(BigDecimal value) {
@@ -44,7 +46,7 @@ public class RegisterMonthlyBudgetController {
 
 	public void setExpenseType(int index) {
 		//ExpenseType expenseType
-		this.expenseType = getExpenseTypes().get(index);
+		this.expenseType = getExpenseTypes().get(index - 1);
 	}
 
 	public void addValue(Money valor) {

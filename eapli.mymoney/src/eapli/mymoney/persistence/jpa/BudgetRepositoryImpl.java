@@ -39,7 +39,7 @@ public class BudgetRepositoryImpl extends JpaRepository<Budget, String>
 		em.getTransaction().commit();
 		System.out.println("ID gerado: " + budget.getIdBudget());
 		em.close();
-		emf.close();
+		//emf.close();
 		return true;
 	}
 

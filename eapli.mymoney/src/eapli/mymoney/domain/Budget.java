@@ -5,6 +5,8 @@
  */
 package eapli.mymoney.domain;
 
+import eapli.framework.patterns.AggregateRoot;
+import eapli.framework.patterns.DomainEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +24,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "BUDGET")
-public class Budget implements Serializable {
+public class Budget implements Serializable, DomainEntity<Long>, AggregateRoot<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -69,6 +71,11 @@ public class Budget implements Serializable {
 	 */
 	public List<Entry> getChildren() {
 		return children;
+	}
+
+	@Override
+	public Long id() {
+		return new Long(this.getIdBudget());
 	}
 
 }
