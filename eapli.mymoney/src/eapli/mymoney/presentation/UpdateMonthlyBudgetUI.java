@@ -24,43 +24,32 @@ public class UpdateMonthlyBudgetUI extends BaseUI {
 	private List<ExpenseType> expenseTypeList;
 	private List<Budget> budgetList;
 	private String budgetName;
+	private int index = 1;
+	private int option = -1;
+	private int position = 1;
+	private Budget chosenBudget;
 
 	@Override
 	public boolean doShow() {
+		chosenBudget = new Budget();
 		System.out.println("\n" + headline());
 		budgetList = controller.getBudgetList();
-		int index = 1;
-		int option = -1, position = 1;
-		while (option != 0) {
-			for (Iterator<Budget> iterator = budgetList.iterator(); iterator.
-				hasNext();) {
-				Budget next = iterator.next();
-				System.out.println(index + " - " + next.description());
-				index++;
-			}
-			option = Console.readInteger("Please choose a Budget (0 to sop...)");
-			int choice = 0;
-			Budget chosenBudget = new Budget();
-			for (Iterator<Budget> iterator = budgetList.iterator(); iterator.
-				hasNext();) {
-				choice++;
-				if (option == position) {
-					chosenBudget = iterator.next();
-				}
-			}
-			Entry entry = new Entry();
 
+		while (option != 0) {
+			selectBudget();
+			Entry entry = new Entry();
 			List<Entry> entryList = chosenBudget.retrieveEntryList();
-			int item = 1;
+			int item = 0;
 			for (Iterator<Entry> iterator = entryList.iterator(); iterator.
 				hasNext();) {
+				item++;
 				Entry tmpEntry = iterator.next();
 				ExpenseType expenseType = (ExpenseType) tmpEntry.getBudgetLine();
 				Money money = tmpEntry.getValue();
 				System.out.
 					println(item + " - Nome: " + expenseType.description() + " valor:" + money.
 						amount());
-				item++;
+
 			}
 			int optionExpense = -1;
 			double value;
@@ -82,6 +71,25 @@ public class UpdateMonthlyBudgetUI extends BaseUI {
 			submit();
 		}
 		return true;
+	}
+
+	private void selectBudget() {
+		for (Iterator<Budget> iterator = budgetList.iterator(); iterator.
+			hasNext();) {
+			Budget next = iterator.next();
+			System.out.println(index + " - " + next.description());
+			index++;
+		}
+		option = Console.readInteger("Please choose a Budget (0 to sop...)");
+		int choice = 0;
+
+		for (Iterator<Budget> iterator = budgetList.iterator(); iterator.
+			hasNext();) {
+			if (option == position) {
+				chosenBudget = iterator.next();
+			}
+			choice++;
+		}
 	}
 
 	private void submit() {
