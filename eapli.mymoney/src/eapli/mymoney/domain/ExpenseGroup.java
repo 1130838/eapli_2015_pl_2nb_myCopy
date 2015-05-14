@@ -31,6 +31,7 @@ public class ExpenseGroup implements Serializable {
      * This argument is opcional and sets a budget for the current group.
      */
     private BigDecimal estimation;
+    private int disable;
 
     public ExpenseGroup() {
 
@@ -43,14 +44,18 @@ public class ExpenseGroup implements Serializable {
      * @param beginPeriod Beginning of period
      * @param endPeriod End of period
      * @param budgetEstimation The value of budget estimation
+     * @param disable 1 to enable by default , o to disable
      */
     public ExpenseGroup(final String expenseGroupText,
             final Calendar beginPeriod,
             final Calendar endPeriod,
-            final BigDecimal budgetEstimation) {
+            final BigDecimal budgetEstimation,
+            final int disable
+    ) {
         this.name = expenseGroupText;
         this.period = new Period(beginPeriod, endPeriod);
         this.estimation = budgetEstimation;
+        this.disable = 1;
     }
 
     /**
@@ -60,13 +65,16 @@ public class ExpenseGroup implements Serializable {
      * @param beginPeriod Beginning of period
      * @param endPeriod End of period
      * @param budgetEstimation The value of budget estimation
+     * @param disable1
      */
     public void editExpenseGroup(final String expenseGroupText,
             final Calendar beginPeriod,
             final Calendar endPeriod,
-            final BigDecimal budgetEstimation) {
+            final BigDecimal budgetEstimation,
+            final int disable1) {
         this.name = expenseGroupText;
         this.period = new Period(beginPeriod, endPeriod);
         this.estimation = budgetEstimation;
+        this.disable = disable1;
     }
 }
