@@ -59,10 +59,10 @@ public class UpdateMonthlyBudgetController {
 		budget.changeBudgetName(budgetName);
 	}
 
-	public boolean saveBudget() {
+	public Budget saveBudget() {
 		BudgetRepository repo = Persistence.getRepositoryFactory().
 			getBudgetRepository();
-		return repo.add(budget);
+		return repo.update(budget);
 	}
 
 	public List<Budget> getBudgetList() {

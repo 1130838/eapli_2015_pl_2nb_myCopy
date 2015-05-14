@@ -43,6 +43,12 @@ public class BudgetRepositoryImpl extends JpaRepository<Budget, String>
 		return true;
 	}
 
+	public Budget update(Budget budget) {
+		Budget temp = super.update(budget);
+		//emf.close();
+		return temp;
+	}
+
 	@Override
 	public long size() {
 		return this.size();

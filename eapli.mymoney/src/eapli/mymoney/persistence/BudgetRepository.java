@@ -15,11 +15,13 @@ import java.util.List;
  */
 public interface BudgetRepository {
 
-    public boolean add(Budget budget);
+	public boolean add(Budget budget);
 
-    public long size();
+	public Budget update(Budget budget);
 
-    public List<Budget> all();
+	public long size();
 
-    public Iterator<Budget> iterator(int pagesize);
+	public List<Budget> all();
+
+	public Iterator<Budget> iterator(int pagesize);
 }

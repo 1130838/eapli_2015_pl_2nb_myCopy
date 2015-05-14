@@ -18,33 +18,38 @@ import java.util.List;
  */
 public class BudgetRepositoryImpl implements BudgetRepository {
 
-    private static final List<Budget> DATA
-            = new ArrayList<Budget>();
+	private static final List<Budget> DATA
+		= new ArrayList<Budget>();
 
-    public boolean add(Budget budget) {
-        if (budget == null) {
-            throw new IllegalArgumentException();
-        }
-        if (DATA.contains(budget)) {
-            //TODO rever se deviamos ter outra exceção mais significativa
-            throw new IllegalStateException();
-        }
-        return DATA.add(budget);
-    }
+	public boolean add(Budget budget) {
+		if (budget == null) {
+			throw new IllegalArgumentException();
+		}
+		if (DATA.contains(budget)) {
+			//TODO rever se deviamos ter outra exceção mais significativa
+			throw new IllegalStateException();
+		}
+		return DATA.add(budget);
+	}
 
-    @Override
-    public long size() {
-        return DATA.size();
-    }
+	@Override
+	public long size() {
+		return DATA.size();
+	}
 
-    @Override
-    public List<Budget> all() {
-        return Collections.unmodifiableList(DATA);
-    }
+	@Override
+	public List<Budget> all() {
+		return Collections.unmodifiableList(DATA);
+	}
 
-    @Override
-    public Iterator<Budget> iterator(int pagesize) {
-        return DATA.iterator();
-    }
+	@Override
+	public Iterator<Budget> iterator(int pagesize) {
+		return DATA.iterator();
+	}
+
+	@Override
+	public Budget update(Budget budget) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
 
 }
