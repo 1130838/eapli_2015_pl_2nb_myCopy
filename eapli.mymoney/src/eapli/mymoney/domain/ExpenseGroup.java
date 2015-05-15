@@ -7,9 +7,12 @@ package eapli.mymoney.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -32,9 +35,15 @@ public class ExpenseGroup implements Serializable {
 	 */
 	private BigDecimal estimation;
 	/*
-	 * This atribute allows us to control the current status of this group.
+	 * This attribute allows us to control the current status of this group.
 	 */
 	private boolean status;
+
+	/**
+	 * ExpenseTypes associated with this Expense Group (UC-G-006)
+	 */
+	@OneToMany
+	private List<ExpenseType> expenseTypes;
 
 	public ExpenseGroup() {
 
@@ -57,6 +66,7 @@ public class ExpenseGroup implements Serializable {
 		this.period = new Period(beginPeriod, endPeriod);
 		this.estimation = budgetEstimation;
 		this.status = true;
+		this.expenseTypes = new ArrayList<>();
 	}
 
 	/**
@@ -77,6 +87,11 @@ public class ExpenseGroup implements Serializable {
 		this.period = new Period(beginPeriod, endPeriod);
 		this.estimation = budgetEstimation;
 		this.status = status;
+		this.expenseTypes = new ArrayList<>();
+	}
+
+	public void addExpenseType(ExpenseType expenseType) {
+		this.expenseTypes.add(expenseType);
 	}
 
 }
