@@ -5,6 +5,7 @@
  */
 package eapli.mymoney.domain;
 
+import eapli.util.Validations;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -35,6 +36,8 @@ public class ExpenseGroup implements Serializable {
 	 * This atribute allows us to control the current status of this group.
 	 */
 	private boolean status;
+        
+        private String text;
 
 	public ExpenseGroup() {
 
@@ -78,5 +81,37 @@ public class ExpenseGroup implements Serializable {
 		this.estimation = budgetEstimation;
 		this.status = status;
 	}
+        
+            public ExpenseGroup(final String text) {
+                if (Validations.isNullOrWhiteSpace(text)) {
+                    throw new IllegalArgumentException();
+                }
+                this.text = text;
+            }
+                public String description() {
+                     return text;
+                 }
+                
+                @Override
+                public boolean equals(Object other) {
+                    if (other == null) {
+                        return false;
+                    }
+                    if (other == this) {
+                        return true;
+                    }
+                    if (!(other instanceof ExpenseType)) {
+                        return false;
+                    }
+                    ExpenseType etOther = (ExpenseType) other;
+                    return this.description().equals(etOther.description());
+                }
+
+                @Override
+                public int hashCode() {
+                    int hash = 7;
+                    hash = 41 * hash + (this.text != null ? this.text.hashCode() : 0);
+                    return hash;
+                } 
 
 }

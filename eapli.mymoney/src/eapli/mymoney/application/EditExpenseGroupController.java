@@ -6,8 +6,11 @@
 package eapli.mymoney.application;
 
 import eapli.mymoney.domain.ExpenseGroup;
+import eapli.mymoney.persistence.ExpenseGroupRepository;
+import eapli.mymoney.persistence.Persistence;
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -48,11 +51,22 @@ public class EditExpenseGroupController {
 	 *
 	 * @return listexpenseGroups
 	 */
-	public List<String> getListExpenseGroup() {
+	public List<ExpenseGroup> getListExpenseGroup(){
 
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		ExpenseGroupRepository repo = Persistence.getRepositoryFactory().
+                getExpenseGroupRepository();
+                return repo.all();
 	}
+        
+  
 
+    // demo purposes
+    public Iterator<ExpenseGroup> iterator() {
+        ExpenseGroupRepository repo = Persistence.getRepositoryFactory().
+                getExpenseGroupRepository();
+        // using a pagesize=1 for DEBUG ONLY
+        return repo.iterator(1);
+    }
 	public Calendar getBeginPeriod(String expenseGroup) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}

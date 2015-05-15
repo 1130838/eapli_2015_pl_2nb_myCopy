@@ -6,6 +6,7 @@
 package eapli.mymoney.presentation;
 
 import eapli.mymoney.application.EditExpenseGroupController;
+import eapli.mymoney.domain.ExpenseGroup;
 import eapli.util.Console;
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -41,9 +42,10 @@ public class EditExpenseGroupUI extends BaseUI {
      */
     private BigDecimal estimation;
 
-    public List<String> getListExpenseGroup() {
+    public List<ExpenseGroup> getListExpenseGroup() {
 
         return controller.getListExpenseGroup();
+
     }
 
     /**
@@ -52,14 +54,15 @@ public class EditExpenseGroupUI extends BaseUI {
      * @return true
      */
     @Override
-    protected boolean doShow() {
+    protected boolean doShow(){ 
+    
         String opcao;
-        List<String> listExpenseGroups = getListExpenseGroup();
+        List<ExpenseGroup> listExpenseGroups = getListExpenseGroup();
         System.out.println("Choose one Expense Group: \n");
-        int i = 1;
-        for (String listExpenseGroup : listExpenseGroups) {
-            System.out.println(listExpenseGroup);
+         for (int i = 0; i < listExpenseGroups.size(); i++) {
+            System.out.println(i + " - " + listExpenseGroups.get(i).description());
         }
+        
         System.out.println("Choose: \n");
         Console.readLine(expenseGroup);//TODO : CREATE CODE TO DEAL WITH ERRORS
         beginPeriod = controller.getBeginPeriod(expenseGroup);
@@ -87,6 +90,7 @@ public class EditExpenseGroupUI extends BaseUI {
             estimation = BigDecimal.valueOf(Console.readDouble("Enter expense group begin period » "));
         }
         controller.editExpenseGroup(expenseGroup, beginPeriod, endPeriod, estimation);
+            
         return true;
 
     }
@@ -96,11 +100,12 @@ public class EditExpenseGroupUI extends BaseUI {
      *
      * @return
      */
+    
     @Override
     public String headline() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Editar Grupo de Despesas!";
     }
-
+ 
     private void submit() {
         controller.editExpenseGroup(expenseGroup, beginPeriod,
                 endPeriod, estimation);
