@@ -36,26 +36,32 @@ public class UpdateMonthlyBudgetUI extends BaseUI {
 		budgetList = controller.getBudgetList();
 
 		while (option != 0) {
-			selectBudget();
+
+			option = selectBudget();
+			if (option == 0) {
+				return true;
+			}
 			Entry entry = new Entry();
 			List<Entry> entryList = chosenBudget.retrieveEntryList();
-			int item = 0;
+			int chosenItem = 0;
 			showItems(entryList);
 			int optionExpense = -1;
-
 			double value;
 			while (optionExpense != 0) {
 
 				optionExpense = Console.
 					readInteger("\nPlease choose an Expense to change its value(0 to stop...)");
+				if (optionExpense == 0) {
+					break;
+				}
 				for (Iterator<Entry> iterator = entryList.iterator(); iterator.
 					hasNext();) {
+					chosenItem++;
 					Entry tmpEntry = iterator.next();
-					if (optionExpense == item) {
+					if (optionExpense == chosenItem) {
 						value = Console.readDouble("\nEnter amount:");
 						Money newValue = Money.euros(value);
 						tmpEntry.changeValue(newValue);
-						item = 0;
 					}
 				}
 			}
@@ -79,26 +85,28 @@ public class UpdateMonthlyBudgetUI extends BaseUI {
 		}
 	}
 
-	private void selectBudget() {
+	private int selectBudget() {
 		index = 1;
-		option = -1;
-		position = 1;
+		int choice;
 		for (Iterator<Budget> iterator = budgetList.iterator(); iterator.
 			hasNext();) {
 			Budget next = iterator.next();
 			System.out.println(index + " - " + next.description());
 			index++;
 		}
-		option = Console.readInteger("Please choose a Budget (0 to sop...)");
-		int choice = 0;
+		choice = Console.readInteger("Please choose a Budget (0 to stop...)");
 
+		if (choice == 0) {
+			return choice;
+		}
 		for (Iterator<Budget> iterator = budgetList.iterator(); iterator.
 			hasNext();) {
-			if (option == position) {
+			if (choice == position) {
 				chosenBudget = iterator.next();
 			}
 			choice++;
 		}
+		return choice;
 	}
 
 	private void submit() {
