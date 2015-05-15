@@ -90,6 +90,11 @@ public class ExpenseGroup implements Serializable {
 		this.expenseTypes = new ArrayList<>();
 	}
 
+	/**
+	 * Add expense type to the accepted expense type list of this group.
+	 *
+	 * @param expenseType expense type object
+	 */
 	public void addExpenseType(ExpenseType expenseType) {
 		this.expenseTypes.add(expenseType);
 	}
