@@ -18,46 +18,56 @@ import java.util.List;
  */
 public class ExpenseGroupRepositoryImpl implements ExpenseGroupRepository {
 
-    /**
-     * Container with data.
-     */
-    private static final List<ExpenseGroup> DATA
-            = new ArrayList<ExpenseGroup>();
+	/**
+	 * Container with data.
+	 */
+	private static final List<ExpenseGroup> data
+		= new ArrayList<ExpenseGroup>();
 
-    @Override
-    public final boolean add(final ExpenseGroup expenseGroup) {
-        if (expenseGroup == null) {
-            throw new IllegalArgumentException();
-        }
-        if (DATA.contains(expenseGroup)) {
-            //TODO rever se deviamos ter outra exceção mais significativa
-            throw new IllegalStateException();
-        }
-        return DATA.add(expenseGroup);
-    }
+	@Override
+	public final boolean add(final ExpenseGroup expenseGroup) {
+		if (expenseGroup == null) {
+			throw new IllegalArgumentException();
+		}
+		if (data.contains(expenseGroup)) {
+			//TODO rever se deviamos ter outra exceção mais significativa
+			throw new IllegalStateException();
+		}
+		return data.add(expenseGroup);
+	}
 
-    @Override
-    public final long size() {
-        return DATA.size();
-    }
+	@Override
+	public final long size() {
+		return data.size();
+	}
 
-    /**
-     * Checks if a expense group exists in the repository.
-     *
-     * @param group to check existence
-     * @return true - exist<br>false - not exist
-     */
-    public final boolean contains(final ExpenseGroup group) {
-        return DATA.contains(group);
-    }
+	/**
+	 * Checks if a expense group exists in the repository.
+	 *
+	 * @param group to check existence
+	 * @return true - exist<br>false - not exist
+	 */
+	public final boolean contains(final ExpenseGroup group) {
+		return data.contains(group);
+	}
 
-    @Override
-    public final List<ExpenseGroup> all() {
-        return Collections.unmodifiableList(DATA);
-    }
+	@Override
+	public final List<ExpenseGroup> all() {
+		return Collections.unmodifiableList(data);
+	}
 
-    @Override
-    public final Iterator<ExpenseGroup> iterator(final int pagesize) {
-        return DATA.iterator();
-    }
+	@Override
+	public final Iterator<ExpenseGroup> iterator(final int pagesize) {
+		return data.iterator();
+	}
+
+	@Override
+	public ExpenseGroup findById(String id) {
+		for (ExpenseGroup expenseGroup : this.data) {
+			if (expenseGroup.getName() == id) {
+				return expenseGroup;
+			}
+		}
+		throw new NullPointerException("Element not found.");
+	}
 }

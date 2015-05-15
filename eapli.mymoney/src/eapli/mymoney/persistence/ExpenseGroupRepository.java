@@ -15,19 +15,27 @@ import java.util.List;
  */
 public interface ExpenseGroupRepository {
 
-    /**
-     * adds a new expense group to the repository if there is already an expense
-     * group with the same description, an IllegalStateOperation will be thrown
-     *
-     * @param expenseType
-     * @throws IllegalsStateException if there is already an expense type with
-     * the same description
-     */
-    boolean add(ExpenseGroup expenseGroup);
+	/**
+	 * adds a new expense group to the repository if there is already an expense
+	 * group with the same description, an IllegalStateOperation will be thrown
+	 *
+	 * @param expenseType
+	 * @throws IllegalsStateException if there is already an expense type with
+	 * the same description
+	 */
+	boolean add(ExpenseGroup expenseGroup);
 
-    long size();
+	long size();
 
-    List<ExpenseGroup> all();
+	List<ExpenseGroup> all();
 
-    public Iterator<ExpenseGroup> iterator(int pagesize);
+	public Iterator<ExpenseGroup> iterator(int pagesize);
+
+	/**
+	 * Find an expense group by the ID
+	 *
+	 * @param id expense group ID
+	 * @return Expense Group object
+	 */
+	ExpenseGroup findById(String id);
 }

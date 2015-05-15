@@ -99,4 +99,12 @@ public class ExpenseGroup implements Serializable {
 		this.expenseTypes.add(expenseType);
 	}
 
+	/**
+	 * Get the expense group name
+	 *
+	 * @return expense group name (string)
+	 */
+	public String getName() {
+		return name;
+	}
 }

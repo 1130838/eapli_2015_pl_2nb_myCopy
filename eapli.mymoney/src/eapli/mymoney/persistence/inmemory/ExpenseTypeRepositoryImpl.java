@@ -18,37 +18,47 @@ import java.util.List;
  */
 public class ExpenseTypeRepositoryImpl implements ExpenseTypeRepository {
 
-    private static final List<ExpenseType> data = new ArrayList<ExpenseType>();
+	private static final List<ExpenseType> data = new ArrayList<ExpenseType>();
 
-    @Override
-    public boolean add(ExpenseType expenseType) {
-        if (expenseType == null) {
-            throw new IllegalArgumentException();
-        }
-        if (data.contains(expenseType)) {
-            //TODO rever se deviamos ter outra exceção mais significativa
-            throw new IllegalStateException();
-        }
-        return data.add(expenseType);
-    }
+	@Override
+	public boolean add(ExpenseType expenseType) {
+		if (expenseType == null) {
+			throw new IllegalArgumentException();
+		}
+		if (data.contains(expenseType)) {
+			//TODO rever se deviamos ter outra exceção mais significativa
+			throw new IllegalStateException();
+		}
+		return data.add(expenseType);
+	}
 
-    @Override
-    public long size() {
-        return data.size();
-    }
+	@Override
+	public long size() {
+		return data.size();
+	}
 
-    // TODO check if we realy need this method
-    public boolean contains(ExpenseType vestuario) {
-        return data.contains(vestuario);
-    }
+	// TODO check if we realy need this method
+	public boolean contains(ExpenseType vestuario) {
+		return data.contains(vestuario);
+	}
 
-    @Override
-    public List<ExpenseType> all() {
-        return Collections.unmodifiableList(data);
-    }
+	@Override
+	public List<ExpenseType> all() {
+		return Collections.unmodifiableList(data);
+	}
 
-    @Override
-    public Iterator<ExpenseType> iterator(int pagesize) {
-        return data.iterator();
-    }
+	@Override
+	public Iterator<ExpenseType> iterator(int pagesize) {
+		return data.iterator();
+	}
+
+	@Override
+	public ExpenseType findById(int id) {
+		for (ExpenseType expenseType : this.data) {
+			if (expenseType.getID() == id) {
+				return expenseType;
+			}
+		}
+		throw new NullPointerException("Element not found.");
+	}
 }
