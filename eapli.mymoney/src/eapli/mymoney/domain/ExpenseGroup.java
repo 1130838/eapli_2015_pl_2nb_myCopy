@@ -68,11 +68,11 @@ public class ExpenseGroup implements Serializable {
 	 * @param budgetEstimation The value of budget estimation
 	 * @param status boolean -> true to enable (default), false to disable
 	 */
-	public void ExpenseGroup(final String expenseGroupText,
-							 final Calendar beginPeriod,
-							 final Calendar endPeriod,
-							 final BigDecimal budgetEstimation,
-							 final boolean status) {
+	public ExpenseGroup(final String expenseGroupText,
+						final Calendar beginPeriod,
+						final Calendar endPeriod,
+						final BigDecimal budgetEstimation,
+						final boolean status) {
 		this.name = expenseGroupText;
 		this.period = new Period(beginPeriod, endPeriod);
 		this.estimation = budgetEstimation;
