@@ -80,8 +80,8 @@ public class UpdateMonthlyBudgetUI extends BaseUI {
 			ExpenseType expenseType = (ExpenseType) tmpEntry.getBudgetLine();
 			Money money = tmpEntry.getValue();
 			System.out.
-				println(item + " - Nome: " + expenseType.description() + " valor:" + money.
-					amount());
+				println(item + " - Nome: " + expenseType.description() + " valor: " + money.
+					amount() + "€");
 		}
 	}
 
