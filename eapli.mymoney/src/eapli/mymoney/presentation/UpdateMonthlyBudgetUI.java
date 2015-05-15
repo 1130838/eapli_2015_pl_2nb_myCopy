@@ -40,23 +40,14 @@ public class UpdateMonthlyBudgetUI extends BaseUI {
 			Entry entry = new Entry();
 			List<Entry> entryList = chosenBudget.retrieveEntryList();
 			int item = 0;
-			for (Iterator<Entry> iterator = entryList.iterator(); iterator.
-				hasNext();) {
-				item++;
-				Entry tmpEntry = iterator.next();
-				ExpenseType expenseType = (ExpenseType) tmpEntry.getBudgetLine();
-				Money money = tmpEntry.getValue();
-				System.out.
-					println(item + " - Nome: " + expenseType.description() + " valor:" + money.
-						amount());
-
-			}
+			showItems(entryList);
 			int optionExpense = -1;
+
 			double value;
 			while (optionExpense != 0) {
 
 				optionExpense = Console.
-					readInteger("\nPlease choose an Expense to change its value(0 to sop...)");
+					readInteger("\nPlease choose an Expense to change its value(0 to stop...)");
 				for (Iterator<Entry> iterator = entryList.iterator(); iterator.
 					hasNext();) {
 					Entry tmpEntry = iterator.next();
@@ -64,6 +55,7 @@ public class UpdateMonthlyBudgetUI extends BaseUI {
 						value = Console.readDouble("\nEnter amount:");
 						Money newValue = Money.euros(value);
 						tmpEntry.changeValue(newValue);
+						item = 0;
 					}
 				}
 			}
@@ -73,7 +65,24 @@ public class UpdateMonthlyBudgetUI extends BaseUI {
 		return true;
 	}
 
+	private void showItems(List<Entry> entryList) {
+		int item = 0;
+		for (Iterator<Entry> iterator = entryList.iterator(); iterator.
+			hasNext();) {
+			item++;
+			Entry tmpEntry = iterator.next();
+			ExpenseType expenseType = (ExpenseType) tmpEntry.getBudgetLine();
+			Money money = tmpEntry.getValue();
+			System.out.
+				println(item + " - Nome: " + expenseType.description() + " valor:" + money.
+					amount());
+		}
+	}
+
 	private void selectBudget() {
+		index = 1;
+		option = -1;
+		position = 1;
 		for (Iterator<Budget> iterator = budgetList.iterator(); iterator.
 			hasNext();) {
 			Budget next = iterator.next();
