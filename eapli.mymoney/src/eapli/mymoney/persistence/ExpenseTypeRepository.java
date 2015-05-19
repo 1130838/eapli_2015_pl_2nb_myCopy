@@ -30,4 +30,12 @@ public interface ExpenseTypeRepository {
 	List<ExpenseType> all();
 
 	public Iterator<ExpenseType> iterator(int pagesize);
+
+	/**
+	 * Find an expense type by the ID
+	 *
+	 * @param id ID of the expense type
+	 * @return expense type object
+	 */
+	ExpenseType findById(int id);
 }

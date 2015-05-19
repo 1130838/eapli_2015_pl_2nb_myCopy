@@ -8,9 +8,12 @@ package eapli.mymoney.domain;
 import eapli.util.Validations;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -33,11 +36,17 @@ public class ExpenseGroup implements Serializable {
 	 */
 	private BigDecimal estimation;
 	/*
-	 * This atribute allows us to control the current status of this group.
+	 * This attribute allows us to control the current status of this group.
 	 */
 	private boolean status;
         
         private String text;
+
+	/**
+	 * ExpenseTypes associated with this Expense Group (UC-G-006)
+	 */
+	@OneToMany
+	private List<ExpenseType> expenseTypes;
 
 	public ExpenseGroup() {
 
@@ -60,6 +69,7 @@ public class ExpenseGroup implements Serializable {
 		this.period = new Period(beginPeriod, endPeriod);
 		this.estimation = budgetEstimation;
 		this.status = true;
+		this.expenseTypes = new ArrayList<>();
 	}
 
 	/**
@@ -80,6 +90,16 @@ public class ExpenseGroup implements Serializable {
 		this.period = new Period(beginPeriod, endPeriod);
 		this.estimation = budgetEstimation;
 		this.status = status;
+		this.expenseTypes = new ArrayList<>();
+	}
+
+	/**
+	 * Add expense type to the accepted expense type list of this group.
+	 *
+	 * @param expenseType expense type object
+	 */
+	public void addExpenseType(ExpenseType expenseType) {
+		this.expenseTypes.add(expenseType);
 	}
         
             public ExpenseGroup(final String text) {
@@ -114,4 +134,12 @@ public class ExpenseGroup implements Serializable {
                     return hash;
                 } 
 
+	/**
+	 * Get the expense group name
+	 *
+	 * @return expense group name (string)
+	 */
+	public String getName() {
+		return name;
+	}
 }

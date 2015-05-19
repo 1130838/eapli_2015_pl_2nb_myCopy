@@ -16,27 +16,33 @@ import javax.persistence.RollbackException;
  * @author Paulo Gandra Sousa
  */
 public class ExpenseTypeRepositoryImpl
-        extends JpaRepository<ExpenseType, String>
-        implements ExpenseTypeRepository {
+	extends JpaRepository<ExpenseType, Integer>
+	implements ExpenseTypeRepository {
 
-    @Override
-    public boolean add(ExpenseType expenseType) {
-        try {
-            super.add(expenseType);
-        } catch (RollbackException ex) {
-            throw new IllegalStateException();
-        }
-        return true;
-    }
+	@Override
+	public boolean add(ExpenseType expenseType) {
+		try {
+			super.add(expenseType);
+		} catch (RollbackException ex) {
+			throw new IllegalStateException();
+		}
+		return true;
+	}
 
-    @Override
-    public List<ExpenseType> all() {
+	@Override
+	public List<ExpenseType> all() {
 
-        return (List<ExpenseType>) this.findAll();
-    }
+		return (List<ExpenseType>) this.findAll();
+	}
 
-    @Override
-    protected String persistenceUnitName() {
-        return PersistenceSettings.PERSISTENCE_UNIT_NAME;
-    }
+	@Override
+	protected String persistenceUnitName() {
+		return PersistenceSettings.PERSISTENCE_UNIT_NAME;
+	}
+
+	@Override
+	public ExpenseType findById(int id) {
+		return super.findById(id);
+	}
+
 }

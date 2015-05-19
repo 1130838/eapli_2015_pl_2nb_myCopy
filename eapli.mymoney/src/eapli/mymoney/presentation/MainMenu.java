@@ -29,6 +29,7 @@ public class MainMenu extends BaseUI {
 			+ "---------------------\n"
 			+ "0. Exit\n\n";
 
+
 		while (option != 0) {
 			System.out.println(menuOpt);
 			option = Console.readInteger("Please choose an option");
@@ -60,18 +61,64 @@ public class MainMenu extends BaseUI {
 					final UpdateMonthlyBudgetUI uc01_1 = new UpdateMonthlyBudgetUI();
 					uc01_1.show();
 					break;
-                case 106:
-                    final RegisterExpenseUI uc01_2 = new RegisterExpenseUI();
-                    uc01_2.doShow();
-                    break;
-				default:
-					System.out.println("option not recognized.");
-					break;
-                                    case 107:
+                                case 106:
+                                    final RegisterExpenseUI uc01_2 = new RegisterExpenseUI();
+                                    uc01_2.doShow();
+                                    break;
+                                    case 111:
 					final EditExpenseGroupUI teste = new EditExpenseGroupUI();
 					teste.show();
 					break;
-			}
+			
+				default:
+					System.out.println("option not recognized.");
+					break;
+                              }
+                                    
+                        }
+		System.out.println(menuOpt);
+		option = Console.readInteger("Please choose an option");
+		switch (option) {
+			case 0:
+				System.out.println("bye bye ...");
+				return true;
+			case 100:
+				final RegisterExpenseTypeUI uc01 = new RegisterExpenseTypeUI();
+				uc01.show();
+				break;
+			case 101:
+				final ListExpenseTypesUI uc01_L = new ListExpenseTypesUI();
+				uc01_L.show();
+				break;
+			case 102:
+				final RegisterExpenseGroupUI uc01_G = new RegisterExpenseGroupUI();
+				uc01_G.show();
+				break;
+			case 103:
+				final RegisterExpenseGroupUI uc03_G = new RegisterExpenseGroupUI();
+				uc03_G.doShow();
+				break;
+			case 104:
+				final RegisterMonthlyBudgetUI uc01_O = new RegisterMonthlyBudgetUI();
+				uc01_O.show();
+				break;
+			case 105:
+				final UpdateMonthlyBudgetUI uc01_1 = new UpdateMonthlyBudgetUI();
+				uc01_1.show();
+				break;
+			case 106:
+				final RegisterExpenseUI uc01_2 = new RegisterExpenseUI();
+				uc01_2.doShow();
+				break;
+                        case 111:
+                                final EditExpenseGroupUI teste = new EditExpenseGroupUI();
+                                teste.show();
+                                break;
+			
+			default:
+				System.out.println("option not recognized.");
+				break;
+
 		}
 		return false;
 	}
