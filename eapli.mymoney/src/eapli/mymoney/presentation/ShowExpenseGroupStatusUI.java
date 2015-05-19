@@ -7,7 +7,6 @@ package eapli.mymoney.presentation;
 
 import eapli.mymoney.application.ShowExpenseGroupStatusController;
 import eapli.util.Console;
-import java.util.List;
 
 /**
  *
@@ -21,43 +20,24 @@ public class ShowExpenseGroupStatusUI extends BaseUI {
     // Name of expense group to check status.
     private String expenseGroup;
 
-    // Get a list of all Expense Groups registed.
-    public List<String> getListExpGroup() {
-        return controller.getListExpenseGroup();
-    }
-
     @Override
     protected boolean doShow() {
-
-        List<String> listExpGroups = getListExpGroup();
-        for (String listExpGroup : listExpGroups) {
-            System.out.println(listExpGroup);
-        }
-        expenseGroup = Console.readLine("Type an expense group description:\n");
-
-        boolean tmp = false;
-        for (String listExpGroup : listExpGroups) {
-            if (listExpGroup.equals(expenseGroup)) {
-                tmp = true;
-            }
-        }
-
-        if (tmp) {
+        if (controller.listAllExpenseGroups() == true) {
+            expenseGroup = Console.readLine("Type an expense group description:\n");
             submit();
-        } else {
-            System.out.println("Invalid expense group description.\n");
+            return true;
         }
-
-        return true;
+        Console.readLine("Press a key to continue...\n");
+        return false;
     }
 
     private void submit() {
         controller.getStatus(expenseGroup);
+        Console.readLine("Press a key to continue...\n");
     }
 
     @Override
     public String headline() {
         return "SHOW AN EXPENSE GROUP TYPE";
     }
-
 }

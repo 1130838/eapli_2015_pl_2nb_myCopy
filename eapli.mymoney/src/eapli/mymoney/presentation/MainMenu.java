@@ -14,6 +14,7 @@ import eapli.util.Console;
  */
 public class MainMenu extends BaseUI {
 
+<<<<<<< HEAD
 	private boolean showMainMenu() {
 		int option = -1;
 		String menuOpt
@@ -122,15 +123,76 @@ public class MainMenu extends BaseUI {
 		}
 		return false;
 	}
+=======
+    private boolean showMainMenu() {
+        int option = -1;
+        String menuOpt
+                = "--- master tables ---\n"
+                + "100. Register an expense type\n"
+                + "101. List expense types\n\n"
+                + "102. Register Expense Group\n"
+                + "103. Disable Expense Group\n"
+                + "104. Show Expense Group Status\n\n"
+                + "105. Register Monthly Budget\n"
+                + "106. Update Monthly Budget\n"
+                + "107. Register Expense\n"
+                + "---------------------\n"
+                + "0. Exit\n\n";
 
-	@Override
-	protected boolean doShow() {
-		return showMainMenu();
-	}
+        System.out.println(menuOpt);
+        option = Console.readInteger("Please choose an option");
+        switch (option) {
+            case 0:
+                System.out.println("bye bye ...");
+                return true;
+            case 100:
+                final RegisterExpenseTypeUI uc01 = new RegisterExpenseTypeUI();
+                uc01.show();
+                break;
+            case 101:
+                final ListExpenseTypesUI uc01_L = new ListExpenseTypesUI();
+                uc01_L.show();
+                break;
+            case 102:
+                final RegisterExpenseGroupUI uc01_G = new RegisterExpenseGroupUI();
+                uc01_G.show();
+                break;
+            case 103:
+                final RegisterExpenseGroupUI uc03_G = new RegisterExpenseGroupUI();
+                uc03_G.doShow();
+                break;
+            case 104:
+                final ShowExpenseGroupStatusUI uc04_G = new ShowExpenseGroupStatusUI();
+                uc04_G.doShow();
+                break;
+            case 105:
+                final RegisterMonthlyBudgetUI uc01_O = new RegisterMonthlyBudgetUI();
+                uc01_O.show();
+                break;
+            case 106:
+                final UpdateMonthlyBudgetUI uc01_1 = new UpdateMonthlyBudgetUI();
+                uc01_1.show();
+                break;
+            case 107:
+                final RegisterExpenseUI uc01_2 = new RegisterExpenseUI();
+                uc01_2.doShow();
+                break;
+            default:
+                System.out.println("option not recognized.");
+                break;
+        }
+        return false;
+    }
+>>>>>>> c3475cbd3e859fa41e5ee200f510d2a3756de944
 
-	@Override
-	public String headline() {
-		return "myMoney - EXPENSE MANAGER";
-	}
+    @Override
+    protected boolean doShow() {
+        return showMainMenu();
+    }
+
+    @Override
+    public String headline() {
+        return "myMoney - EXPENSE MANAGER";
+    }
 
 }
