@@ -21,6 +21,7 @@ public class RegisterExpenseController {
     private ExpenseType expenseType;
     private PaymentMethod paymentMethod;
     private Calendar date;
+    private Expense expense;
     final ExpenseRepository repo = Persistence.getRepositoryFactory().getExpenseRepository();
 
     public RegisterExpenseController(BigDecimal moneyValue, ExpenseType expenseType, PaymentMethod paymentMethod, Calendar date) {
@@ -43,6 +44,10 @@ public class RegisterExpenseController {
     private Expense addExpense(Expense expense) {
         getRepo().add(expense);
         return expense;
+    }
+
+    public Expense getExpense(){
+        return this.expense;
     }
 
     private ExpenseRepository getRepo(){

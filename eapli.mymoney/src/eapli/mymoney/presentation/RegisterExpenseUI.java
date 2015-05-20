@@ -3,9 +3,8 @@ package eapli.mymoney.presentation;
 import eapli.mymoney.application.ListExpenseTypesController;
 import eapli.mymoney.application.ListPaymentMethodController;
 import eapli.mymoney.application.RegisterExpenseController;
-import eapli.mymoney.domain.Expense;
-import eapli.mymoney.domain.ExpenseType;
-import eapli.mymoney.domain.PaymentMethod;
+import eapli.mymoney.application.WatchExpenseController;
+import eapli.mymoney.domain.*;
 import eapli.util.Console;
 
 import java.math.BigDecimal;
@@ -15,13 +14,16 @@ import java.util.List;
 /**
  * Created by brunodevesa on 24/04/15.
  */
-public class RegisterExpenseUI extends BaseUI {
+public class RegisterExpenseUI extends BaseUI implements Observer {
 
     private RegisterExpenseController registerExpenseController;
+    private WatchExpenseController watchExpenseController;
     public ExpenseType expenseType;
     private PaymentMethod paymentMethod;
     private Calendar date;
     private BigDecimal moneyValue;
+
+    private Observable observable = null;
 
     @Override
     protected boolean doShow() {
@@ -30,7 +32,7 @@ public class RegisterExpenseUI extends BaseUI {
         final ListExpenseTypesController theControllerExpenseTypes = new ListExpenseTypesController();
         int option = Console.readInteger("Enter the Expense type:");
         final List<ExpenseType> expenseTypesList = theControllerExpenseTypes.getAllExpenseTypes();
-        
+
         expenseType = expenseTypesList.get(option);
 
         new ListPaymenteMethodsUI().show();
@@ -48,8 +50,16 @@ public class RegisterExpenseUI extends BaseUI {
     }
 
     private void submit() {
+
+
         registerExpenseController = new RegisterExpenseController(moneyValue, expenseType, paymentMethod, date);
+
+        Expense expense = registerExpenseController.getExpense();
+        watchExpenseController = new WatchExpenseController(this,expense); // vai a despesa toda
+
+        // colocar validação na watchDOg e  so depois registar a despesa
         registerExpenseController.registerExpense();
+
 
         List<Expense> expenseList = registerExpenseController.listAllExpenses();
         showListResults(expenseList); // for test purposes for now
@@ -77,5 +87,20 @@ public class RegisterExpenseUI extends BaseUI {
             System.out.println("----------------------------------------------------------------------");
             Console.readLine("Press a key to continue..");
         }
+    }
+
+    @Override
+    public void subscribe(Observable observable) {
+        this.observable = observable;
+    }
+
+    @Override
+    public void unsubscribe(Observable observable) {
+    this.observable.removeObserver(this);
+    }
+
+    @Override
+    public void update() {
+        System.out.println("warning : that expense is way too much for your budget !");
     }
 }
