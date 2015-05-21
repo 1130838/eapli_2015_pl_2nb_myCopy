@@ -82,6 +82,7 @@ public class RegisterExpenseUI extends BaseUI implements Observer {
         }
     }
 
+
     @Override
     public void subscribe(Observable observable) {
         this.observable = observable;

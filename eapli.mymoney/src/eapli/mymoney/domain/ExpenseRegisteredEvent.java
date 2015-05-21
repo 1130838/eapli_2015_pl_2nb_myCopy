@@ -6,17 +6,17 @@ import java.util.List;
 /**
  * Created by brunodevesa on 21/05/15.
  */
-public class ExpenseRegisteredEvent implements Observable {
+public class ExpenseRegisteredEvent {
 
     Expense expense;
 
-    List<Observer> listOfObservers = new ArrayList<>();
+   /* List<Observer> listOfObservers = new ArrayList<>();*/
 
     public ExpenseRegisteredEvent(Expense expense) {
         this.expense = expense;
     }
 
-    @Override
+ /*   @Override
     public void addObserver(Observer observer) {
         listOfObservers.add(observer);
     }
@@ -32,5 +32,5 @@ public class ExpenseRegisteredEvent implements Observable {
             listOfObservers.get(i).update();
 
         }
-    }
+    }*/
 }

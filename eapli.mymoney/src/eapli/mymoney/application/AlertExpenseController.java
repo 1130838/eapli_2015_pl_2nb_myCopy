@@ -1,7 +1,7 @@
 package eapli.mymoney.application;
 
 import eapli.mymoney.domain.ExpenseRegisteredEvent;
-import eapli.mymoney.domain.LimitWatchDog_AlertExpense;
+import eapli.mymoney.domain.LimitWatchDog_Expense;
 import eapli.mymoney.presentation.RegisterExpenseUI;
 
 /**
@@ -14,20 +14,21 @@ public class AlertExpenseController {
     ExpenseRegisteredEvent expenseRegisteredEvent;
     RegisterExpenseUI registerExpenseUI;
 
-    LimitWatchDog_AlertExpense limitWatchDog_alertExpense;
+    LimitWatchDog_Expense limitWatchDog_Expense;
 
     public AlertExpenseController(RegisterExpenseUI registerExpenseUI, ExpenseRegisteredEvent expenseRegisteredEvent) {
         this.registerExpenseUI = registerExpenseUI;
         this.expenseRegisteredEvent = expenseRegisteredEvent;
 
-        registerExpenseUI.subscribe(expenseRegisteredEvent); // UI wants to know about expenseRegisteredEvens
-        expenseRegisteredEvent.addObserver(registerExpenseUI); // expenseEvent wants to be observed by UI
+        limitWatchDog_Expense = new LimitWatchDog_Expense(registerExpenseUI, expenseRegisteredEvent); // to be able to subscribe UI as a observer of Watch^Dog
+
+        registerExpenseUI.subscribe(limitWatchDog_Expense); // UI wants to know about limitWatchDog_Expense
+        limitWatchDog_Expense.addObserver(registerExpenseUI); // limitWatchDog_Expense wants to be observed by UI
 
     }
 
     public void checkExpense(){
-        limitWatchDog_alertExpense = new LimitWatchDog_AlertExpense(registerExpenseUI, expenseRegisteredEvent); // to be able to subscribe UI as a Watch^Dog Observer
-        limitWatchDog_alertExpense.isViolated();
+        limitWatchDog_Expense.isViolated();
     }
 
 

@@ -25,8 +25,6 @@ public class RegisterExpenseController {
 
     private ExpenseRegisteredEvent expenseRegisteredEvent;
 
-    private LimitWatchDog_AlertExpense limitWatchDog_alertExpense;
-
     public AlertExpenseController alertExpenseController;
 
     public RegisterExpenseController(RegisterExpenseUI registerExpenseUI, BigDecimal moneyValue, ExpenseType expenseType, PaymentMethod paymentMethod, Calendar date) {
@@ -42,8 +40,6 @@ public class RegisterExpenseController {
         final Expense expense = new Expense(moneyValue, expenseType, paymentMethod, date);
 
         expenseRegisteredEvent = new ExpenseRegisteredEvent(expense);
-
-
 
         alertExpenseController = new AlertExpenseController(registerExpenseUI, expenseRegisteredEvent);
 
