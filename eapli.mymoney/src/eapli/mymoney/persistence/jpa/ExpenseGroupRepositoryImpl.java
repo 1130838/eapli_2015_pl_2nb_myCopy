@@ -15,22 +15,27 @@ import javax.persistence.RollbackException;
  * @author Luís
  */
 public class ExpenseGroupRepositoryImpl
-        extends JpaRepository<ExpenseGroup, String>
-        implements ExpenseGroupRepository {
+	extends JpaRepository<ExpenseGroup, String>
+	implements ExpenseGroupRepository {
 
-    @Override
-    public boolean add(ExpenseGroup expenseType) {
-        try {
-            super.add(expenseType);
-        } catch (RollbackException ex) {
-            throw new IllegalStateException();
-        }
-        return true;
-    }
+	@Override
+	public boolean add(ExpenseGroup expenseType) {
+		try {
+			super.add(expenseType);
+		} catch (RollbackException ex) {
+			throw new IllegalStateException();
+		}
+		return true;
+	}
 
-    @Override
-    protected String persistenceUnitName() {
-        return PersistenceSettings.PERSISTENCE_UNIT_NAME;
-    }
+	@Override
+	protected String persistenceUnitName() {
+		return PersistenceSettings.PERSISTENCE_UNIT_NAME;
+	}
+
+	@Override
+	public ExpenseGroup findById(String id) {
+		return super.findById(id);
+	}
 
 }
