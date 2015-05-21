@@ -38,6 +38,7 @@ public class ExpenseRepositoryImpl
 		return Collections.unmodifiableList(data);
 	}
 
+
 	@Override
 	public Money getWeekExpediture(Period period) {
 		Money total = Money.euros(0.00);

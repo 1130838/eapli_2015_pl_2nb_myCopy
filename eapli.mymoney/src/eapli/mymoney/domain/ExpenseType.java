@@ -28,6 +28,7 @@ public class ExpenseType implements ValueObject, BudgetLine {
     public int getID(){
         return idExpensiveType;
     }
+
     protected ExpenseType() {
     }
 

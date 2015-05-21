@@ -13,7 +13,7 @@ public class Bootstraper {
 
     public void execute() {
         ExpenseTypeBootstrapper expensetype = new ExpenseTypeBootstrapper();
-        expensetype.execute();
+         expensetype.execute();
         PaymentMethodBootstrapper paymentMethodBootstrapper = new PaymentMethodBootstrapper();
         paymentMethodBootstrapper.execute();
     }
