@@ -22,4 +22,16 @@ public final class DateTime {
 		return period;
 	}
 
+	public static Period thisMonth() {
+		Calendar now = eapli.util.DateTime.now();
+		int monthNumber = eapli.util.DateTime.currentMonth();
+		int year = now.get(Calendar.YEAR);
+
+		Calendar begin = eapli.util.DateTime.beginningOfMonth(year, monthNumber);
+		Calendar end = now;
+
+		Period period = new Period(begin, end);
+
+		return period;
+	}
 }

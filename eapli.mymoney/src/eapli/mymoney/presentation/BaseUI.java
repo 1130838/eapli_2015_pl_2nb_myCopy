@@ -6,6 +6,7 @@
 package eapli.mymoney.presentation;
 
 import eapli.mymoney.application.ListWeekExpeditureController;
+import eapli.mymoney.application.MonthlyExpenseController;
 
 /**
  *
@@ -52,14 +53,20 @@ public abstract class BaseUI {
 
 	protected void drawHeader() {
 
-		ListWeekExpeditureController bController
+		ListWeekExpeditureController bControllerWeek
 			= new ListWeekExpeditureController();
+		MonthlyExpenseController bControllerMonth = new MonthlyExpenseController();
 
-		String content = "This week expediture: " + bController.
+		String weeklyContent = "This week's expediture: " + bControllerWeek.
 			getWeekExpediture().
 			amount() + "€\n";
 
-		System.out.println(content);
+		String monthlyContent = "This month's expediture: " + bControllerMonth.
+			getMonthExpediture().
+			amount() + "€\n";
+
+		System.out.println(monthlyContent);
+		System.out.println(weeklyContent);
 	}
 
 	protected void drawFormTitle() {
