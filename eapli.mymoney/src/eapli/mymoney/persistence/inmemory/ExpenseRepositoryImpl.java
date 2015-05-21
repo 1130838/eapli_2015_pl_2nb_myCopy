@@ -52,4 +52,18 @@ public class ExpenseRepositoryImpl
 		return total;
 	}
 
+	@Override
+	public Money getMonthExpediture(Period period) {
+		Money total = Money.euros(0.00);
+
+		for (Expense expense : all()) {
+			if (period.isBetween(expense.getDate())) {
+				total = total.
+					add(Money.euros(expense.getAmount().doubleValue()));
+			}
+		}
+
+		return total;
+	}
+
 }

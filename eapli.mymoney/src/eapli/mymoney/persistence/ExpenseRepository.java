@@ -3,7 +3,6 @@ package eapli.mymoney.persistence;
 import eapli.framework.model.Money;
 import eapli.mymoney.domain.Expense;
 import eapli.mymoney.domain.Period;
-
 import java.util.List;
 
 /**
@@ -11,13 +10,13 @@ import java.util.List;
  */
 public interface ExpenseRepository {
 
-    boolean add(Expense entity);
+	boolean add(Expense entity);
 
-    long size();
+	long size();
 
-    List<Expense> all();
+	List<Expense> all();
 
 	public Money getWeekExpediture(Period period);
 
-	
+	public Money getMonthExpediture(Period period);
 }

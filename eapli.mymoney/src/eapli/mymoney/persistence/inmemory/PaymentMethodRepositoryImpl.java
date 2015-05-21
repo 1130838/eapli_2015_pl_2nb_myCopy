@@ -46,8 +46,23 @@ public class PaymentMethodRepositoryImpl implements PaymentMethodsRepository {
         return null;
     }*/
 
+    @Override
+    public Iterator<PaymentMethod> iterator(int pagesize) {
+        return data.iterator();
+    }
 
     public Money getWeekExpediture(Period period) {
         throw new UnsupportedOperationException("not implemented..");
     }
+
+    @Override
+    public PaymentMethod findById(int id) {
+        for (PaymentMethod paymentMethod : this.data) {
+            if (paymentMethod.getID() == id) {
+                return paymentMethod;
+            }
+        }
+        throw new NullPointerException("Element not found.");
+    }
+
 }

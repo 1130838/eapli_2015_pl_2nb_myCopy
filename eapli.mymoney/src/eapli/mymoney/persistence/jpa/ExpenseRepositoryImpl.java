@@ -32,4 +32,18 @@ public class ExpenseRepositoryImpl
 		return PersistenceSettings.PERSISTENCE_UNIT_NAME;
 	}
 
+	@Override
+	public Money getMonthExpediture(Period period) {
+		Money total = Money.euros(0.00);
+
+		for (Expense expense : all()) {
+			if (period.isBetween(expense.getDate())) {
+				total = total.
+					add(Money.euros(expense.getAmount().doubleValue()));
+			}
+		}
+
+		return total;
+	}
+
 }

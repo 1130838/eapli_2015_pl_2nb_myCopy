@@ -21,10 +21,13 @@ public class PaymentMethod {
         this.paymentMethod = paymentMethod;
     }
 
-    public PaymentMethod() {
+    protected PaymentMethod() {
         // for ORM purposes
     }
 
+    public int getID(){
+        return idPaymentMethod;
+    }
     /**
      * returns the description text of this payment method type
      *
