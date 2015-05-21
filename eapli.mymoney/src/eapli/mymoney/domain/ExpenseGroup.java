@@ -123,12 +123,18 @@ public class ExpenseGroup implements Serializable {
 		return name;
 	}
 
-	/**
-	 * Get the expense group estimation
-	 *
-	 * @return expense group estimation (BigDecimal)
-	 */
-	public BigDecimal getEstimation() {
-		return estimation;
-	}
+    /**
+     * Get the expense group estimation
+     *
+     * @return expense group estimation (BigDecimal)
+     */
+    public BigDecimal getEstimation() {
+        return estimation;
+    }
+
+    public int obtainExpenseYear() {
+        int a = period.getPeriodEnd().getTime().getYear();
+
+        return a;
+    }
 }
