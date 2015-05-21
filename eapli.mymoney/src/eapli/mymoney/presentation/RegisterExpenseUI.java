@@ -28,16 +28,16 @@ public class RegisterExpenseUI extends BaseUI {
 
         new ListExpenseTypesUI().show();
         final ListExpenseTypesController theControllerExpenseTypes = new ListExpenseTypesController();
-        int option = Console.readInteger("Enter the Expense type:");
+        int optionET = Console.readInteger("Enter the Expense type:");
         final List<ExpenseType> expenseTypesList = theControllerExpenseTypes.getAllExpenseTypes();
         
-        expenseType = expenseTypesList.get(option);
+        expenseType = expenseTypesList.get(optionET);
 
         new ListPaymenteMethodsUI().show();
         final ListPaymentMethodController theControllerPayment = new ListPaymentMethodController();
-        int pay = Console.readInteger("Enter the Payment Method:");
-        final List<PaymentMethod> payment = theControllerPayment.getAllPaymentMethod();
-        paymentMethod = payment.get(pay);
+        int optionPM = Console.readInteger("Enter the Payment Method:");
+        final List<PaymentMethod> paymentMethod = theControllerPayment.getAllPaymentMethod();
+        this.paymentMethod = paymentMethod.get(optionPM);
 
         date = Calendar.getInstance();
         moneyValue = BigDecimal.valueOf(Console.readInteger("Enter the expense value :"));

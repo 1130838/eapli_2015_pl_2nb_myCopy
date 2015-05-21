@@ -17,5 +17,14 @@ public interface PaymentMethodsRepository {
 
     List<PaymentMethod> all();
 
-   // public Iterator<PaymentMethod> iterator(int pagesize);
+    public Iterator<PaymentMethod> iterator(int pagesize);
+
+    /**
+     * Find an expense type by the ID
+     *
+     * @param id ID of the expense type
+     * @return expense type object
+     */
+    PaymentMethod findById(int id);
+
 }
