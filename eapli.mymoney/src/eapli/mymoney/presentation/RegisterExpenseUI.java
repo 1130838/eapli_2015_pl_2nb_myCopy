@@ -34,7 +34,7 @@ public class RegisterExpenseUI extends BaseUI implements Observer {
             new ListExpenseTypesUI().show();
             user_option_ET = Console.readInteger("Enter the Expense type:");
 
-        } while (user_option_ET > theControllerExpenseTypes.getAllExpenseTypes().size());
+        } while (user_option_ET >= theControllerExpenseTypes.getAllExpenseTypes().size());
 
         final List<ExpenseType> expenseTypesList = theControllerExpenseTypes.getAllExpenseTypes();
 
@@ -48,7 +48,7 @@ public class RegisterExpenseUI extends BaseUI implements Observer {
             new ListPaymenteMethodsUI().show();
             user_option_PM = Console.readInteger("Enter the Payment Method:");
 
-        } while (user_option_PM > theControllerPayment.getAllPaymentMethod().size());
+        } while (user_option_PM >=107 theControllerPayment.getAllPaymentMethod().size());
 
         final List<PaymentMethod> paymentTypeList = theControllerPayment.getAllPaymentMethod();
 
