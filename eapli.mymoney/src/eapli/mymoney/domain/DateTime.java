@@ -6,6 +6,7 @@
 package eapli.mymoney.domain;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public final class DateTime {
 
@@ -27,11 +28,25 @@ public final class DateTime {
 		int monthNumber = eapli.util.DateTime.currentMonth();
 		int year = now.get(Calendar.YEAR);
 
-		Calendar begin = eapli.util.DateTime.beginningOfMonth(year, monthNumber);
+		Calendar begin = beginningOfMonth(now);
 		Calendar end = now;
 
 		Period period = new Period(begin, end);
 
 		return period;
+	}
+
+	/**
+	 * returns the date of the last day of a certain month
+	 *
+	 * @param reference a date to be used as reference month
+	 * @return
+	 */
+	public static Calendar beginningOfMonth(final Calendar reference) {
+		final Calendar firstDay = new GregorianCalendar();
+		firstDay.setTime(reference.getTime());
+		final int first = firstDay.getActualMinimum(Calendar.DAY_OF_MONTH);
+		firstDay.set(Calendar.DAY_OF_MONTH, first);
+		return firstDay;
 	}
 }

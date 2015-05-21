@@ -180,7 +180,7 @@ public final class DateTime {
 	 * returns the date of the first day of a week
 	 *
 	 * @param year
-	 * @param week
+	 * @param month
 	 * @return
 	 */
 	public static Calendar beginningOfMonth(final int year, final int month) {
