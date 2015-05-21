@@ -125,6 +125,11 @@ public class ExpenseGroupRepositoryTest {
 		public ExpenseGroup findById(String id) {
 			throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 		}
-	}
+
+        @Override
+        public List<ExpenseGroup> findByYear(int year) {
+            return null;
+        }
+    }
 
 }

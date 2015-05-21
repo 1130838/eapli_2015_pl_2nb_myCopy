@@ -9,6 +9,7 @@ import eapli.framework.persistence.jpa.JpaRepository;
 import eapli.mymoney.domain.ExpenseGroup;
 import eapli.mymoney.persistence.ExpenseGroupRepository;
 import javax.persistence.RollbackException;
+import java.util.List;
 
 /**
  *
@@ -37,5 +38,10 @@ public class ExpenseGroupRepositoryImpl
 	public ExpenseGroup findById(String id) {
 		return super.findById(id);
 	}
+
+    @Override
+    public List<ExpenseGroup> findByYear(int year) {
+        return null;
+    }
 
 }
