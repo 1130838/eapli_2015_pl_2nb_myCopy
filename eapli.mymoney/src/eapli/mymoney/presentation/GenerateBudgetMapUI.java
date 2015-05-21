@@ -38,8 +38,7 @@ public class GenerateBudgetMapUI extends BaseUI {
     }
 
     private void submitAndShow() {
-        buMap = mapController.selectBudget(bgSelect);
-        hmTemp = buMap.getHashMap();
+        hmTemp = mapController.selectBudget(bgSelect);
 
         for (HashMap.Entry<Entry, Float> entry : hmTemp.entrySet()) {
             System.out.println("Key = " + entry.getKey().getValue() + " - Falta getBudgetLine(rubrica) -  Forecast: " + entry.getValue());
