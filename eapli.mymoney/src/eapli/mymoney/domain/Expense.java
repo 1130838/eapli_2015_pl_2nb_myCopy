@@ -10,7 +10,7 @@ import java.util.List;
  * Created by brunodevesa on 16/04/15.
  */
 @Entity
-public class Expense implements Observable {
+public class Expense {
 
 
     @Id
@@ -22,14 +22,11 @@ public class Expense implements Observable {
     @ManyToOne
     private ExpenseType expenseType;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne //(cascade = CascadeType.ALL)
     private PaymentMethod paymentMethod;
 
     @Temporal(TemporalType.DATE)
     private Calendar date;
-
-    private List<Observer> listOfObservers = new ArrayList<Observer>();
-
 
     private Expense() {
         // for ORM purposes
@@ -74,20 +71,4 @@ public class Expense implements Observable {
                 + '}';
     }
 
-    @Override
-    public void addObserver(Observer observer) {
-        listOfObservers.add(observer);
-    }
-
-    @Override
-    public void removeObserver(Observer observer) {
-listOfObservers.remove(observer);
-    }
-
-    @Override
-    public void notifyObservers() {
-        for (int i = 0; i <listOfObservers.size() ; i++) {
-            listOfObservers.get(i).update();
-        }
-    }
 }

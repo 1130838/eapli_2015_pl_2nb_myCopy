@@ -3,7 +3,7 @@ package eapli.mymoney.presentation;
 import eapli.mymoney.application.ListExpenseTypesController;
 import eapli.mymoney.application.ListPaymentMethodController;
 import eapli.mymoney.application.RegisterExpenseController;
-import eapli.mymoney.application.WatchExpenseController;
+import eapli.mymoney.application.AlertExpenseController;
 import eapli.mymoney.domain.*;
 import eapli.util.Console;
 
@@ -17,7 +17,7 @@ import java.util.List;
 public class RegisterExpenseUI extends BaseUI implements Observer {
 
     private RegisterExpenseController registerExpenseController;
-    private WatchExpenseController watchExpenseController;
+    public AlertExpenseController alertExpenseController;
     public ExpenseType expenseType;
     private PaymentMethod paymentMethod;
     private Calendar date;
@@ -38,8 +38,8 @@ public class RegisterExpenseUI extends BaseUI implements Observer {
         new ListPaymenteMethodsUI().show();
         final ListPaymentMethodController theControllerPayment = new ListPaymentMethodController();
         int pay = Console.readInteger("Enter the Payment Method:");
-        final List<PaymentMethod> payment = theControllerPayment.getAllPaymentMethod();
-        paymentMethod = payment.get(pay);
+        final List<PaymentMethod> paymentTypeList = theControllerPayment.getAllPaymentMethod();
+        paymentMethod = paymentTypeList.get(pay);
 
         date = Calendar.getInstance();
         moneyValue = BigDecimal.valueOf(Console.readInteger("Enter the expense value :"));
@@ -51,15 +51,15 @@ public class RegisterExpenseUI extends BaseUI implements Observer {
 
     private void submit() {
 
-
         registerExpenseController = new RegisterExpenseController(moneyValue, expenseType, paymentMethod, date);
 
-        Expense expense = registerExpenseController.getExpense();
-        watchExpenseController = new WatchExpenseController(this,expense); // vai a despesa toda
+        Expense expense = registerExpenseController.registerExpense(); // creates a copy of expense to another class ( wich will be observed)
 
-        // colocar validação na watchDOg e  so depois registar a despesa
-        registerExpenseController.registerExpense();
+        //adicionado
+        ExpenseRegisteredEvent expenseRegisteredEvent = new ExpenseRegisteredEvent(expense);
+        alertExpenseController = new AlertExpenseController(this, expenseRegisteredEvent);
 
+        alertExpenseController.checkExpense();
 
         List<Expense> expenseList = registerExpenseController.listAllExpenses();
         showListResults(expenseList); // for test purposes for now
