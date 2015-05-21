@@ -31,11 +31,14 @@ public interface ExpenseGroupRepository {
 
 	public Iterator<ExpenseGroup> iterator(int pagesize);
 
-	/**
-	 * Find an expense group by the ID
-	 *
-	 * @param id expense group ID
-	 * @return Expense Group object
-	 */
-	ExpenseGroup findById(String id);
+    /**
+     * Find an expense group by the ID
+     *
+     * @param id expense group ID
+     * @return Expense Group object
+     */
+    ExpenseGroup findById(String id);
+
+    List<ExpenseGroup> findByYear(int year);
+
 }
