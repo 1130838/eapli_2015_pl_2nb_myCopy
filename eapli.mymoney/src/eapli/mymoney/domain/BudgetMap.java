@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
+ * Class to calculate the forecasta
  *
  * @author pag
  */
@@ -31,36 +32,52 @@ public class BudgetMap {
     HashMap<Entry, Float> forecastMap;
     float forecastValue;
 
+    /**
+     * Constructor
+     *
+     * @param m_bu
+     */
     public BudgetMap(Budget m_bu) {
         this.m_bu = m_bu;
+        this.forecastMap = new HashMap<>();
     }
 
-    public BudgetMap calculateForecast() {
+    public float lineForecast(float totalExpenseValue, int daysInMonth, int nowDay) {
+
+        return (totalExpenseValue * daysInMonth) / nowDay;
+    }
+
+    /**
+     * Method to estimate for each Entry the forecast to the end of month fill a
+     * HashMap <Entry, Float>
+     *
+     * @return BudgetMap with HashMap filled with the forecasts
+     */
+    public HashMap<Entry, Float> calculateForecast() {
 
         ExpenseRepository exrepo = Persistence.getRepositoryFactory().
                 getExpenseRepository();
 
-        this.cal = this.data.endOfCurrentMonth();
-        this.daysInMonth = this.cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-        this.nowDay = this.cal.DAY_OF_MONTH;
+        this.daysInMonth = Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
+        this.nowDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
 
-        this.forecastMap = new HashMap<>();
-
-        // this.m_list_entry = this.m_bu.retrieveEntries();
+        this.m_list_entry = this.m_bu.retrieveEntryList();
         for (Entry e : m_list_entry) {
             m_budgetLine = e.getBudgetLine();
-
             //totalExpenseValue = exrepo.totalExpenseType(m_budgetLine);
-            this.forecastValue = totalExpenseValue * this.daysInMonth / this.nowDay;
+            this.forecastValue = lineForecast(this.totalExpenseValue,
+                    this.daysInMonth, this.nowDay);
             this.forecastMap.put(e, forecastValue);
-
         }
-
-        return this;
+        return this.forecastMap;
     }
 
+    /**
+     * Method to get the HashMap with the forecasts
+     *
+     * @return HashMap
+     */
     public HashMap<Entry, Float> getHashMap() {
         return this.forecastMap;
-
     }
 }

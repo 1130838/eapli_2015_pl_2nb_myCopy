@@ -61,9 +61,9 @@ public abstract class BaseUI {
 			getWeekExpediture().
 			amount() + "€\n";
 
-		String monthlyContent = "This month's expediture: " + bControllerMonth.
+		String monthlyContent = "\n" + SEPARATOR + "\nThis month's current expediture: " + bControllerMonth.
 			getMonthExpediture().
-			amount() + "€\n";
+			amount() + " €\n" + SEPARATOR + "\n";
 
 		System.out.println(monthlyContent);
 		System.out.println(weeklyContent);
