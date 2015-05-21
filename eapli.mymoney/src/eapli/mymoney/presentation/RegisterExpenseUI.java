@@ -48,7 +48,7 @@ public class RegisterExpenseUI extends BaseUI implements Observer {
             new ListPaymenteMethodsUI().show();
             user_option_PM = Console.readInteger("Enter the Payment Method:");
 
-        } while (user_option_PM >=107 theControllerPayment.getAllPaymentMethod().size());
+        } while (user_option_PM >= theControllerPayment.getAllPaymentMethod().size());
 
         final List<PaymentMethod> paymentTypeList = theControllerPayment.getAllPaymentMethod();
 
