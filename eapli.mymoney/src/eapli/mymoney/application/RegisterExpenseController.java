@@ -1,11 +1,9 @@
 package eapli.mymoney.application;
 
-import eapli.mymoney.domain.Expense;
-import eapli.mymoney.domain.ExpenseRegisteredEvent;
-import eapli.mymoney.domain.ExpenseType;
-import eapli.mymoney.domain.PaymentMethod;
+import eapli.mymoney.domain.*;
 import eapli.mymoney.persistence.ExpenseRepository;
 import eapli.mymoney.persistence.Persistence;
+import eapli.mymoney.presentation.RegisterExpenseUI;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -20,24 +18,38 @@ public class RegisterExpenseController {
     private ExpenseType expenseType;
     private PaymentMethod paymentMethod;
     private Calendar date;
-    private Expense expense;
+
     final ExpenseRepository repo = Persistence.getRepositoryFactory().getExpenseRepository();
+
+    private RegisterExpenseUI registerExpenseUI; // adicionado
 
     private ExpenseRegisteredEvent expenseRegisteredEvent;
 
-    public RegisterExpenseController(BigDecimal moneyValue, ExpenseType expenseType, PaymentMethod paymentMethod, Calendar date) {
+    private LimitWatchDog_AlertExpense limitWatchDog_alertExpense;
+
+    public AlertExpenseController alertExpenseController;
+
+    public RegisterExpenseController(RegisterExpenseUI registerExpenseUI, BigDecimal moneyValue, ExpenseType expenseType, PaymentMethod paymentMethod, Calendar date) {
         this.moneyValue = moneyValue;
         this.expenseType = expenseType;
         this.paymentMethod = paymentMethod;
         this.date = date;
-
+        this.registerExpenseUI = registerExpenseUI;
     }
 
     public Expense registerExpense() {
 
+        final Expense expense = new Expense(moneyValue, expenseType, paymentMethod, date);
+
         expenseRegisteredEvent = new ExpenseRegisteredEvent(expense);
 
-        final Expense expense = new Expense(moneyValue, expenseType, paymentMethod, date);
+
+
+        alertExpenseController = new AlertExpenseController(registerExpenseUI, expenseRegisteredEvent);
+
+        alertExpenseController.checkExpense();
+
+
         return addExpense(expense);
     }
 
@@ -50,11 +62,7 @@ public class RegisterExpenseController {
         return expense;
     }
 
-    public Expense getExpense(){
-        return this.expense;
-    }
-
-    private ExpenseRepository getRepo(){
+    private ExpenseRepository getRepo() {
 
         return repo;
 

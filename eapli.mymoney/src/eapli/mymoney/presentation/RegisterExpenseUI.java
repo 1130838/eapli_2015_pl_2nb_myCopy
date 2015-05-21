@@ -3,7 +3,6 @@ package eapli.mymoney.presentation;
 import eapli.mymoney.application.ListExpenseTypesController;
 import eapli.mymoney.application.ListPaymentMethodController;
 import eapli.mymoney.application.RegisterExpenseController;
-import eapli.mymoney.application.AlertExpenseController;
 import eapli.mymoney.domain.*;
 import eapli.util.Console;
 
@@ -17,7 +16,7 @@ import java.util.List;
 public class RegisterExpenseUI extends BaseUI implements Observer {
 
     private RegisterExpenseController registerExpenseController;
-    public AlertExpenseController alertExpenseController;
+
     public ExpenseType expenseType;
     private PaymentMethod paymentMethod;
     private Calendar date;
@@ -51,15 +50,9 @@ public class RegisterExpenseUI extends BaseUI implements Observer {
 
     private void submit() {
 
-        registerExpenseController = new RegisterExpenseController(moneyValue, expenseType, paymentMethod, date);
+        registerExpenseController = new RegisterExpenseController(this, moneyValue, expenseType, paymentMethod, date); // necessary to pass UI so the controller pass ot to the Event
 
-        Expense expense = registerExpenseController.registerExpense(); // creates a copy of expense to another class ( wich will be observed)
-
-        //adicionado
-        ExpenseRegisteredEvent expenseRegisteredEvent = new ExpenseRegisteredEvent(expense);
-        alertExpenseController = new AlertExpenseController(this, expenseRegisteredEvent);
-
-        alertExpenseController.checkExpense();
+        registerExpenseController.registerExpense();
 
         List<Expense> expenseList = registerExpenseController.listAllExpenses();
         showListResults(expenseList); // for test purposes for now
@@ -96,7 +89,7 @@ public class RegisterExpenseUI extends BaseUI implements Observer {
 
     @Override
     public void unsubscribe(Observable observable) {
-    this.observable.removeObserver(this);
+        this.observable.removeObserver(this);
     }
 
     @Override

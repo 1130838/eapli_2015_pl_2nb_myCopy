@@ -23,11 +23,10 @@ public class AlertExpenseController {
         registerExpenseUI.subscribe(expenseRegisteredEvent); // UI wants to know about expenseRegisteredEvens
         expenseRegisteredEvent.addObserver(registerExpenseUI); // expenseEvent wants to be observed by UI
 
-
     }
 
     public void checkExpense(){
-        limitWatchDog_alertExpense = new LimitWatchDog_AlertExpense(expenseRegisteredEvent);
+        limitWatchDog_alertExpense = new LimitWatchDog_AlertExpense(registerExpenseUI, expenseRegisteredEvent); // to be able to subscribe UI as a Watch^Dog Observer
         limitWatchDog_alertExpense.isViolated();
     }
 

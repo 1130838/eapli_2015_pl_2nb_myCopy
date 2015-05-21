@@ -38,7 +38,7 @@ public class PaymentMethodRepositoryImpl
         return PersistenceSettings.PERSISTENCE_UNIT_NAME;
     }
 
-    //@Override
+    @Override
     public PaymentMethod findById(int id) {
         return super.findById(id);
     }
