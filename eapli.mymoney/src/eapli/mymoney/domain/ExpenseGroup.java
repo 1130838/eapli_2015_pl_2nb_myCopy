@@ -100,6 +100,21 @@ public class ExpenseGroup implements Serializable {
 	}
 
 	/**
+	 * Remove a specific expense type from the lsit of expense types of this
+	 * group.
+	 *
+	 * @param idExpenseType Expense Type identifier
+	 */
+	public void removeExpenseType(int idExpenseType) {
+		for (ExpenseType expenseType : this.expenseTypes) {
+			int id = expenseType.getID();
+			if (id == idExpenseType) {
+				this.expenseTypes.remove(id);
+			}
+		}
+	}
+
+	/**
 	 * Get the expense group name
 	 *
 	 * @return expense group name (string)
