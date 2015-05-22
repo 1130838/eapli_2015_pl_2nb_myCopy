@@ -18,23 +18,40 @@ import java.util.List;
 public class ShowListYearExpensesGroupController {
 
     int m_year;
-
-    public ShowListYearExpensesGroupController(int year) {
-        this.m_year = year;
+    /**
+     * Constructor of the controller
+     * 
+     * @param year passed by user
+     */
+    public ShowListYearExpensesGroupController() {
+        
     }
-
-    public List<ExpenseGroup> getExpenseGroups() {
+   
+   /**
+    * 
+    * Get List of Expenses group from the repository
+    * 
+    * @return Expenses group repository
+    */
+    public List<ExpenseGroup> getExpenseGroups(int year) {
         ExpenseGroupRepository repo = Persistence.getRepositoryFactory().getExpenseGroupRepository();
-        return repo.all();
+        return repo.findByYear(year);
     }
-
-    public List<String> showListExpensesGroup() {
+    
+    
+    /**
+     * Show the list of expenses filtered by year ending in the year passed as 
+     * argument
+     * 
+     * @return List of results, project, expense group, estimation and value
+     */
+    public List<String> showListExpensesGroup(int year) {
         List<String> mb = new ArrayList<>();
-        List<ExpenseGroup> expenseGroups = getExpenseGroups();
+        List<ExpenseGroup> expenseGroups = getExpenseGroups(year);
 
         for (ExpenseGroup eg : expenseGroups) {
             String name = eg.getName();
-            // float currentValue = eg.ge
+            float currentValue = eg.obtainExpenseYear();
             float estimation = eg.getEstimation().floatValue();
         }
 

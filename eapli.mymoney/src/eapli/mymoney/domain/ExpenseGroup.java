@@ -141,6 +141,11 @@ public class ExpenseGroup implements Serializable {
 		return expenseTypes;
 	}
 
+        /**
+         * Method to return the year of the expenses
+         * 
+         * @return year of the expenses
+         */
 	public int obtainExpenseYear() {
 		int a = period.getPeriodEnd().getTime().getYear();
 
