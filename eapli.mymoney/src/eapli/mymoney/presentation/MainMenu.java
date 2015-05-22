@@ -26,6 +26,7 @@ public class MainMenu extends BaseUI {
 			+ "105. Register Monthly Budget\n"
 			+ "106. Update Monthly Budget\n"
 			+ "107. Register Expense\n"
+			+ "108. Assign Expense Type to Expense Group\n"
 			+ "---------------------\n"
 			+ "0. Exit\n\n";
 
@@ -66,6 +67,10 @@ public class MainMenu extends BaseUI {
 			case 107:
 				final RegisterExpenseUI uc01_2 = new RegisterExpenseUI();
 				uc01_2.doShow();
+				break;
+			case 108:
+				final AssignExpenseTypeToGroupUI UC_G_006 = new AssignExpenseTypeToGroupUI();
+				UC_G_006.doShow();
 				break;
 			default:
 				System.out.println("option not recognized.");
