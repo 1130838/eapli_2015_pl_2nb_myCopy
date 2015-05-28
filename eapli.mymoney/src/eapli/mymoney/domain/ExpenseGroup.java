@@ -106,10 +106,9 @@ public class ExpenseGroup implements Serializable {
 	 * @param idExpenseType Expense Type identifier
 	 */
 	public void removeExpenseType(int idExpenseType) {
-		for (ExpenseType expenseType : this.expenseTypes) {
-			int id = expenseType.getID();
-			if (id == idExpenseType) {
-				this.expenseTypes.remove(id);
+		for (int i = this.expenseTypes.size() - 1; i > -1; i--) {
+			if (idExpenseType == this.expenseTypes.get(i).getID()) {
+				this.expenseTypes.remove(i);
 			}
 		}
 	}
@@ -141,11 +140,11 @@ public class ExpenseGroup implements Serializable {
 		return expenseTypes;
 	}
 
-        /**
-         * Method to return the year of the expenses
-         * 
-         * @return year of the expenses
-         */
+	/**
+	 * Method to return the year of the expenses
+	 *
+	 * @return year of the expenses
+	 */
 	public int obtainExpenseYear() {
 		int a = period.getPeriodEnd().getTime().getYear();
 

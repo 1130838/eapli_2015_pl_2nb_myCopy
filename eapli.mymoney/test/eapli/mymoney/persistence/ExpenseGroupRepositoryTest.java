@@ -126,10 +126,15 @@ public class ExpenseGroupRepositoryTest {
 			throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 		}
 
-        @Override
-        public List<ExpenseGroup> findByYear(int year) {
-            return null;
-        }
-    }
+		@Override
+		public List<ExpenseGroup> findByYear(int year) {
+			return null;
+		}
+
+		@Override
+		public ExpenseGroup save(ExpenseGroup objecto) {
+			throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		}
+	}
 
 }

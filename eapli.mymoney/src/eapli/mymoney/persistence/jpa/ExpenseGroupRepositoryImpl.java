@@ -8,8 +8,8 @@ package eapli.mymoney.persistence.jpa;
 import eapli.framework.persistence.jpa.JpaRepository;
 import eapli.mymoney.domain.ExpenseGroup;
 import eapli.mymoney.persistence.ExpenseGroupRepository;
-import javax.persistence.RollbackException;
 import java.util.List;
+import javax.persistence.RollbackException;
 
 /**
  *
@@ -39,9 +39,8 @@ public class ExpenseGroupRepositoryImpl
 		return super.findById(id);
 	}
 
-    @Override
-    public List<ExpenseGroup> findByYear(int year) {
-        return null;
-    }
-
+	@Override
+	public List<ExpenseGroup> findByYear(int year) {
+		return null;
+	}
 }
