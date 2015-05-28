@@ -1,60 +1,55 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package eapli.mymoney.domain;
 
+import eapli.util.DateTime;
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
-/**
- *
- * @author Joel
- */
 public class ExpenseGroupTest {
 
-    public ExpenseGroupTest() {
-    }
+	private ExpenseGroup expenseGroupToTest;
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
+	public ExpenseGroupTest() {
+	}
 
-    @AfterClass
-    public static void tearDownClass() {
-    }
+	@BeforeClass
+	public static void setUpClass() {
+	}
 
-    @Before
-    public void setUp() {
-    }
+	@AfterClass
+	public static void tearDownClass() {
+	}
 
-    @After
-    public void tearDown() {
-    }
+	@Before
+	public void setUp() {
+		try {
+			String strDate1 = "10-10-2014";
+			SimpleDateFormat df1 = new SimpleDateFormat("dd-MM-yyyy");
+			Calendar date1 = DateTime.dateToCalendar(df1.parse(strDate1));
+			String strDate2 = "10-10-2015";
+			SimpleDateFormat df2 = new SimpleDateFormat("dd-MM-yyyy");
+			Calendar date2 = DateTime.dateToCalendar(df2.parse(strDate2));
+			this.expenseGroupToTest = new ExpenseGroup("Teste", date1, date2, BigDecimal.ZERO);
+		} catch (ParseException ex) {
+			Logger.getLogger(ExpenseGroupTest.class.getName()).
+				log(Level.SEVERE, null, ex);
+		}
+	}
 
-    @Test
-    public void testSomeMethod() {
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-	/**
-	 * Test of addExpenseType method, of class ExpenseGroup.
-	 */
-	@Test
-	public void testAddExpenseType() {
-		System.out.println("addExpenseType");
-		ExpenseType expenseType = null;
-		ExpenseGroup instance = new ExpenseGroup();
-		instance.addExpenseType(expenseType);
-		// TODO review the generated test code and remove the default call to fail.
-		fail("The test case is a prototype.");
+	@After
+	public void tearDown() {
 	}
 
 	/**
@@ -63,12 +58,9 @@ public class ExpenseGroupTest {
 	@Test
 	public void testGetName() {
 		System.out.println("getName");
-		ExpenseGroup instance = new ExpenseGroup();
-		String expResult = "";
-		String result = instance.getName();
-		assertEquals(expResult, result);
-		// TODO review the generated test code and remove the default call to fail.
-		fail("The test case is a prototype.");
+		String expected = "Teste";
+		String result = this.expenseGroupToTest.getName();
+		assertEquals(expected, result);
 	}
 
 	/**
@@ -80,6 +72,40 @@ public class ExpenseGroupTest {
 		ExpenseGroup instance = new ExpenseGroup();
 		BigDecimal expResult = null;
 		BigDecimal result = instance.getEstimation();
+		assertEquals(expResult, result);
+		// TODO review the generated test code and remove the default call to fail.
+		fail("The test case is a prototype.");
+	}
+
+	/**
+	 * Test of getExpenseTypes, addExpenseType and removeExpenseType method, of
+	 * class ExpenseGroup.
+	 */
+	@Test
+	public void testAddAndGetAndRemoveExpenseTypes() {
+		System.out.
+			println("addExpenseTypes & getExpenseTypes & removeExpenseType");
+		ExpenseType et = new ExpenseType("Vestuario");
+		this.expenseGroupToTest.addExpenseType(et);
+		List<ExpenseType> expResult = new ArrayList<>();
+		expResult.add(et);
+		List<ExpenseType> result = this.expenseGroupToTest.getExpenseTypes();
+		assertEquals(expResult, result);
+		List<ExpenseType> expResult2 = new ArrayList<>();
+		this.expenseGroupToTest.removeExpenseType(et.getID());
+		List<ExpenseType> result2 = this.expenseGroupToTest.getExpenseTypes();
+		assertEquals(expResult2, result2);
+	}
+
+	/**
+	 * Test of obtainExpenseYear method, of class ExpenseGroup.
+	 */
+	@Test
+	public void testObtainExpenseYear() {
+		System.out.println("obtainExpenseYear");
+		ExpenseGroup instance = new ExpenseGroup();
+		int expResult = 0;
+		int result = instance.obtainExpenseYear();
 		assertEquals(expResult, result);
 		// TODO review the generated test code and remove the default call to fail.
 		fail("The test case is a prototype.");
