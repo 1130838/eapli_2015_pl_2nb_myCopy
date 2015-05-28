@@ -1,22 +1,26 @@
 package eapli.mymoney.domain;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import eapli.mymoney.application.ListExpenseTypesController;
+import eapli.mymoney.persistence.jpa.ExpenseTypeRepositoryImpl;
+import org.eclipse.persistence.internal.oxm.schema.model.All;
+import org.eclipse.persistence.jpa.config.Cascade;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by brunodevesa on 22/05/15.
  */
+@Entity
 public class ExpenseLimit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idExpensiveLimit;
 
-    BigDecimal budgetLimitValue;
+    int budgetLimitValue;
 
     int limitYellow;
 
@@ -25,32 +29,42 @@ public class ExpenseLimit {
     @ManyToOne
     ExpenseType expenseType;
 
-
-    public ExpenseLimit(int limitYellow, int limitRed, ExpenseType expenseType) {
+    public ExpenseLimit(int budgetLimitValue, int limitYellow, int limitRed , ExpenseType expenseType) {
+        this.expenseType = expenseType;
+        this.budgetLimitValue = budgetLimitValue;
         this.limitYellow = limitYellow;
         this.limitRed = limitRed;
-        this.expenseType = expenseType;
+
+    }
+
+    protected ExpenseLimit() {
+        // for ORM purposes
     }
 
     public int getID(){
         return idExpensiveLimit;
     }
 
-    public List<ExpenseLimit> getLimitsByExpenseType(ExpenseType expenseType) throws UnsupportedOperationException {
-
-        // to do
-        return null;
+    public ExpenseType getExpenseType() {
+        return expenseType;
     }
 
+    public ExpenseLimit getLimitsByExpenseType(ExpenseType expenseType) throws UnsupportedOperationException {
+
+        // to test
+            if (this.expenseType.description().equalsIgnoreCase( expenseType.description())){
+                return this;
+        }
+        return null;
+
+    }
 
     @Override
     public String toString() {
-        return "ExpenseLimit{" +
-                "idExpensiveLimit=" + idExpensiveLimit +
-                ", limitYellow=" + limitYellow +
-                ", limitRed=" + limitRed +
-                ", expenseType=" + expenseType +
-                '}';
+        return "The expense limits for " +
+                 expenseType.description() + " are: " +
+                " budgetLimitValue= " + budgetLimitValue +
+                ", limitYellow = " + limitYellow + " % " +
+                ", limitRed = " + limitRed + " % " ;
     }
-
 }

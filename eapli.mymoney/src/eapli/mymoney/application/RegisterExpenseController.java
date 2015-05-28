@@ -1,6 +1,9 @@
 package eapli.mymoney.application;
 
-import eapli.mymoney.domain.*;
+import eapli.mymoney.domain.Expense;
+import eapli.mymoney.domain.ExpenseRegisteredEvent;
+import eapli.mymoney.domain.ExpenseType;
+import eapli.mymoney.domain.PaymentMethod;
 import eapli.mymoney.persistence.ExpenseRepository;
 import eapli.mymoney.persistence.Persistence;
 import eapli.mymoney.presentation.RegisterExpenseUI;
@@ -21,6 +24,8 @@ public class RegisterExpenseController {
 
     final ExpenseRepository repo = Persistence.getRepositoryFactory().getExpenseRepository();
 
+    Expense expense;
+
     private RegisterExpenseUI registerExpenseUI; // adicionado
 
     private ExpenseRegisteredEvent expenseRegisteredEvent; // passar por parametro
@@ -33,19 +38,18 @@ public class RegisterExpenseController {
         this.paymentMethod = paymentMethod;
         this.date = date;
         this.registerExpenseUI = registerExpenseUI;
+
+        this.expense = new Expense(moneyValue, expenseType, paymentMethod, date);
+
     }
 
     public Expense registerExpense() {
 
-        final Expense expense = new Expense(moneyValue, expenseType, paymentMethod, date);
-
         expenseRegisteredEvent = new ExpenseRegisteredEvent(expense);
-
-        alertExpenseController = new AlertExpenseController(registerExpenseUI, expenseRegisteredEvent);
-
-        alertExpenseController.checkExpense();
+        alertExpenseController = new AlertExpenseController(registerExpenseUI, expenseRegisteredEvent, repo);
 
         return addExpense(expense);
+
     }
 
     public List<Expense> listAllExpenses() {
@@ -53,13 +57,27 @@ public class RegisterExpenseController {
     }
 
     private Expense addExpense(Expense expense) {
-        getRepo().add(expense);
+        if (getRepo().add(expense)) { // if register expense suceed ,
+
+            alertExpenseController.checkExpense();
+
+        }
         return expense;
     }
 
     private ExpenseRepository getRepo() {
-
         return repo;
-
     }
+
+    public int getTotalExpensesByExpenseType(ExpenseType expenseType) {
+        int totalExpenseValue = 0;
+        List<Expense> listOfExpensesRegistered = repo.all();
+
+        for (int i = 0; i < listOfExpensesRegistered.size(); i++) {
+            if (listOfExpensesRegistered.get(i).getExpenseType().description().equalsIgnoreCase(expenseType.description()))
+                totalExpenseValue += listOfExpensesRegistered.get(i).getAmount().intValue();
+        }
+        return totalExpenseValue;
+    }
+
 }

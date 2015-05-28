@@ -59,6 +59,10 @@ public class Expense {
         return amount;
     }
 
+    public ExpenseType getExpenseType() {
+        return expenseType;
+    }
+
     @Override
     public String toString() {
         return "Expense{"

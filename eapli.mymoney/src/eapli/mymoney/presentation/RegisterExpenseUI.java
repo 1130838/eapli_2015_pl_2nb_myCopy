@@ -1,5 +1,6 @@
 package eapli.mymoney.presentation;
 
+import eapli.mymoney.application.ListExpenseLimitsController;
 import eapli.mymoney.application.ListExpenseTypesController;
 import eapli.mymoney.application.ListPaymentMethodController;
 import eapli.mymoney.application.RegisterExpenseController;
@@ -15,14 +16,24 @@ import java.util.List;
  */
 public class RegisterExpenseUI extends BaseUI implements Observer {
 
+    public RegisterExpenseController getRegisterExpenseController() {
+        return registerExpenseController;
+    }
+
     private RegisterExpenseController registerExpenseController;
 
     public ExpenseType expenseType;
     private PaymentMethod paymentMethod;
     private Calendar date;
     private BigDecimal moneyValue;
+    private ExpenseLimit expenseLimit;
 
     private Observable observable = null;
+
+    public RegisterExpenseUI() {
+
+
+    }
 
     @Override
     protected boolean doShow() {
@@ -39,6 +50,23 @@ public class RegisterExpenseUI extends BaseUI implements Observer {
         final List<ExpenseType> expenseTypesList = theControllerExpenseTypes.getAllExpenseTypes();
 
         expenseType = expenseTypesList.get(user_option_ET);
+
+        // testing
+        ListExpenseLimitsController listExpenseLimitsController = new ListExpenseLimitsController();
+        List<ExpenseLimit> listExpenseLimits = listExpenseLimitsController.getAllExpenseLimits();
+
+
+        //<editor-fold desc="testing ExpenseLimits repo">
+        for (int i = 0; i < listExpenseLimits.size(); i++) {
+            if (listExpenseLimits.get(i).getExpenseType().description().equalsIgnoreCase(expenseType.description())) {
+
+                System.out.println("test info:");
+                System.out.println(listExpenseLimits.get(i).getLimitsByExpenseType(expenseType).toString());
+            }
+        }
+        System.out.println("end of teste");
+        //</editor-fold>
+
 
         final ListPaymentMethodController theControllerPayment = new ListPaymentMethodController();
 
@@ -108,6 +136,6 @@ public class RegisterExpenseUI extends BaseUI implements Observer {
 
     @Override
     public void update() {
-        System.out.println("warning : that expense is way too much for your budget !");
+        System.out.println("warning : i'm RegisterExpenseUI and i'm being notified : that expense is way too much for your budget !");
     }
 }

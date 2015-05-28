@@ -37,4 +37,9 @@ public class JpaRepositoryFactory implements RepositoryFactory {
     public PaymentMethodsRepository getPaymentMethodRepository() {
         return new eapli.mymoney.persistence.jpa.PaymentMethodRepositoryImpl();
     }
+
+    @Override
+    public ExpenseLimitRepository getExpenseLimitRepository() {
+        return new eapli.mymoney.persistence.jpa.ExpenseLimitRepositoryImpl();
+    }
 }

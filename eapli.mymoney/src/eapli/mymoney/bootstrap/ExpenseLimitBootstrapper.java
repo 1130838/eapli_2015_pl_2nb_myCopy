@@ -1,5 +1,6 @@
 package eapli.mymoney.bootstrap;
 
+import eapli.mymoney.application.ListExpenseTypesController;
 import eapli.mymoney.application.RegisterExpenseLimitController;
 import eapli.mymoney.domain.ExpenseType;
 import eapli.mymoney.persistence.ExpenseTypeRepository;
@@ -16,20 +17,23 @@ public class ExpenseLimitBootstrapper {
         final RegisterExpenseLimitController registerExpenseLimitController = new RegisterExpenseLimitController();
 
         ExpenseTypeRepository expenseTypeRepository = new ExpenseTypeRepositoryImpl();
-        List<ExpenseType> listOfExpenseTypes = expenseTypeRepository.all();
+        ListExpenseTypesController listExpenseTypesController = new ListExpenseTypesController();
+
+        List<ExpenseType> listOfExpenseTypes = listExpenseTypesController.getAllExpenseTypes();
+
         int limitYellow = 50;
         int limitRed = 75;
+        int budgetLimitValue = 100;
 
+        // here you can define the different limits for any type of ExpenseType. for now its just increase 100,5,5 for testing purposes
         for (int i = 0; i < listOfExpenseTypes.size(); i++) {
             try {
-                registerExpenseLimitController.registerExpenseLimit(limitYellow, limitRed, listOfExpenseTypes.get(i));
+                registerExpenseLimitController.registerExpenseLimit(budgetLimitValue + 100, limitYellow + 5, limitRed + 5, listOfExpenseTypes.get(i));
             } catch (IllegalStateException ex) {
-                //nothing to do
+
             }
         }
 
 
-
-
-    }
+      }
 }

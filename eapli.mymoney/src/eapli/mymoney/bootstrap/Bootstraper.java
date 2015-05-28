@@ -16,5 +16,7 @@ public class Bootstraper {
          expensetype.execute();
         PaymentMethodBootstrapper paymentMethodBootstrapper = new PaymentMethodBootstrapper();
         paymentMethodBootstrapper.execute();
+        ExpenseLimitBootstrapper expenseLimitBootstrapper = new ExpenseLimitBootstrapper();
+        expenseLimitBootstrapper.execute();
     }
 }
