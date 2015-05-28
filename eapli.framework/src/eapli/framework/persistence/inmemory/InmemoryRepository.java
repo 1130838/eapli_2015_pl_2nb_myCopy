@@ -6,30 +6,57 @@ import java.util.List;
 
 public abstract class InmemoryRepository<T, ID> {
 
-	public final long size() {
+	/**
+	 * Returns the size of the list
+	 *
+	 * @return long size of the list
+	 */
+	public long size() {
 		return this.getList().size();
 	}
 
+	/**
+	 * Allows the abstract class to access the list implementation
+	 *
+	 * @return List<T>
+	 */
 	public abstract List<T> getList();
 
-	public final boolean contains(final T group) {
+	/**
+	 * Check if the list contains an certain object.
+	 *
+	 * @param object Object to check
+	 * @return boolean
+	 */
+	public boolean contains(final T object) {
 		return this.getList().
-			contains(group);
+			contains(object);
 	}
 
-	public final List<T> all() {
+	/**
+	 * Generic method to return all elements of the list.
+	 *
+	 * @return List
+	 */
+	public List<T> all() {
 		return Collections.unmodifiableList(this.getList());
 	}
 
-	public final Iterator<T> iterator(final int pagesize) {
+	/**
+	 * Returns the iterator for the List
+	 *
+	 * @param pagesize
+	 * @return
+	 */
+	public Iterator<T> iterator(final int pagesize) {
 		return this.getList().iterator();
 	}
 
 	/**
-	 * derived classes should implement this method to return the name of the
-	 * persistence unit
+	 * Method to save or update an object in the list
 	 *
-	 * @return the name of the persistence unit
+	 * @param object
+	 * @return object
 	 */
-	protected abstract String persistenceUnitName();
+	public abstract T save(T object);
 }
