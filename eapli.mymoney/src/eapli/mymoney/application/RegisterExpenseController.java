@@ -22,7 +22,7 @@ public class RegisterExpenseController {
     private PaymentMethod paymentMethod;
     private Calendar date;
 
-    final ExpenseRepository repo = Persistence.getRepositoryFactory().getExpenseRepository();
+    ExpenseRepository repo = Persistence.getRepositoryFactory().getExpenseRepository();
 
     Expense expense;
 
@@ -57,11 +57,11 @@ public class RegisterExpenseController {
     }
 
     private Expense addExpense(Expense expense) {
-        if (getRepo().add(expense)) { // if register expense suceed ,
+        getRepo().add(expense) ;
 
-            alertExpenseController.checkExpense();
+          //  alertExpenseController.checkExpense();
 
-        }
+
         return expense;
     }
 

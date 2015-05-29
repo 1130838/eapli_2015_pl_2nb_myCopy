@@ -17,7 +17,7 @@ public class AlertExpenseController {
     ExpenseRegisteredEvent expenseRegisteredEvent;
     ExpenseLimitViolatedEvent expenseLimitViolatedEvent;
     RegisterExpenseUI registerExpenseUI;
-    //ExpenseRepository repo;
+    ExpenseRepository repo;
     LimitWatchDog_Expense limitWatchDog_Expense;
 
     ExpenseRepositoryImpl expenseRepositoryImpl = new ExpenseRepositoryImpl();
@@ -26,30 +26,17 @@ public class AlertExpenseController {
 
         this.registerExpenseUI = registerExpenseUI;
         this.expenseRegisteredEvent = expenseRegisteredEvent;
-        //this.expenseRepositoryImpl = repo;
+        this.expenseRepositoryImpl = (ExpenseRepositoryImpl) repo;
 
-        limitWatchDog_Expense = new LimitWatchDog_Expense(registerExpenseUI); // to be able to subscribe UI as a observer of Watch^Dog
+        limitWatchDog_Expense = new LimitWatchDog_Expense(expenseRegisteredEvent, expenseRepositoryImpl); // to be able to subscribe UI as a observer of Watch^Dog
 
-        limitWatchDog_Expense.subscribe(expenseLimitViolatedEvent); // limitWatchDog wants to know about ExpenseRepositoryImpl
+        //subscribing Observer pattern rules ( always in the controller ):
+        limitWatchDog_Expense.subscribe(expenseRepositoryImpl); // limitWatchDog wants to know about ExpenseRepositoryImpl
         expenseRepositoryImpl.addObserver(limitWatchDog_Expense); // ExpenseRepositoryImpl wants to be observed by limitWatchDog
 
         registerExpenseUI.subscribe(limitWatchDog_Expense); // UI wants to know about limitWatchDog_Expense
         limitWatchDog_Expense.addObserver(registerExpenseUI); // limitWatchDog_Expense wants to be observed by UI
 
-
-
-
-
-
     }
-
-    public void checkExpense() {
-
-        if (limitWatchDog_Expense.isViolated(expenseRegisteredEvent)){
-            limitWatchDog_Expense.notifyObservers();
-        }
-
-    }
-
 
 }

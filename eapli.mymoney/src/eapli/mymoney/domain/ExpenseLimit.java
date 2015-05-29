@@ -29,6 +29,18 @@ public class ExpenseLimit {
     @ManyToOne
     ExpenseType expenseType;
 
+    public int getBudgetLimitValue() {
+        return budgetLimitValue;
+    }
+
+    public int getLimitYellow() {
+        return limitYellow;
+    }
+
+    public int getLimitRed() {
+        return limitRed;
+    }
+
     public ExpenseLimit(int budgetLimitValue, int limitYellow, int limitRed , ExpenseType expenseType) {
         this.expenseType = expenseType;
         this.budgetLimitValue = budgetLimitValue;

@@ -2,7 +2,8 @@ package eapli.mymoney.domain;
 
 import eapli.mymoney.application.ListExpenseLimitsController;
 import eapli.mymoney.application.RegisterExpenseController;
-import eapli.mymoney.presentation.RegisterExpenseUI;
+import eapli.mymoney.persistence.ExpenseRepository;
+import eapli.mymoney.persistence.inmemory.ExpenseRepositoryImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,93 +15,62 @@ public class LimitWatchDog_Expense implements Observable, Observer {
 
     List<Observer> listOfObservers = new ArrayList<>();
 
-    // ExpenseRegisteredEvent expenseRegisteredEvent; // what he will observe
-     RegisterExpenseUI registerExpenseUI;
-    // Observable observable = null;
+    ExpenseRegisteredEvent expenseRegisteredEvent; // what he will observe
+    ExpenseRepository repo = new ExpenseRepositoryImpl();
     RegisterExpenseController registerExpenseController;
 
-    public LimitWatchDog_Expense(RegisterExpenseUI registerExpenseUI) {
-        //this.expenseRegisteredEvent = expenseRegisteredEvent;
-        this.registerExpenseUI = registerExpenseUI;
+    public LimitWatchDog_Expense(ExpenseRegisteredEvent expenseRegisteredEvent, ExpenseRepository repo) {
+        this.repo = repo;
+        this.expenseRegisteredEvent = expenseRegisteredEvent;
     }
 
-    // @Override
-    public boolean isViolated(ExpenseRegisteredEvent expenseRegisteredEvent) {
+
+    public boolean isViolated() {
 
         // get info to the LimitExpense repository:
         ListExpenseLimitsController listExpenseLimitsController = new ListExpenseLimitsController();
         List<ExpenseLimit> listOfExpenseLimits = listExpenseLimitsController.getAllExpenseLimits();
 
-        int teste = registerExpenseUI.getRegisterExpenseController().getTotalExpensesByExpenseType(expenseRegisteredEvent.expense.getExpenseType());
-        System.out.println("teste total despesas = " + teste);
+        // verify violation: ( business rules - must be in WatchDog Class )
+        int amountOfExpense = expenseRegisteredEvent.getExpense().getAmount().intValue();
+        int totalExpensesValue = repo.getTotalExpensesByExpenseType(expenseRegisteredEvent.getExpense().getExpenseType()) + amountOfExpense;
 
-
+        String expenseDescription = expenseRegisteredEvent.getExpense().getExpenseType().description();
         for (int i = 0; i < listOfExpenseLimits.size(); i++) {
 
-            if (listOfExpenseLimits.get(i).expenseType.description().equalsIgnoreCase(expenseRegisteredEvent.expense.getExpenseType().description())) {
-                if (expenseRegisteredEvent.expense.getAmount().intValueExact() > listOfExpenseLimits.get(i).budgetLimitValue) {
+            ExpenseType expenseType = listOfExpenseLimits.get(i).getExpenseType();
 
-                    ExpenseLimitViolatedEvent expenseLimitViolatedEvent = new ExpenseLimitViolatedEvent(expenseRegisteredEvent); // necessary ?
+            if (expenseType.description().equalsIgnoreCase(expenseRegisteredEvent.getExpense().getExpenseType().description())) {
 
-                   /* System.out.println("testing : budgetLimitValue " + listOfExpenseLimits.get(i).budgetLimitValue +
-                            " value was crossed by expense " + expenseRegisteredEvent.expense.getAmount().intValueExact() +" !!! ");*/
+                int budgetLimitValue = listOfExpenseLimits.get(i).getLimitsByExpenseType(expenseRegisteredEvent.getExpense().getExpenseType()).getBudgetLimitValue();
 
-                    System.out.println("test : this expense ( " + expenseRegisteredEvent.expense.getAmount().intValueExact() +
-                            " ) is away beyond the " + expenseRegisteredEvent.expense.getExpenseType().description() +" buget limit ( " +
-                            listOfExpenseLimits.get(i).budgetLimitValue + " )  !!!! ");
+                if (amountOfExpense > budgetLimitValue) {
+
+                    System.out.println("this expense ( " + amountOfExpense +
+                            " ) is away beyond the " + expenseDescription + " buget limit ( " +
+                            listOfExpenseLimits.get(i).getLimitsByExpenseType(expenseType).getBudgetLimitValue() + " )  !!!! ");
                     return true;
                 }
 
-                if (expenseRegisteredEvent.expense.getAmount().intValueExact()  +
-                        registerExpenseUI.getRegisterExpenseController().getTotalExpensesByExpenseType(expenseRegisteredEvent.expense.getExpenseType())  > 0.01 * listOfExpenseLimits.get(i).limitYellow * listOfExpenseLimits.get(i).budgetLimitValue ) {
+                double yellowLimitValue = 0.01 * listOfExpenseLimits.get(i).getLimitYellow() * listOfExpenseLimits.get(i).getBudgetLimitValue();
+                if (totalExpensesValue > yellowLimitValue) {
 
-                    int totalDespesas = registerExpenseUI.getRegisterExpenseController().getTotalExpensesByExpenseType(expenseRegisteredEvent.expense.getExpenseType());
-                    System.out.println("teste total despesas = " + totalDespesas);
-
-                    ExpenseLimitViolatedEvent expenseLimitViolatedEvent = new ExpenseLimitViolatedEvent(expenseRegisteredEvent); // necessary ?
-
-                   /* System.out.println("testing : budgetLimitValue " + listOfExpenseLimits.get(i).budgetLimitValue +
-                            " value was crossed by expense " + expenseRegisteredEvent.expense.getAmount().intValueExact() +" !!! ");*/
-
-                    System.out.println("test : this expense ( " + expenseRegisteredEvent.expense.getAmount().intValueExact() +
-                            " ) will cross the " + expenseRegisteredEvent.expense.getExpenseType().description() +" yellow alert limit ( " +
-                            listOfExpenseLimits.get(i).limitYellow + " % )  !!!! . Total expenses of this type = " + totalDespesas);
+                    System.out.println("test : this expense ( " + amountOfExpense +
+                            " ) will cross the " + expenseDescription + " yellow alert limit ( " +
+                            listOfExpenseLimits.get(i).getLimitYellow() + " % )  !!!! . Total expenses of this type = " + totalExpensesValue);
                     return true;
                 }
 
+                if (totalExpensesValue > 0.01 * listOfExpenseLimits.get(i).getLimitRed() * listOfExpenseLimits.get(i).getBudgetLimitValue()) {
 
-                if (expenseRegisteredEvent.expense.getAmount().intValueExact() > 0.01 * listOfExpenseLimits.get(i).limitRed  * registerExpenseUI.getRegisterExpenseController().getTotalExpensesByExpenseType(expenseRegisteredEvent.expense.getExpenseType())) {
-
-                    ExpenseLimitViolatedEvent expenseLimitViolatedEvent = new ExpenseLimitViolatedEvent(expenseRegisteredEvent); // necessary ?
-
-                   /* System.out.println("testing : budgetLimitValue " + listOfExpenseLimits.get(i).budgetLimitValue +
-                            " value was crossed by expense " + expenseRegisteredEvent.expense.getAmount().intValueExact() +" !!! ");*/
-
-                    System.out.println("test : this expense ( " + expenseRegisteredEvent.expense.getAmount().intValueExact() +
-                            " ) is away beyond the " + expenseRegisteredEvent.expense.getExpenseType().description() +" red alert limit ( " +
-                            listOfExpenseLimits.get(i).limitRed + " % )  !!!! ");
+                    System.out.println("test : this expense ( " + amountOfExpense +
+                            " ) will cross the " + expenseDescription + " red alert limit ( " +
+                            listOfExpenseLimits.get(i).getLimitRed() + " % )  !!!! . Total expenses of this type = " + totalExpensesValue);
                     return true;
                 }
-
-
             }
-
-
-
-
-
-
         }
 
-
-/*
-        if (expenseRegisteredEvent.expense.amount.intValue() > 69) { // 69 for testing purposes. must be created LimitRepository and get the limits there
-
-            return true;
-        } else {
-            return false;
-        }
-        return false;*/
         return false;
     }
 
@@ -135,7 +105,10 @@ public class LimitWatchDog_Expense implements Observable, Observer {
 
     @Override
     public void update() {
-        notifyObservers();
+
+        if (isViolated()) {
+            notifyObservers();
+        }
 
     }
 

@@ -2,6 +2,7 @@ package eapli.mymoney.persistence.inmemory;
 
 import eapli.framework.model.Money;
 import eapli.mymoney.domain.Expense;
+import eapli.mymoney.domain.ExpenseType;
 import eapli.mymoney.domain.Period;
 import eapli.mymoney.persistence.ExpenseRepository;
 import java.util.ArrayList;
@@ -66,5 +67,17 @@ public class ExpenseRepositoryImpl
 
 		return total;
 	}
+
+    @Override
+    public int getTotalExpensesByExpenseType(ExpenseType expenseType) {
+        int totalExpenseValue = 0;
+        List<Expense> listOfExpensesRegistered = this.all();
+
+        for (int i = 0; i < listOfExpensesRegistered.size(); i++) {
+            if (listOfExpensesRegistered.get(i).getExpenseType().description().equalsIgnoreCase(expenseType.description()))
+                totalExpenseValue += listOfExpensesRegistered.get(i).getAmount().intValue();
+        }
+        return totalExpenseValue;
+    }
 
 }

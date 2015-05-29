@@ -97,7 +97,7 @@ public class RegisterExpenseUI extends BaseUI implements Observer {
         registerExpenseController.registerExpense();
 
         List<Expense> expenseList = registerExpenseController.listAllExpenses();
-        showListResults(expenseList); // for test purposes for now
+        showListOfExpenses(expenseList); // for test purposes for now
     }
 
     @Override
@@ -105,7 +105,7 @@ public class RegisterExpenseUI extends BaseUI implements Observer {
         return "REGISTER AN EXPENSE";
     }
 
-    private void showListResults(List<?> list) {
+    private void showListOfExpenses(List<?> list) {
 
         if (list == null || list.isEmpty()) {
             System.out.println("There is no expenses to list.");

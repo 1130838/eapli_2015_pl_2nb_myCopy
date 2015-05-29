@@ -5,29 +5,14 @@ package eapli.mymoney.domain;
  */
 public class ExpenseRegisteredEvent {
 
-    Expense expense;
-
-   /* List<Observer> listOfObservers = new ArrayList<>();*/
+    private Expense expense;
 
     public ExpenseRegisteredEvent(Expense expense) {
         this.expense = expense;
     }
 
- /*   @Override
-    public void addObserver(Observer observer) {
-        listOfObservers.add(observer);
+    public Expense getExpense() {
+        return expense;
     }
 
-    @Override
-    public void removeObserver(Observer observer) {
-        listOfObservers.remove(observer);
-    }
-
-    @Override
-    public void notifyObservers() {
-        for (int i = 0; i < listOfObservers.size(); i++) {
-            listOfObservers.get(i).update();
-
-        }
-    }*/
 }
