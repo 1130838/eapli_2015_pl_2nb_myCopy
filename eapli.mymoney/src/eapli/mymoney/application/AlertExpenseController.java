@@ -1,6 +1,5 @@
 package eapli.mymoney.application;
 
-import eapli.mymoney.domain.ExpenseLimitViolatedEvent;
 import eapli.mymoney.domain.ExpenseRegisteredEvent;
 import eapli.mymoney.domain.LimitWatchDog_Expense;
 import eapli.mymoney.persistence.ExpenseRepository;
@@ -15,7 +14,6 @@ import eapli.mymoney.presentation.RegisterExpenseUI;
 public class AlertExpenseController {
 
     ExpenseRegisteredEvent expenseRegisteredEvent;
-    ExpenseLimitViolatedEvent expenseLimitViolatedEvent;
     RegisterExpenseUI registerExpenseUI;
     ExpenseRepository repo;
     LimitWatchDog_Expense limitWatchDog_Expense;

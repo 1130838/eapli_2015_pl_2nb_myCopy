@@ -32,8 +32,8 @@ public class LimitWatchDog_Expense implements Observable, Observer {
         List<ExpenseLimit> listOfExpenseLimits = listExpenseLimitsController.getAllExpenseLimits();
 
         // verify violation: ( business rules - must be in WatchDog Class )
-        int amountOfExpense = expenseRegisteredEvent.getExpense().getAmount().intValue();
-        int totalExpensesValue = repo.getTotalExpensesByExpenseType(expenseRegisteredEvent.getExpense().getExpenseType()) + amountOfExpense;
+        int ExpenseValue = expenseRegisteredEvent.getExpense().getAmount().intValue();
+        int totalExpensesValue = repo.getTotalExpensesByExpenseType(expenseRegisteredEvent.getExpense().getExpenseType()) ;
 
         String expenseDescription = expenseRegisteredEvent.getExpense().getExpenseType().description();
         for (int i = 0; i < listOfExpenseLimits.size(); i++) {
@@ -44,28 +44,32 @@ public class LimitWatchDog_Expense implements Observable, Observer {
 
                 int budgetLimitValue = listOfExpenseLimits.get(i).getLimitsByExpenseType(expenseRegisteredEvent.getExpense().getExpenseType()).getBudgetLimitValue();
 
-                if (amountOfExpense > budgetLimitValue) {
+                if (ExpenseValue > budgetLimitValue || totalExpensesValue > budgetLimitValue) {
 
-                    System.out.println("this expense ( " + amountOfExpense +
-                            " ) is away beyond the " + expenseDescription + " buget limit ( " +
-                            listOfExpenseLimits.get(i).getLimitsByExpenseType(expenseType).getBudgetLimitValue() + " )  !!!! ");
+                    System.out.println("this expense ( " + ExpenseValue +
+                            " ) makes a total spending in " + expenseDescription + " expenses of "+ totalExpensesValue + ". This value is away beyond the buget limit ( " +
+                             listOfExpenseLimits.get(i).getLimitsByExpenseType(expenseType).getBudgetLimitValue() + " )  !!!! ");
                     return true;
                 }
 
-                double yellowLimitValue = 0.01 * listOfExpenseLimits.get(i).getLimitYellow() * listOfExpenseLimits.get(i).getBudgetLimitValue();
-                if (totalExpensesValue > yellowLimitValue) {
+                int yellowLimitValue =listOfExpenseLimits.get(i).getLimitYellow() * listOfExpenseLimits.get(i).getBudgetLimitValue() /100;
+                int redLimitValue = listOfExpenseLimits.get(i).getLimitRed() * listOfExpenseLimits.get(i).getBudgetLimitValue()/ 100;
 
-                    System.out.println("test : this expense ( " + amountOfExpense +
-                            " ) will cross the " + expenseDescription + " yellow alert limit ( " +
-                            listOfExpenseLimits.get(i).getLimitYellow() + " % )  !!!! . Total expenses of this type = " + totalExpensesValue);
+                if (totalExpensesValue > yellowLimitValue && totalExpensesValue < redLimitValue  ) {
+
+                    System.out.println("Yellow Alert! this expense ( " + ExpenseValue +
+                            " ) makes a total spending in " + expenseDescription + " expenses of "+ totalExpensesValue + ". This value cross the yellow limit : " +
+                           listOfExpenseLimits.get(i).getLimitYellow() + " % x "+ budgetLimitValue+ " =  "+
+                             listOfExpenseLimits.get(i).getLimitYellow() * budgetLimitValue / 100);
                     return true;
                 }
 
-                if (totalExpensesValue > 0.01 * listOfExpenseLimits.get(i).getLimitRed() * listOfExpenseLimits.get(i).getBudgetLimitValue()) {
+                if (totalExpensesValue > redLimitValue && totalExpensesValue < budgetLimitValue  ) {
 
-                    System.out.println("test : this expense ( " + amountOfExpense +
-                            " ) will cross the " + expenseDescription + " red alert limit ( " +
-                            listOfExpenseLimits.get(i).getLimitRed() + " % )  !!!! . Total expenses of this type = " + totalExpensesValue);
+                    System.out.println("Red Alert! this expense ( " + ExpenseValue +
+                            " ) makes a total spending in " + expenseDescription + " expenses of "+ totalExpensesValue + ". This value cross the red limit : " +
+                            listOfExpenseLimits.get(i).getLimitRed() + " % x "+ budgetLimitValue+ " =  "+
+                            listOfExpenseLimits.get(i).getLimitRed() * budgetLimitValue / 100);
                     return true;
                 }
             }

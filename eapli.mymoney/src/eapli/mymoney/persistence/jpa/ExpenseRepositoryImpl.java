@@ -106,62 +106,11 @@ public class ExpenseRepositoryImpl
     @Override
     public void notifyObservers() {
         for (int i = 0; i < listOfInterested.size(); i++) {
-            System.out.println("teste. zé !! notifiy observers pelo  ExpenseRepositoryImpl");
             listOfInterested.get(i).update();
         }
     }
 
 }
-
-
-    /*//<editor-fold desc="isViolated not necessary here ">
-    public boolean isViolated(Expense expense) {
-
-        // get info to the LimitExpense repository:
-        ListExpenseLimitsController listExpenseLimitsController = new ListExpenseLimitsController();
-        List<ExpenseLimit> listOfExpenseLimits = listExpenseLimitsController.getAllExpenseLimits();
-
-        // verify violation:
-        for (int i = 0; i < listOfExpenseLimits.size(); i++) {
-
-            ExpenseType expenseType = listOfExpenseLimits.get(i).getExpenseType();
-
-            if (expenseType.description().equalsIgnoreCase(expense.getExpenseType().description())) {
-
-                if (expense.getAmount().intValue() > listOfExpenseLimits.get(i).getLimitsByExpenseType(expense.getExpenseType()).getBudgetLimitValue()) {
-
-                    System.out.println("this expense ( " + expense.getAmount().intValueExact() +
-                            " ) is away beyond the " + expense.getExpenseType().description() + " buget limit ( " +
-                            listOfExpenseLimits.get(i).getLimitsByExpenseType(expenseType).getBudgetLimitValue() + " )  !!!! ");
-                    return true;
-                }
-
-                int totalExpensesValue = getTotalExpensesByExpenseType(expense.getExpenseType());
-
-                if (totalExpensesValue > 0.01 * listOfExpenseLimits.get(i).getLimitYellow() * listOfExpenseLimits.get(i).getBudgetLimitValue()) {
-
-                    System.out.println("test : this expense ( " + expense.getAmount().intValueExact() +
-                            " ) will cross the " + expense.getExpenseType().description() + " yellow alert limit ( " +
-                            listOfExpenseLimits.get(i).getLimitYellow() + " % )  !!!! . Total expenses of this type = " + totalExpensesValue);
-                    return true;
-                }
-
-                if (totalExpensesValue > 0.01 * listOfExpenseLimits.get(i).getLimitRed() * listOfExpenseLimits.get(i).getBudgetLimitValue()) {
-
-                    System.out.println("test : this expense ( " + expense.getAmount().intValueExact() +
-                            " ) will cross the " + expense.getExpenseType().description() + " red alert limit ( " +
-                            listOfExpenseLimits.get(i).getLimitRed() + " % )  !!!! . Total expenses of this type = " + totalExpensesValue);
-                    return true;
-                }
-
-            }
-
-        }
-
-
-        return false;
-    }
-    //</editor-fold>*/
 
 
 

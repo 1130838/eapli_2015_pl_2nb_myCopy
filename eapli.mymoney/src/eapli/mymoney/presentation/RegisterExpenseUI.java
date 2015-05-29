@@ -136,6 +136,6 @@ public class RegisterExpenseUI extends BaseUI implements Observer {
 
     @Override
     public void update() {
-        System.out.println("warning : i'm RegisterExpenseUI and i'm being notified : that expense is way too much for your budget !");
+        System.out.println("warning to user : that expense is way too much for your budget !");
     }
 }
